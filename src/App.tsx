@@ -11,9 +11,9 @@ function App() {
     <>
       <BrowserRouter>
         <div className="flex h-screen overflow-hidden">
-          <div className="flex h-screen overflow-hidden">
+          {/* <div className="flex h-screen overflow-hidden">
             <Sidebar/>
-          </div>
+          </div> */}
           <div className="flex h-screen overflow-hidden w-full">
             <div className="flex flex-col flex-grow overflow-y-auto w-full h-full">
               <Routes>

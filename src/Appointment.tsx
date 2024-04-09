@@ -1,8 +1,9 @@
-import Photo from "./assets/images/images-2.jpeg";
+import Photo from "./assets/images/lindsay-cash-Md_DhaFsnCQ-unsplash.jpg";
 import "react-calendar/dist/Calendar.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import Calendar from "react-calendar";
+import Sidebar from "./Sidebar";
 
 function Appointment() {
   const options = [
@@ -15,20 +16,11 @@ function Appointment() {
   ];
   return (
     <>
-      <div className="flex flex-wrap bg-salmon p-4 mx-4">
-        <div className="flex flex-row bg-whiteish w-full justify-between shadow-lg">
-          <div className="flex bg-blueGrey p-16 text-xl italic items-center">
-            Make an Appointment
-          </div>
-          <div className="flex border-l">
-            <div className="flex p-2">
-              <img src={Photo}></img>
-            </div>
-          </div>
+      <img className="filter brightness-50 absolute" src={Photo} alt="home-page" />
+      <div className="flex flex-row w-full p-4 filter z-10">
+        <Sidebar/>
         </div>
-      </div>
-      <div className="flex bg-salmon p-2 mx-4 mt-4">
-        <div className="flex p-2 bg-otherTan w-full">
+        <div className="flex p-2 bg-otherTan w-full z-10 ml-4">
           <div className="flex flex-wrap bg-whiteish w-full text-black justify-between">
             <div className="flex flex-col justify-between">
               <div className="flex mt-8 sm:ml-8">
@@ -49,7 +41,6 @@ function Appointment() {
               </div>
           </div>
         </div>
-      </div>
     </>
   );
 }

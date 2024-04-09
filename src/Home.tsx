@@ -1,5 +1,5 @@
-import Flower from "./assets/images/vase-branches-neutral.jpg";
-import Map from "./Map";
+// import Flower from "./assets/images/vase-branches-neutral.jpg";
+// import Map from "./Map";
 import background from './assets/images/adam-winger-WXmHwPcFamo-unsplash.jpg';
 import Sidebar from "./Sidebar";
 

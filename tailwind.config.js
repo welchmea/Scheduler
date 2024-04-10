@@ -4,6 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        backgroundCard : '#A0A0A0',
+        apptHeaders: '#f0f0f0',
         darkRed: '#AA2000',
         yellowGreen: '#7F7144',
         darkGreen: '#403E0D',

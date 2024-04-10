@@ -11,7 +11,7 @@ function Home() {
       <div className="flex flex-wrap w-full h-1/6 p-4 filter text-black absolute">
         <Sidebar/>
         </div>
-    <div className='absolute text-black flex ml-4 items-center text-8xl w-1/4 h-5/6 mt-28'>
+    <div className='absolute text-black flex ml-16 items-start text-8xl w-1/4 h-5/6 mt-28'>
       Realm Salon
     </div> 
         {/* <div className="flex flex-row border border-blueGrey p-2 bg-whiteish shadow-lg">

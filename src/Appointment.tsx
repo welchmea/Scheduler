@@ -25,7 +25,7 @@ function Appointment() {
         <div className="flex flex-col place-content-center gap-y-8">
           <div className="flex">
             <Dropdown
-              className="w-[30vh] text-left shadow-xl"
+              className="w-[40vh] text-left shadow-xl"
               options={options}
             />
           </div>
@@ -34,7 +34,7 @@ function Appointment() {
             <label className="flex border border-gray-300 p-3">
               Notes for stylist...
             </label>
-            <textarea className="flex bg-white border border-gray-300 w-[60vh] sm:w-[40vh] h-full p-3"></textarea>
+            <textarea className="flex bg-apptHeaders border border-gray-300 w-[60vh] h-full p-3"></textarea>
           </div>
           <div className="flex">
             <button className="transition delay-150 duration-300 ease-in-out transform hover:scale-110 text-2xl text-white border border-white p-2 rounded-md">

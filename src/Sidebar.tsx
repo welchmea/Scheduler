@@ -27,7 +27,7 @@ function Sidebar () {
                 </div>
                 <div className="flex">
                     <Link to='/Appointment'>
-                    <button className="flex p-2 border rounded-md text-sm hover:white hover:text-black hover:bg-white">Make Appointment</button>
+                    <button className="flex p-2 rounded-md text-sm">Make Appointment</button>
                     </Link>
                 </div>
             </div>

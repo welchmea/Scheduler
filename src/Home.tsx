@@ -1,17 +1,19 @@
 // import Flower from "./assets/images/vase-branches-neutral.jpg";
 // import Map from "./Map";
-import background from './assets/images/adam-winger-WXmHwPcFamo-unsplash.jpg';
+// import background from './assets/images/adam-winger-WXmHwPcFamo-unsplash.jpg';
 import Sidebar from "./Sidebar";
 
 function Home() {
   return (
     <>
-    <div className="flex">
-    <img className="flex overflow-x-y-auto filter brightness-50 absolute" src={background} alt="home-page" />
-      <div className="flex flex-row w-full p-4 filter z-10">
+    <div className="bg-[url('./assets/images/adam-winger-WXmHwPcFamo-unsplash.jpg')] h-full bg-cover"></div>
+    {/* <img className="flex overflow-x-y-auto filter brightness-50 absolute" src={background} alt="home-page" /> */}
+      <div className="flex flex-wrap w-full h-1/6 p-4 filter text-black absolute">
         <Sidebar/>
         </div>
-    </div>
+    <div className='absolute text-black flex ml-4 items-center text-8xl w-1/4 h-5/6 mt-28'>
+      Realm Salon
+    </div> 
         {/* <div className="flex flex-row border border-blueGrey p-2 bg-whiteish shadow-lg">
           <div className="flex w-1/3 italic place-content-left p-1 sm:text-xl md:text-2xl lg:text-2xl border border-black bg-sage">
             Realm Salon

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@1,100&family=Libre+Baskerville&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,4 +10,3 @@
   font-family: "Vollkorn", serif;
   font-optical-sizing: auto;
 }
-

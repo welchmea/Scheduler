@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        calendarBG: '#f0f0f0',
         backgroundCard : '#A0A0A0',
         apptHeaders: '#f0f0f0',
         darkRed: '#AA2000',

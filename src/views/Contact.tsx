@@ -11,9 +11,9 @@ function Contact() {
     <>
       <div className="bg-[url('./assets/images/giorgio-trovato-ldC8xP2Z9lo-unsplash.jpg')] h-[100vh] bg-cover"></div>
 
-      <div className="flex flex-row z-10 w-full h-5/6 mt-48 place-content-center fixed">
-        <div className="flex flex-wrap border border-white justify-center place-content-center bg-backgroundCard rounded-md gap-x-8">
-          <div className="flex bg-calendarBG p-12 rounded-md h-5/6 items-center">
+      <div className="flex flex-row z-10 w-full mt-48 place-content-center fixed">
+        <div className="flex flex-wrap p-12 border border-white justify-center place-content-center bg-backgroundCard rounded-md gap-x-8">
+          <div className="flex overflow-auto bg-calendarBG rounded-md items-center p-12">
             <img
               className="flex h-[60vh] border border-white rounded-md"
               src={Photo}

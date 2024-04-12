@@ -43,7 +43,7 @@ function Appointment() {
               <label>Pick a time:</label>
               <div className="flex flex-row w-full justify-around">
                 {times.map((i) => (
-                  <button className="p-3 border-2 border-white bg-white rounded-md hover:bg-backgroundCard">
+                  <button className="transition delay-100 duration-300 ease-in-out transform hover:scale-110 p-3 border-2 border-white bg-white rounded-md hover:bg-backgroundCard">
                     {i}
                   </button>
                 ))}
@@ -56,7 +56,7 @@ function Appointment() {
               <textarea className="flex bg-white border border-gray-300 w-[60vh] p-3"></textarea>
             </div>
             <div className="flex flex-col text-left border p-3 text-md border-gray-300 bg-calendarBG shadow-lg rounded-md">
-              <button className="transition delay-150 duration-300 ease-in-out transform hover:scale-110 text-xl w-1/3 border border-black p-2 rounded-md">
+              <button className="hover:bg-backgroundCard bg-white transition delay-100 duration-300 ease-in-out transform hover:scale-105 text-xl w-1/3 border border-white p-2 rounded-md">
                 Submit
               </button>
             </div>

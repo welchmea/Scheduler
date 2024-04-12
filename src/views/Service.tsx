@@ -1,8 +1,8 @@
-interface HairServices {
-  id: number;
-  service: string;
-  price: number;
-}
+// interface HairServices {
+//   id: number;
+//   service: string;
+//   price: number;
+// }
 
 function Services() {
   let hair_services = [

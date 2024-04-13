@@ -17,6 +17,7 @@ function Appointment() {
   return (
     <>
       <div className="bg-[url('./assets/images/giorgio-trovato-qrz6s4yDcIM-unsplash.jpg')] h-full w-full bg-cover bg-left"></div>
+
       <div className="flex flex-wrap p-2 gap-x-10 justify-center items-start z-2 absolute mt-48 text-black w-full">
         <div className="flex flex-col gap-y-1 border border-white bg-backgroundCard rounded-md h-5/6 p-8 ">
           <label className="flex text-xl border border-white bg-calendarBG p-4 rounded-md">
@@ -25,7 +26,6 @@ function Appointment() {
           <div className="flex flex-wrap">
             <Calendar />
           </div>
-
           <div className="flex text-xl border border-white bg-calendarBG p-4 rounded-md">
             Stylist: Melissa McGill
           </div>

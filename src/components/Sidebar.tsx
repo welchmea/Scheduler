@@ -25,11 +25,17 @@ function Sidebar () {
                     </Link>
 
                 </div>
-                <div className="flex transition delay-150 duration-300 ease-in-out transform hover:scale-110">
+                <div className="flex transition delay-150 duration-300 ease-in-out transform hover:scale-110 ">
+                    <Link to='/Login'>
+                    <button className="flex p-4 rounded-2xl text-xl bg-white">Login</button>
+                    </Link>
+                </div>
+                <div className="flex transition delay-150 duration-300 ease-in-out transform hover:scale-110 ">
                     <Link to='/Appointment'>
                     <button className="flex p-4 rounded-2xl text-xl bg-white">Make Appointment</button>
                     </Link>
                 </div>
+
             </div>
         </div>
         </>

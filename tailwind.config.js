@@ -26,7 +26,7 @@ export default {
         blueGrey: '#4E6F87',
         sage: '#90ADA9',
       },
-      borderColor: '#D9D5D2'
+      borderColor: '#D9D5D2',
     },
   },
   plugins: [],

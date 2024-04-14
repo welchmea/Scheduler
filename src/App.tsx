@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import Contact from "./views/Contact";
 import Services from "./views/Service";
 import Appointment from "./views/Appointment";
+import Login from "./views/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/Contact" element={<Contact/>}/>
                 <Route path="/Services" element={<Services/>}/>
+                <Route path="/Login" element={<Login/>}/>
                 <Route path='/Appointment' element={<Appointment/>}/>
               </Routes>
             </div>

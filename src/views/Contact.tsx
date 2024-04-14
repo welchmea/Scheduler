@@ -16,16 +16,15 @@ function Contact() {
           <img className="flex border border-white rounded-md" src={Photo} />
         </div>
 
-
         <div className="flex flex-col gap-y-1 border border-white bg-backgroundCard rounded-md h-5/6 p-8">
-          <div className="flex flex-col gap-y-1 bg-calendarBG p-4 items-center rounded-md h-full">
-            <label className="flex">Stylist/Owner:</label>
-              <p className="flex italic"> Melissa McGill</p>
-            <label className="flex">About Me:</label>
-              <p className="flex italic">
-                "Stylist for 10 years. Specializes in dynamic point hair cuts,
-                color correction, and blonding."
-              </p>
+          <div className="flex flex-col bg-calendarBG p-4 items-center place-content-center justify-around text-2xl rounded-md h-full">
+            <label>Stylist/Owner:</label>
+            <p className="italic"> Melissa McGill</p>
+            <label>About Me:</label>
+            <p className="italic">
+              "Stylist for 10 years. Specializes in dynamic point hair cuts,
+              color correction, and blonding."
+            </p>
           </div>
 
           <div className="border border-white p-4 rounded-md bg-calendarBG">

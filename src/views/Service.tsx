@@ -110,13 +110,15 @@ function Services() {
   return (
     <>
       <div className="bg-[url('./assets/images/giorgio-trovato-qrz6s4yDcIM-unsplash.jpg')] h-[100vh] bg-cover bg-right"></div>
-      <div className="flex w-full z-10 absolute mt-48 justify-center">
+      <div className="flex w-full z-10 absolute mt-48 justify-center text-black">
         <div className="flex flex-col bg-backgroundCard border border-white rounded-md w-5/6 p-8">
-          <h1 className="flex mb-8 text-2xl">Services Offered: </h1>
-          <div className="flex flex-row justify-between text-black gap-x-2">
-            <div className="flex flex-col bg-calendarBG border border-white rounded-md w-1/3 text-xl">
-              <h2 className="mt-12 text-2xl">Cuts</h2>
-              <div className="w-full p-3">
+          <h1 className="flex text-2xl w-full bg-calendarBG border border-white rounded-md p-4 mb-1">Services Offered: </h1>
+          <div className="flex flex-row justify-between gap-x-2">
+            <div className="flex flex-col w-1/3 text-xl">
+              <div className="flex border border-white bg-white p-4 rounded-md mb-1">
+              <h2 className="text-2xl">Cuts</h2>
+                </div>
+              <div className="w-full p-3 bg-calendarBG border border-white rounded-md h-full">
               {cuts.map((key) => (
                 <ul className="flex justify-between p-4">
                   <div className="flex">{key.service}</div>
@@ -125,9 +127,11 @@ function Services() {
               ))}
               </div>
             </div>
-            <div className="flex flex-col bg-calendarBG border border-white rounded-md w-1/3 text-xl">
-              <h2 className="mt-12 text-2xl">Color</h2>
-              <div className="w-full p-3">
+            <div className="flex flex-col w-1/3 text-xl">
+            <div className="flex border border-white bg-white p-4 rounded-md mb-1">
+              <h2 className="text-2xl">Color</h2>
+                </div>
+              <div className="w-full p-3 bg-calendarBG border border-white rounded-md h-full">
               {color.map((key) => (
                 <ul className="flex justify-between p-4">
                   <div className="flex">{key.service}</div>
@@ -136,9 +140,11 @@ function Services() {
               ))}
               </div>
             </div>
-            <div className="flex flex-col bg-calendarBG border border-white rounded-md w-1/3 text-xl">
-              <h2 className="mt-12 text-2xl">Styling and Treatments</h2>
-              <div className="w-full p-3">
+            <div className="flex flex-col w-1/3 text-xl">
+            <div className="flex border border-white bg-white p-4 rounded-md mb-1">
+              <h2 className="text-2xl">Styling and Treatments</h2>
+                </div>
+              <div className="w-full p-3 bg-calendarBG border border-white rounded-md h-full">
               {styling.map((key) => (
                 <ul className="flex justify-between p-4">
                   <div className="flex">{key.service}</div>

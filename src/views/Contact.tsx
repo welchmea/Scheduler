@@ -16,8 +16,8 @@ function Contact() {
         <div className="flex border border-black bg-calendarBG rounded-md p-8 h-5/6">
           <img className="flex border border-black rounded-md" src={Photo} />
         </div>
-        <div className="flex flex-col gap-y-1 border border-black bg-calendarBG rounded-md h-5/6 p-8">
-          <div className="flex flex-col bg p-4 items-center place-content-center justify-around text-2xl rounded-md h-full border border-black">
+        <div className="flex flex-col gap-y-1 border border-black bg-white rounded-md h-5/6 p-8">
+          <div className="flex flex-col bg p-4 items-center place-content-center justify-around text-2xl rounded-md h-full border border-black bg-calendarBG">
             <label >Stylist/Owner:</label>
               <p className="italic"> Melissa McGill</p>
             <label >About Me:</label>

@@ -19,11 +19,11 @@ function Appointment() {
       <div className="bg-[url('./assets/images/martin-widenka-61HdqMxX2lc-unsplash.jpg')] h-full w-full bg-cover bg-left"></div>
 
       <div className="flex flex-wrap p-2 gap-x-4 justify-center items-start z-2 absolute mt-48 text-black w-full">
-        <div className="flex flex-col gap-y-1 border border-black rounded-md h-5/6 p-8 ">
+        <div className="flex flex-col gap-y-1 border border-black rounded-md h-5/6 p-8 bg-white">
           <label className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
             Appointment Scheduler
           </label>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap border border-black rounded-md">
             <Calendar />
           </div>
           <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
@@ -31,7 +31,7 @@ function Appointment() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-y-1 border border-black rounded-md p-8">
+        <div className="flex flex-col border border-black bg-white rounded-md p-8">
           <div className="flex flex-col place-content-center gap-y-1">
             <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
               <Dropdown
@@ -53,7 +53,7 @@ function Appointment() {
               <label className="flex text-xl border bg-white border-black p-3">
                 Notes for stylist...
               </label>
-              <textarea className="flex bg-white border border-black w-[60vh] p-3"></textarea>
+              <textarea className="flex bg-white border border-black w-[60vh] h-[21vh] p-3"></textarea>
             </div>
             <div className="flex border border-black p-3 text-md bg-calendarBG shadow-lg rounded-md">
               <button className="hover:bg-backgroundCard bg-white transition delay-100 duration-300 ease-in-out transform hover:scale-105 text-xl w-1/3 border border-black p-2 rounded-md">

@@ -19,7 +19,7 @@ module.exports = {
         silver: '#D9D5D2',
         // pink color palette
         whiteish: '#FBFBFB',
-        otherTan: '#E4D5C9',
+        otherTan: '#ECDCC9',
         otherBeige: '#D0B6A6',
         salmon: '#F9E0DB',
         dkGreen: '#869F77',

@@ -1,44 +1,31 @@
 import { Link } from "react-router-dom";
 
-function Sidebar () {
-    return (
-        <>
-        <div className="flex flex-row items-center w-full justify-between">
-            <div className="flex mr-8 border-4 p-4">
-                R+S
-            </div>
-            <div className="flex flex-row gap-x-10 items-center">
-                <div className="transition delay-150 duration-300 ease-in-out transform hover:scale-110">
-                    <Link to='/'>
-                    Home
-                    </Link>
-                </div>
-                <div className="transition delay-150 duration-300 ease-in-out transform hover:scale-110">
-                    <Link to='/Services'>
-                    Services
-                    </Link>
-                  
-                </div>
-                <div className="transition delay-150 duration-300 ease-in-out transform hover:scale-110">
-                    <Link to='/Contact'>
-                    Contact
-                    </Link>
-
-                </div>
-                <div className="flex transition delay-150 duration-300 ease-in-out transform hover:scale-110 border border-black rounded-2xl ">
-                    <Link to='/Login'>
-                    <button className="flex p-4 rounded-2xl text-xl bg-white">Login</button>
-                    </Link>
-                </div>
-                <div className="flex transition delay-150 duration-300 ease-in-out transform hover:scale-110 border border-black rounded-2xl">
-                    <Link to='/Appointment'>
-                    <button className="flex p-4 rounded-2xl text-xl bg-white">Make Appointment</button>
-                    </Link>
-                </div>
-
-            </div>
+function Sidebar() {
+  return (
+    <>
+      <div className="flex flex-row flex-wrap items-center text-black justify-between p-2 border">
+        <div className="flex border border-black rounded-md p-2">R+S</div>
+        <div className="flex flex-wrap gap-x-10 items-center">
+          <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
+            <Link to="/">Home</Link>
+          </div>
+          <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
+            <Link to="/Services">Services</Link>
+          </div>
+          <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
+            <Link to="/Contact">Contact</Link>
+          </div>
+          <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
+            <Link to="/Login">Login
+            </Link>
+          </div>
+          <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
+            <Link to="/Appointment">Appointment
+            </Link>
+          </div>
         </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }
 export default Sidebar;

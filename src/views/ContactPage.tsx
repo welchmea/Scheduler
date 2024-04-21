@@ -1,20 +1,151 @@
 import Contact from "../components/Contact";
 import Map from "../components/Map";
+("use client");
+import React, { useState } from "react";
 
-function ContactPage () {
-    return (
-        <>
-        <div className="h-screen text-black flex flex-col items-center place-content-center gap-y-4">
-            <h1 className="text-white text-2xl">Contact Page</h1>
-            <div className="flex w-5/6 bg-white">
-            <Contact/>
-            </div>
-            
-            <div className="w-5/6">
-            <Map/>
-            </div>
+interface FormState {
+  name: string;
+  email: string;
+  message: string;
+}
+function ContactPage() {
+  const [formState, setFormState] = useState<FormState>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState<FormState>({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validateEmail = (email: string) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      setIsSubmitting(true);
+      const errors = { name: "", email: "", message: "" };
+
+      if (formState.name === "") {
+        errors.name = "Name is required";
+      }
+
+      if (formState.email === "" || !validateEmail(formState.email)) {
+        errors.email = "Valid email is required";
+      }
+
+      if (formState.message === "") {
+        errors.message = "Message is required";
+      }
+
+      setErrors(errors);
+
+      if (!errors.name && !errors.email && !errors.message) {
+        await fetch("../route", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formState),
+        });
+        setFormState({ name: "", email: "", message: "" });
+      }
+    } catch (error) {
+      // handle error here
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <div className="h-screen text-black flex flex-col items-center place-content-center gap-y-4">
+        <h1 className="text-white text-2xl">Contact Page</h1>
+        <div className="flex w-5/6 bg-white">
+          <Contact />
         </div>
-        </>
-    )
+
+        <div className="flex justify-center bg-white w-5/6 p-8">
+          <form className="flex gap-4" onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-y-4">
+              <div className="flex flex-col gap-1">
+                <input
+                  className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"
+                  type="text"
+                  name="name"
+                  value={formState.name}
+                  onChange={handleChange}
+                  placeholder="Name"
+                />
+                {errors.name && (
+                  <p className="text-sm text-red-400">{errors.name}</p>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-y-4 gap-1">
+                <input
+                  className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"
+                  type="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  placeholder="Email"
+                />
+                {errors.email && (
+                  <p className="text-sm text-red-400">{errors.email}</p>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <div className="flex gap-1">
+                <textarea
+                  className="rounded-md border-2 border-slate-300 outline-white text-white p-2"
+                  name="message"
+                  value={formState.message}
+                  onChange={handleChange}
+                  placeholder="Message"
+                  rows={6}
+                />
+                {errors.message && (
+                  <p className="text-sm text-red-400">{errors.message}</p>
+                )}
+              </div>
+
+              <button
+                disabled={isSubmitting}
+                className="rounded-md bg-black text-white px-2 py-1 block"
+                type="submit"
+              >
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </button>
+            </div>
+          </form>
+          <div className="flex w-1/3 place-content-center items-end">
+            <p>
+                We'd love to hear from you. Send your comments, concerns, or praises.
+            </p>
+          </div>
+        </div>
+
+        <div className="w-5/6">
+          <Map />
+        </div>
+      </div>
+    </>
+  );
 }
 export default ContactPage;

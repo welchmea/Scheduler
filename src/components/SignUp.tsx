@@ -62,7 +62,7 @@ export default function SignUp ( {label}: {label:string} ) {
                 borderRadius: 2,
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "red" }}>
+              <Avatar sx={{ m: 1, bgcolor: "black" }}>
                 <LockOutlinedIcon />
               </Avatar>
                <Typography component="h1" variant="h5">

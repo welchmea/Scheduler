@@ -28,9 +28,9 @@ const loginSchema = mongoose.Schema({
 });
 
 const apptSchema = mongoose.Schema({
-  name: { type: String, required: true },
-  day: { type: String, required: true },
-  date: { type: Date, required: false},
+  service: { type: String, required: true },
+  // day: { type: String, required: true },
+  date: { type: Date, required: true},
   description: { type: String, required: false },
   time: { type: String, required: true },
 });
@@ -49,10 +49,9 @@ const createUser = async (firstName, lastName, phone, email, password) => {
   return user.save();
 };
 
-const createAppointment = async (name, day, date, description, time) => {
+const createAppointment = async (service, date, description, time) => {
   const appointment = new Appointment({
-    name: name,
-    day: day,
+    service: service,
     date: date,
     description: description,
     time: time,
@@ -108,20 +107,18 @@ const updateUser = async (_id, firstName, lastName, phone, email, password) => {
   };
 };
 
-const updateAppointment = async (_id, name, day, date, description, time) => {
+const updateAppointment = async (_id, service, date, description, time) => {
   const result = await Appointment.replaceOne(
     { _id: _id },
     {
-      name: name,
-      day: day,
+      service:service,
       date: date,
       description: description,
       time: time,
     }
   );
   return {
-    name: name,
-    day: day,
+    service:service,
     date: date,
     description: description,
     time: time,

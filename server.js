@@ -34,8 +34,7 @@ app.post ('/createUser', (req,res) => {
 
 app.post ('/createAppointment', (req,res) => { 
     user.createAppointment(
-        req.body.name,
-        req.body.day,
+        req.body.service,
         req.body.date,
         req.body.time,
         req.body.description,

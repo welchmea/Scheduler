@@ -1,7 +1,7 @@
 import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
 
-function Appointment(this: any) {
+function Appointment() {
   const navigate = useNavigate();
 
   const options = [
@@ -17,6 +17,7 @@ function Appointment(this: any) {
   const times = ["9:00 am", "10:00 am", "12:00 pm", "1:00 pm"];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    console.log("here")
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -57,9 +58,6 @@ function Appointment(this: any) {
     <>
       <div className="flex flex-wrap p-2 gap-x-4 justify-center items-start z-2 absolute mt-48 text-black w-full">
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
         >
           <div className="flex flex-col gap-y-1 border border-black rounded-md h-5/6 p-8 bg-white">
             <label className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
@@ -81,20 +79,20 @@ function Appointment(this: any) {
              
              <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md items-center">
                 <label className="flex mr-12" id="day">Select one option</label>
-                <select value={this.state.value} onChange={this.handleChange} name="day" className="bg-white p-1 border rounded-md w-[30vh]">
+                <select name="day" className="bg-white p-1 border rounded-md w-[30vh]">
                   {
                     options.map((i) => (
-                      <option value={i}>{i}</option>
+                      <option key={i} value={i}>{i}</option>
                     ))
                   }
                 </select>
               </div>
               <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md items-center">
                 <label className="flex mr-12" id="time">Select one option</label>
-                <select value={this.state.value} onChange={this.handleChange} name="time" className="bg-white p-1 border rounded-md w-[30vh]">
+                <select name="time" className="bg-white p-1 border rounded-md w-[30vh]">
                   {
                     times.map((i) => (
-                      <option value={i}>{i}</option>
+                      <option key={i} value={i}>{i}</option>
                     ))
                   }
                 </select>
@@ -127,7 +125,7 @@ function Appointment(this: any) {
               </div>
               <div className="flex border border-black p-3 text-md bg-calendarBG shadow-lg rounded-md">
                 <button
-                  onClick={() => handleSubmit}
+                  onSubmit={()=>handleSubmit}
                   type="submit"
                   className="hover:bg-backgroundCard bg-white transition delay-100 duration-300 ease-in-out transform hover:scale-105 text-xl w-1/3 border border-black p-2 rounded-md"
                 >

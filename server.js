@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import * as user from './database';
+import * as user from './database.js';
 
 const port = 5000;
 const app = express();

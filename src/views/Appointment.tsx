@@ -2,9 +2,14 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
 
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 function Appointment() {
+  
   const navigate = useNavigate();
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState<Value>(new Date());
   const options = [
     "Cut",
     "Color",
@@ -22,36 +27,37 @@ function Appointment() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data)
+    console.log(date)
     console.log({
       service: data.get("service"),
-      date: data.get("date"),
+      date: date,
       time: data.get("time"),
       description: data.get("description"),
     });
 
-    // const newAppt = {
-    //   service: data.get("service"),
-    //   date: data.get("date"),
-    //   time: data.get("time"),
-    //   description: data.get("description"),
-    // };
-    // const results = await fetch("http://localhost:5000/createAppointment", {
-    //   method: "post",
-    //   body: JSON.stringify(newAppt),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
+    const newAppt = {
+      service: data.get("service"),
+      date: date,
+      time: data.get("time"),
+      description: data.get("description"),
+    };
+    const results = await fetch("http://localhost:5000/createAppointment", {
+      method: "post",
+      body: JSON.stringify(newAppt),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    // if (results.status === 201) {
-    //   alert(`Your appointment is set!`);
-    //   navigate("/");
-    // } else {
-    //   alert(
-    //     `Defer to the status code: ${results.status}, to determine what went wrong.`
-    //   );
-    // }
-    // navigate("/");
+    if (results.status === 201) {
+      alert(`Your appointment is set!`);
+      navigate("/");
+    } else {
+      alert(
+        `Defer to the status code: ${results.status}, to determine what went wrong.`
+      );
+    }
+    navigate("/");
   };
 
   return (
@@ -66,10 +72,7 @@ function Appointment() {
               id="date"
               className="flex flex-wrap border border-black rounded-md"
             >
-              <Calendar onClickDay={(data) => {
-                console.log(data.getDate(), data.getMonth());
-                // setDate(data);
-              }} />
+              <Calendar value={date} onChange={setDate} />
             </div>
             </label>
             <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">

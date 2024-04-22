@@ -14,16 +14,37 @@ export default function SignUp ( {label}: {label:string} ) {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // TODO: send data to MongoDB database
         console.log({
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          phone: data.get('phone'),
           email: data.get("email"),
           password: data.get("password"),
         });
-         // redirect back to home page
-        navigate('/');
+
+          const newUser = {firstName: data.get('firstName'), lastName: data.get('lastName'), phone: data.get('phone'), email: data.get("email"), password: data.get("password") };
+          const results = await fetch("http://localhost:5000/createUser", {
+            method: "post",
+            body: JSON.stringify(newUser),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+      
+          if (results.status === 201) {
+            alert(
+              `Congratulations! You have create an account.`
+            );
+            navigate('/');
+          } else {
+            alert(
+              `Defer to the status code: ${results.status}, to determine what went wrong.`
+            );
+          }
+          navigate('/');
       };
 
     return (
@@ -83,6 +104,16 @@ export default function SignUp ( {label}: {label:string} ) {
                       label="Email Address"
                       name="email"
                       autoComplete="email"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="phone"
+                      label="Phone Number"
+                      name="phone"
+                      autoComplete="phone"
                     />
                   </Grid>
                   <Grid item xs={12}>

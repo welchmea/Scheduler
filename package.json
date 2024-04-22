@@ -21,6 +21,7 @@
     "express": "^4.19.2",
     "google-map-react": "^2.2.1",
     "google-maps-react-markers": "^2.0.8",
+    "mongoose": "^8.3.2",
     "react": "^18.2.0",
     "react-calendar": "^4.8.0",
     "react-dom": "^18.2.0",

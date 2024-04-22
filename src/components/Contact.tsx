@@ -18,7 +18,7 @@ function Contact() {
           <div className="flex flex-row flex-wrap gap-x-2 gap-y-2 w-full place-content-center">
             <div className="flex flex-col flex-wrap items-start bg-white rounded-md h-full p-2 w-1/4">
               PHONE:
-              <p>360-790-8040</p>
+              <p >360-790-8040</p>
               EMAIL:
               <p>realmsalon @gmail.com</p>
               <div className="flex flex-wrap gap-x-2">
@@ -30,7 +30,7 @@ function Contact() {
             </div>
             <div className="flex flex-col items-start bg-white rounded-md h-full p-2 w-1/4">
               HOURS:
-              <ul>Monday:9AM-2PM</ul>
+              <ul>Monday: 9AM-2PM</ul>
               <ul>Tuesday: 9AM–2PM</ul>
               <ul>Wednesday: 9AM–2PM</ul>
               <ul>Thursday: 9AM–2PM</ul>

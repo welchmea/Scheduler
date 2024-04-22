@@ -30,9 +30,7 @@ export default function Login() {
 
   return (
     <>
-          <div className="bg-[url('./assets/images/phil-5i0GnoTTjSE-unsplash.jpg')] h-[100vh] bg-cover bg-right"></div>
-      {/* <div className="z-10 mt-48 flex flex-col items-center justify-center h-full"> */}
-        <div className="flex flex-row rounded-md mt-48 z-10 absolute w-full">
+        <div className="flex flex-row flex-wrap rounded-md w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
           <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="sm">
               <SignUp label={"Login"}  />
@@ -43,9 +41,8 @@ export default function Login() {
           </ThemeProvider>
         </div>
         <div>
-          <Copyright sx={{ mt: 5 }} />
+          <Copyright sx={{ mt: 5, mb: 5 }} />
         </div>
-      {/* </div> */}
     </>
   );
 }

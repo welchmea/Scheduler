@@ -55,48 +55,46 @@ function ContactPage() {
       setErrors(errors);
 
       if (!errors.name && !errors.email && !errors.message) {
-        await fetch("../route", {
+        await fetch("http://localhost:5000/sendEmail", {
           method: "POST",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formState),
         });
         setFormState({ name: "", email: "", message: "" });
+        setIsSubmitting(false);
+        alert("Your message has been sent to the stylists!");
       }
     } catch (error) {
-      // handle error here
-    } finally {
-      setIsSubmitting(false);
+      console.log(error);
     }
   };
 
   return (
     <>
-      <div className="h-screen text-black flex flex-col items-center place-content-center gap-y-4">
-        <h1 className="text-white text-2xl">Contact Page</h1>
+      <div className="text-black flex flex-col items-center place-content-center gap-y-4 mt-4">
         <div className="flex w-5/6 bg-white">
           <Contact />
         </div>
 
-        <div className="flex justify-center bg-white w-5/6 p-8">
-          <form className="flex gap-4" onSubmit={handleSubmit}>
+        <div className="flex bg-white p-4 w-5/6 justify-center">
+          <form className="flex flex-wrap gap-4" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-y-4">
-              <div className="flex flex-col gap-1">
-                <input
-                  className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"
-                  type="text"
-                  name="name"
-                  value={formState.name}
-                  onChange={handleChange}
-                  placeholder="Name"
-                />
-                {errors.name && (
-                  <p className="text-sm text-red-400">{errors.name}</p>
-                )}
-              </div>
+              <input
+                className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"
+                type="text"
+                name="name"
+                value={formState.name}
+                onChange={handleChange}
+                placeholder="Name"
+              />
+              {errors.name && (
+                <p className="text-sm text-red-400">{errors.name}</p>
+              )}
 
-              <div className="flex flex-col gap-y-4 gap-1">
+              <div className="flex flex-col gap-y-4">
                 <input
                   className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"
                   type="email"
@@ -110,38 +108,38 @@ function ContactPage() {
                 )}
               </div>
             </div>
+
             <div className="flex flex-col gap-y-2">
-              <div className="flex gap-1">
-                <textarea
-                  className="rounded-md border-2 border-slate-300 outline-white text-white p-2"
-                  name="message"
-                  value={formState.message}
-                  onChange={handleChange}
-                  placeholder="Message"
-                  rows={6}
-                />
-                {errors.message && (
-                  <p className="text-sm text-red-400">{errors.message}</p>
-                )}
-              </div>
+              <textarea
+                className="rounded-md border-2 border-slate-300 outline-white text-white p-2"
+                name="message"
+                value={formState.message}
+                onChange={handleChange}
+                placeholder="Message"
+                rows={6}
+              />
+              {errors.message && (
+                <p className="text-sm text-red-400">{errors.message}</p>
+              )}
 
               <button
-                disabled={isSubmitting}
                 className="rounded-md bg-black text-white px-2 py-1 block"
                 type="submit"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
             </div>
+
+            <div className="flex w-1/3 place-content-center">
+              <p>
+                We'd love to hear from you. Send your comments, concerns, or
+                praises.
+              </p>
+            </div>
           </form>
-          <div className="flex w-1/3 place-content-center items-end">
-            <p>
-                We'd love to hear from you. Send your comments, concerns, or praises.
-            </p>
-          </div>
         </div>
 
-        <div className="w-5/6">
+        <div className="w-5/6 mb-4">
           <Map />
         </div>
       </div>

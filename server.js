@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import * as user from './database';
 
 const port = 5000;
 const app = express();
@@ -13,6 +14,40 @@ app.post('/sendEmail', (req, res) => {
     return res.status(201).json();
     
 })
+
+app.post ('/createUser', (req,res) => { 
+    user.createUser(
+        req.body.firstName,
+        req.body.lastName,
+        req.body.phone,
+        req.body.email,
+        req.body.password,
+        )
+        .then(user => {
+            res.status(201).json(user);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(400).json({ error: 'The document was not able to be compiled, check parameters again.' });
+        });
+});
+
+app.post ('/createAppointment', (req,res) => { 
+    user.createAppointment(
+        req.body.name,
+        req.body.day,
+        req.body.date,
+        req.body.time,
+        req.body.description,
+        )
+        .then(user => {
+            res.status(201).json(user);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(400).json({ error: 'The document was not able to be compiled, check parameters again.' });
+        });
+});
 
 app.listen(port, () => {
     console.log("Connected to the Server.");

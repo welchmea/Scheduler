@@ -21,17 +21,15 @@ availableDB.once("open", (err) => {
 
 const available = mongoose.Schema({
   _id: { type: Date, required: true },
-  day: { type: String, required: true },
-  time: { type: String, required: true },
+  timeSlots: { type: Object, required: true },
 });
 
 const Available = mongoose.model("Available", available);
 
-const createAvailability = async (_id, day, time) => {
+const createAvailability = async (_id, timeSlots ) => {
   const available = new Available({
     _id: _id,
-    day: day,
-    time: time,
+    timeSlots: timeSlots
 
   });
   return available.save();
@@ -52,17 +50,15 @@ const deleteAvailable = async (_id) => {
   return result.deletedCount;
 };
 
-const updateAvailability = async (_id, day, time) => {
+const updateAvailability = async (_id, timeSlots) => {
   const result = await Available.replaceOne(
     { _id: _id },
     {
-      day: day,
-      time: time,
+      timeSlots: timeSlots
     }
   );
   return {
-    day: day,
-    time: time,
+    timeSlots: timeSlots
   };
 };
 

@@ -52,8 +52,7 @@ app.post ('/createAppointment', (req,res) => {
 app.post ('/createAvailability', (req,res) => { 
     available.createAvailability(
         req.body._id,
-        req.body.day,
-        req.body.time,
+        req.body.timeSlots,
         )
         .then(available => {
             res.status(201).json(available);
@@ -61,6 +60,21 @@ app.post ('/createAvailability', (req,res) => {
         .catch(error => {
             console.log(error);
             res.status(400).json({ error: 'The document was not able to be compiled, check parameters again.' });
+        });
+});
+
+app.get('/retrieveAvailability', (req, res) => {
+    available.retrieveAvailable()
+        .then(available => { 
+            if (available !== null) {
+                res.json(available);
+            } else {
+                res.status(404).json({ Error: 'The resource you are trying to locate does not exist.' });
+            }         
+         })
+        .catch(error => {
+            console.log(error);
+            res.status(400).json({ Error: 'The document was not able to be compiled, check parameters again.' });
         });
 });
 

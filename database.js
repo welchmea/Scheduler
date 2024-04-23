@@ -82,8 +82,8 @@ const deleteUser = async (_id) => {
   const result = await Login.deleteOne({ _id: _id });
   return result.deletedCount;
 };
-const deleteAppointment = async (date, time) => {
-  const result = await Appointment.deleteOne({ date: date, time: time });
+const deleteAppointment = async ( _id) => {
+  const result = await Appointment.deleteOne({ _id: _id});
   return result.deletedCount;
 };
 

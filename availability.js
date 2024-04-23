@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 mongoose.connect(
-    'mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler',
+  "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
 );
 const availableDB = mongoose.connection;
 
@@ -20,19 +20,19 @@ availableDB.once("open", (err) => {
 });
 
 const available = mongoose.Schema({
-    day: { type: String, required: true},
-    _id: {type: Date, required: true},
-    time: { type: String, required: true },
+  _id: { type: Date, required: true },
+  day: { type: String, required: true },
+  time: { type: String, required: true },
 });
-
 
 const Available = mongoose.model("Available", available);
 
-const createAvailability = async (day, time, _id) => {
+const createAvailability = async (_id, day, time) => {
   const available = new Available({
+    _id: _id,
     day: day,
     time: time,
-    _id: date,
+
   });
   return available.save();
 };
@@ -47,7 +47,6 @@ const retrieveAvailabilityId = async (_id) => {
   return query.exec();
 };
 
-
 const deleteAvailable = async (_id) => {
   const result = await Available.deleteOne({ _id: _id });
   return result.deletedCount;
@@ -57,8 +56,8 @@ const updateAvailability = async (_id, day, time) => {
   const result = await Available.replaceOne(
     { _id: _id },
     {
-        day: day,
-        time: time,
+      day: day,
+      time: time,
     }
   );
   return {
@@ -68,9 +67,9 @@ const updateAvailability = async (_id, day, time) => {
 };
 
 export {
-    createAvailability,
-    deleteAvailable,
-    retrieveAvailabilityId,
-    retrieveAvailable,
-    updateAvailability,
+  createAvailability,
+  deleteAvailable,
+  retrieveAvailabilityId,
+  retrieveAvailable,
+  updateAvailability,
 };

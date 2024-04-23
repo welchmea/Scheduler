@@ -46,7 +46,9 @@ app.post ('/createAppointment', (req,res) => {
         .catch(error => {
             console.log(error);
             res.status(400).json({ error: 'The document was not able to be compiled, check parameters again.' });
-        });
+        },
+      );
+
 });
 
 app.post ('/createAvailability', (req,res) => { 
@@ -61,7 +63,8 @@ app.post ('/createAvailability', (req,res) => {
             console.log(error);
             res.status(400).json({ error: 'The document was not able to be compiled, check parameters again.' });
         });
-});
+}
+);
 
 app.get('/retrieveAvailability', (req, res) => {
     available.retrieveAvailable()

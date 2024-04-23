@@ -46,9 +46,7 @@ const retrieveAvailabilityId = async (_id) => {
 };
 
 const deleteAvailability = async ( _id ) => {
-  console.log(_id)
   const result = await Available.deleteOne({ _id: _id});
-  alert("Success!")
   return result.deletedCount;
 };
 

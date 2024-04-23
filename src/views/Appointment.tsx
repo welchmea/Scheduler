@@ -44,6 +44,7 @@ function Appointment() {
         "Content-Type": "application/json",
       },
     });
+    console.log(results)
 
     if (results.status === 201) {
       alert(`Your appointment is set!`);

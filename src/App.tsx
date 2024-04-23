@@ -6,6 +6,7 @@ import ContactPage from "./views/ContactPage";
 import Services from "./views/Service";
 import Appointment from "./views/Appointment";
 import Login from "./views/Login";
+import Admin from "./views/Admin";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/Services" element={<Services/>}/>
                 <Route path="/Login" element={<Login/>}/>
                 <Route path='/Appointment' element={<Appointment/>}/> 
+                <Route path='/Admin' element={<Admin/>}/> 
               </Routes>
       </BrowserRouter>
     </>

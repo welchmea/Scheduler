@@ -19,7 +19,7 @@ function Appointment() {
     "Balayage",
   ];
 
-  const times = ["9:00 am", "10:00 am", "12:00 pm", "1:00 pm"];
+  const times = ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

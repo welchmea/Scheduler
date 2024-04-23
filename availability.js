@@ -45,10 +45,13 @@ const retrieveAvailabilityId = async (_id) => {
   return query.exec();
 };
 
-const deleteAvailable = async (_id) => {
-  const result = await Available.deleteOne({ _id: _id });
+const deleteAvailability = async ( _id ) => {
+  console.log(_id)
+  const result = await Available.deleteOne({ _id: _id});
+  alert("Success!")
   return result.deletedCount;
 };
+
 
 const updateAvailability = async (_id, timeSlots) => {
   const result = await Available.replaceOne(
@@ -64,7 +67,7 @@ const updateAvailability = async (_id, timeSlots) => {
 
 export {
   createAvailability,
-  deleteAvailable,
+  deleteAvailability,
   retrieveAvailabilityId,
   retrieveAvailable,
   updateAvailability,

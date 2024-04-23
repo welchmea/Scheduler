@@ -52,7 +52,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col place-content-center bg-otherTan sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black gap-y-4">
+        <div className="flex flex-col place-content-center bg-darkGreen sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black gap-y-4">
           <h2>Contact</h2>
           <Contact/>
         </div>

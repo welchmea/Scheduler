@@ -38,7 +38,7 @@ function Contact() {
             </div>
             <div className="flex flex-col items-start bg-white rounded-md h-full p-2 w-1/4 gap-y-4">
               ADDRESS:
-              <p className="flex text-sm">
+              <p className="flex text-sm text-left">
                 1804 Boulevard Rd SE, Olympia, Washington 98501
               </p>
             </div>

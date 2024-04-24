@@ -61,32 +61,14 @@ function Appointment() {
     <>
       <div className="flex flex-wrap gap-x-4 justify-center text-black">
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col border border-black rounded-md bg-white p-4 gap-y-2">
-            <label
-              id="date"
-              className="flex flex-col text-xl border border-black bg-calendarBG p-4 rounded-md"
-            >
-              Appointment Scheduler
-              <div
-                id="date"
-                className="flex flex-wrap border border-black rounded-md"
-              >
-                <Calendar value={date} onChange={setDate} />
-              </div>
-            </label>
-            <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
-              Stylist: Melissa McGill
-            </div>
-          </div>
-
-          <div className="flex border border-black bg-white rounded-md p-4">
+        <div className="flex border border-black bg-white rounded-md p-4">
             <div className="flex flex-col gap-y-2 w-full">
               <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
                 <label className="flex flex-col text-left" id="time">
-                  Select one option
+                  Select a Service
                   <select
                     name="service"
-                    className="bg-white p-1 border rounded-md w-[30vh]"
+                    className="bg-white p-1 border rounded-md"
                   >
                     {options.map((i) => (
                       <option key={i} value={i}>
@@ -111,6 +93,25 @@ function Appointment() {
                   </select>
                 </label>
               </div>
+          <div className="flex flex-col border border-black rounded-md bg-white p-4 gap-y-2">
+            <label
+              id="date"
+              className="flex flex-col text-xl border border-black bg-calendarBG p-4 rounded-md"
+            >
+              Appointment Scheduler
+              <div
+                id="date"
+                className="flex flex-wrap border border-black rounded-md"
+              >
+                <Calendar value={date} onChange={setDate} />
+              </div>
+            </label>
+            <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
+              Stylist: Melissa McGill
+            </div>
+          </div>
+
+
 
               <div className="flex text-left border p-3 text-md border-black bg-calendarBG rounded-md">
                 <label

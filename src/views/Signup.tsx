@@ -8,22 +8,44 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-export default function SignUp ( {label}: {label:string} ) {
+// function Copyright(props: any) {
+//   return (
+//     <Typography
+//       variant="body2"
+//       color="text.secondary"
+//       align="center"
+//       {...props}
+//     >
+//       {"Copyright © "}
+//       <Link color="inherit" href="https://mui.com/">
+//         MUI
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
+const defaultTheme = createTheme(
+    
+)
+
+export default function Signup() {
     const navigate = useNavigate();
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+      const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-          firstName: data.get('firstName'),
-          lastName: data.get('lastName'),
-          phone: data.get('phone'),
-          email: data.get("email"),
-          password: data.get("password"),
-        });
+        // console.log({
+        //   firstName: data.get('firstName'),
+        //   lastName: data.get('lastName'),
+        //   phone: data.get('phone'),
+        //   email: data.get("email"),
+        //   password: data.get("password"),
+        // });
 
           const newUser = {firstName: data.get('firstName'), lastName: data.get('lastName'), phone: data.get('phone'), email: data.get("email"), password: data.get("password") };
           const results = await fetch("http://localhost:5000/createUser", {
@@ -47,9 +69,12 @@ export default function SignUp ( {label}: {label:string} ) {
           navigate('/');
       };
 
-    return (
-        <>
-         <CssBaseline />
+  return (
+    <>
+        <div className="flex flex-row flex-wrap lg:h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
+          <ThemeProvider theme={defaultTheme}>
+            <Container component="main" maxWidth="sm">
+            <CssBaseline />
             <Box
               sx={{
                 marginTop: 8,
@@ -66,7 +91,7 @@ export default function SignUp ( {label}: {label:string} ) {
                 <LockOutlinedIcon />
               </Avatar>
                <Typography component="h1" variant="h5">
-                {label}
+               Sign Up
               </Typography> 
               <Box
                 component="form"
@@ -100,20 +125,20 @@ export default function SignUp ( {label}: {label:string} ) {
                     <TextField
                       required
                       fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
+                      id="phone"
+                      label="Phone Number"
+                      name="phone"
+                      autoComplete="phone"
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
-                      id="phone"
-                      label="Phone Number"
-                      name="phone"
-                      autoComplete="phone"
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      autoComplete="email"
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -134,10 +159,16 @@ export default function SignUp ( {label}: {label:string} ) {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  {label}
+                  Sign Up
                 </Button>
               </Box>
             </Box>
-        </>
-    )
-};
+            </Container>
+          </ThemeProvider>
+        </div>
+        {/* <div>
+          <Copyright sx={{ mt: 5, mb: 5 }} />
+        </div> */}
+    </>
+  );
+}

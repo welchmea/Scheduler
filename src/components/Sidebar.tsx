@@ -20,7 +20,7 @@ function Sidebar() {
             </Link>
           </div>
           <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
-            <Link to="/Appointment">Appointment
+            <Link to="/Login">Appointment
             </Link>
           </div>
           <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">

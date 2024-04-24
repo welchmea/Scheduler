@@ -20,7 +20,7 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     };
-    const results = await fetch("http://localhost:5000/returningUser", {
+    const results = await fetch("http://localhost:5000/checkUser", {
       method: "get",
       body: JSON.stringify(newUser),
       headers: {

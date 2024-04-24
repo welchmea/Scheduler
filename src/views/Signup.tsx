@@ -11,18 +11,18 @@ export default function Signup() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // console.log({
+    //   _id: data.get("email"),
     //   firstName: data.get('firstName'),
     //   lastName: data.get('lastName'),
     //   phone: data.get('phone'),
-    //   email: data.get("email"),
     //   password: data.get("password"),
     // });
 
     const newUser = {
+      _id: data.get("email"),
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
       phone: data.get("phone"),
-      email: data.get("email"),
       password: data.get("password"),
     };
     const results = await fetch("http://localhost:5000/createUser", {
@@ -94,7 +94,7 @@ export default function Signup() {
                 </Grid>
                 <Grid item xs={12}>
                   <input
-                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700"
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700 text-black"
                     name="password"
                     placeholder="Password *"
                     required

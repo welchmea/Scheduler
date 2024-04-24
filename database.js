@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 mongoose.connect(
-    'mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler',
+  "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
 );
 const scheduleDB = mongoose.connection;
 
@@ -20,17 +21,16 @@ scheduleDB.once("open", (err) => {
 });
 
 const loginSchema = mongoose.Schema({
+  _id: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   phone: { type: Number, required: true },
-  email: { type: String, required: true },
   password: { type: String, required: true },
 });
 
 const apptSchema = mongoose.Schema({
   service: { type: String, required: true },
-  // day: { type: String, required: true },
-  date: { type: Date, required: true},
+  date: { type: Date, required: true },
   description: { type: String, required: false },
   time: { type: String, required: true },
 });
@@ -38,16 +38,23 @@ const apptSchema = mongoose.Schema({
 const Login = mongoose.model("Login", loginSchema);
 const Appointment = mongoose.model("Appointment", apptSchema);
 
-const createUser = async (firstName, lastName, phone, email, password) => {
+const createUser = async (_id, firstName, lastName, phone, password) => {
+  const saltRounds = 10;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hash = bcrypt.hashSync(password, salt);
   const user = new Login({
+    _id: _id,
     firstName: firstName,
     lastName: lastName,
     phone: phone,
-    email: email,
-    password: password,
+    password: hash
   });
   return user.save();
 };
+
+const checkUser = async (_id, password) => {
+
+}
 
 const createAppointment = async (service, date, description, time) => {
   const appointment = new Appointment({
@@ -82,19 +89,18 @@ const deleteUser = async (_id) => {
   const result = await Login.deleteOne({ _id: _id });
   return result.deletedCount;
 };
-const deleteAppointment = async ( _id) => {
-  const result = await Appointment.deleteOne({ _id: _id});
+const deleteAppointment = async (_id) => {
+  const result = await Appointment.deleteOne({ _id: _id });
   return result.deletedCount;
 };
 
-const updateUser = async (_id, firstName, lastName, phone, email, password) => {
+const updateUser = async (_id, firstName, lastName, phone, password) => {
   const result = await User.replaceOne(
     { _id: _id },
     {
       firstName: firstName,
       lastName: lastName,
       phone: phone,
-      email: email,
       password: password,
     }
   );
@@ -102,7 +108,6 @@ const updateUser = async (_id, firstName, lastName, phone, email, password) => {
     firstName: firstName,
     lastName: lastName,
     phone: phone,
-    email: email,
     password: password,
   };
 };
@@ -111,14 +116,14 @@ const updateAppointment = async (_id, service, date, description, time) => {
   const result = await Appointment.replaceOne(
     { _id: _id },
     {
-      service:service,
+      service: service,
       date: date,
       description: description,
       time: time,
     }
   );
   return {
-    service:service,
+    service: service,
     date: date,
     description: description,
     time: time,

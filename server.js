@@ -18,10 +18,10 @@ app.post('/sendEmail', (req, res) => {
 
 app.post ('/createUser', (req,res) => { 
     user.createUser(
+        req.body._id,
         req.body.firstName,
         req.body.lastName,
         req.body.phone,
-        req.body.email,
         req.body.password,
         )
         .then(user => {

@@ -17,6 +17,7 @@
     "@react-email/components": "0.0.16",
     "@types/babel-core": "^6.25.10",
     "@types/react-router-dom": "^5.3.3",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "google-map-react": "^2.2.1",

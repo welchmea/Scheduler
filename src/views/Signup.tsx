@@ -1,174 +1,125 @@
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
-import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-// function Copyright(props: any) {
-//   return (
-//     <Typography
-//       variant="body2"
-//       color="text.secondary"
-//       align="center"
-//       {...props}
-//     >
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://mui.com/">
-//         MUI
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
-
-const defaultTheme = createTheme(
-    
-)
 
 export default function Signup() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-      const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // console.log({
-        //   firstName: data.get('firstName'),
-        //   lastName: data.get('lastName'),
-        //   phone: data.get('phone'),
-        //   email: data.get("email"),
-        //   password: data.get("password"),
-        // });
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // console.log({
+    //   firstName: data.get('firstName'),
+    //   lastName: data.get('lastName'),
+    //   phone: data.get('phone'),
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
 
-          const newUser = {firstName: data.get('firstName'), lastName: data.get('lastName'), phone: data.get('phone'), email: data.get("email"), password: data.get("password") };
-          const results = await fetch("http://localhost:5000/createUser", {
-            method: "post",
-            body: JSON.stringify(newUser),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-      
-          if (results.status === 201) {
-            alert(
-              `Congratulations! You have create an account.`
-            );
-            navigate('/');
-          } else {
-            alert(
-              `Defer to the status code: ${results.status}, to determine what went wrong.`
-            );
-          }
-          navigate('/');
-      };
+    const newUser = {
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      phone: data.get("phone"),
+      email: data.get("email"),
+      password: data.get("password"),
+    };
+    const results = await fetch("http://localhost:5000/createUser", {
+      method: "post",
+      body: JSON.stringify(newUser),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (results.status === 201) {
+      alert(`Congratulations! You have create an account.`);
+      navigate("/");
+    } else {
+      alert(
+        `Defer to the status code: ${results.status}, to determine what went wrong.`
+      );
+    }
+    navigate("/");
+  };
 
   return (
     <>
-        <div className="flex flex-row flex-wrap lg:h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
-          <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="sm">
-            <CssBaseline />
-            <Box
-              sx={{
-                marginTop: 8,
-                marginBottom: 8,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                backgroundColor: "white",
-                padding: 2,
-                borderRadius: 2,
-              }}
-            >
-              <Avatar sx={{ m: 1, bgcolor: "black" }}>
-                <LockOutlinedIcon />
-              </Avatar>
-               <Typography component="h1" variant="h5">
-               Sign Up
-              </Typography> 
-              <Box
-                component="form"
-                noValidate
-                onSubmit={handleSubmit}
-                sx={{ mt: 3 }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      autoComplete="given-name"
-                      name="firstName"
-                      required
-                      fullWidth
-                      id="firstName"
-                      label="First Name"
-                      autoFocus
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="lastName"
-                      label="Last Name"
-                      name="lastName"
-                      autoComplete="family-name"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="phone"
-                      label="Phone Number"
-                      name="phone"
-                      autoComplete="phone"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="new-password"
-                    />
-                  </Grid> 
+      <div className="flex flex-row flex-wrap h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
+        <Container component="main" maxWidth="sm">
+          <div className="flex flex-col items-center bg-white p-3 rounded-md mt-16 mb-16 ">
+            <div className="m-1 bg-black text-white p-2.5 rounded-3xl">
+              <LockOutlinedIcon />
+            </div>
+            <div className="italic text-black">Realm Salon</div>
+            <form onSubmit={handleSubmit} action="post" className="mt-6">
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <input
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    name="firstName"
+                    id="firstName"
+                    placeholder="First Name"
+                    type="text"
+                    autoFocus
+                  />
                 </Grid>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign Up
-                </Button>
-              </Box>
-            </Box>
-            </Container>
-          </ThemeProvider>
-        </div>
-        {/* <div>
-          <Copyright sx={{ mt: 5, mb: 5 }} />
-        </div> */}
+                <Grid item xs={12} sm={6}>
+                  <input
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    id="lastName"
+                    placeholder="Last Name"
+                    name="lastName"
+                    type="text"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <input
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    id="phone"
+                    placeholder="Phone Number"
+                    name="phone"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <input
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    name="email"
+                    placeholder="Email Address *"
+                    required
+                    type="email"
+                    id="email"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <input
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700"
+                    name="password"
+                    placeholder="Password *"
+                    required
+                    type="password"
+                    id="password"
+                  />
+                </Grid>
+              </Grid>
+              <button
+                type="submit"
+                className="w-full mt-3 mb-2 bg-blue-500  text-white rounded-[4px] shadow-md shadow-gray-500 p-1.5 hover:bg-blue-600"
+              >
+                SIGNUP
+              </button>
+              <div className="text-black mt-4 mb-2">
+                {" "}
+                Go Back to Login!{" "}
+                <Link to="/Login" className="underline italic text-blue-600">
+                  Click here!
+                </Link>
+              </div>
+            </form>
+          </div>
+        </Container>
+      </div>
     </>
   );
 }

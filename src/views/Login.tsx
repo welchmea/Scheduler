@@ -1,119 +1,99 @@
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
-import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-const defaultTheme = createTheme(
-);
 
 export default function Login() {
   const navigate = useNavigate();
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // console.log({
-        //   email: data.get("email"),
-        //   password: data.get("password"),
-        // });
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
 
-          const newUser = {email: data.get("email"), password: data.get("password") };
-          const results = await fetch("http://localhost:5000/createUser", {
-            method: "post",
-            body: JSON.stringify(newUser),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-      
-          if (results.status === 201) {
-            alert(
-              `Congratulations! You have create an account.`
-            );
-            navigate('/');
-          } else {
-            alert(
-              `Defer to the status code: ${results.status}, to determine what went wrong.`
-            );
-          }
-          navigate('/');
-      };
+    const newUser = {
+      email: data.get("email"),
+      password: data.get("password"),
+    };
+    const results = await fetch("http://localhost:5000/createUser", {
+      method: "post",
+      body: JSON.stringify(newUser),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (results.status === 201) {
+      alert(`Congratulations! You have create an account.`);
+      navigate("/");
+    } else {
+      alert(
+        `Defer to the status code: ${results.status}, to determine what went wrong.`
+      );
+    }
+    navigate("/");
+  };
   return (
     <>
-        <div className="flex flex-row flex-wrap lg:h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
-          <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="sm">
-            <CssBaseline />
-            <Box
-              sx={{
-                marginTop: 8,
-                marginBottom: 8,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                backgroundColor: "white",
-                padding: 2,
-                borderRadius: 2,
-              }}
-            >
-              <Avatar sx={{ m: 1, bgcolor: "black" }}>
-                <LockOutlinedIcon />
-              </Avatar>
-               <Typography component="h1" variant="h5">
-                Login
-              </Typography> 
-              <Box
-                component="form"
-                noValidate
-                onSubmit={handleSubmit}
-                sx={{ mt: 3 }}
-              >
+      <div className="flex flex-row flex-wrap h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
+        <Container component="main" maxWidth="sm">
+        <div className="flex flex-col items-center bg-white p-2 rounded-md mt-16 mb-16 "
+        >
+            <div className="m-1 bg-black text-white p-2.5 rounded-3xl">
+              <LockOutlinedIcon />
+            </div>
+            <div className="italic text-black">Realm Salon</div>
+              <form onSubmit={handleSubmit} action="post" className="mt-6">
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
+                    <input
+                      className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
                       name="email"
-                      autoComplete="email"
+                      placeholder="Email Address *"
+                      required
+                      type="email"
+                      id="email"
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
+                    <input
+                      className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700"
                       name="password"
-                      label="Password"
+                      placeholder="Password *"
+                      required
                       type="password"
                       id="password"
-                      autoComplete="new-password"
                     />
-                  </Grid> 
+                  </Grid>
                 </Grid>
-                <Button
+                <button
                   type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  className="w-full mt-3 mb-2 bg-blue-500  text-white rounded-[4px] shadow-md shadow-gray-500 p-1.5 hover:bg-blue-600"
                 >
                   LOGIN
-                </Button>
-                <Link to='/Signup' className="underline italic">Create an Account here</Link>
-              </Box>
-            </Box>
-            </Container>
-          </ThemeProvider>
-        </div>
+                </button>
+                <div className="text-blue-700 mb-3 mt-1 hover:text-blue-900">
+                  Reset Password
+                </div>
+                <div className="text-black">
+                  {" "}
+                  Don't have an account yet?{" "}
+                  <Link
+                    to="/Signup"
+                    className="underline italic text-blue-600"
+                  >
+                    Join now!
+                  </Link>
+                </div>
+              </form>
+              </div>
+        </Container>
+      </div>
     </>
   );
 }

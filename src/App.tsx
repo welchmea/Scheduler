@@ -8,8 +8,10 @@ import Appointment from "./views/Appointment";
 import Login from "./views/Login";
 import Admin from "./views/Admin";
 import Signup from "./views/Signup";
+import { useState } from "react";
 
 function App() {
+  const [token, setToken] = useState();
   return (
     <>
       <BrowserRouter>

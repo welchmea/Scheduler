@@ -54,6 +54,19 @@ const createUser = async (_id, firstName, lastName, phone, password) => {
 
 const checkUser = async (_id, password) => {
 
+  const storedHash = await Login.findById(_id).exec();
+  const storedPwd = storedHash.password
+  bcrypt.compare(password, storedPwd, (err, result) => {
+    if (err) {
+      console.error("Something went horribly wrong! ", err)
+    }
+    if (result == true) {
+      console.log("Success!")
+    }
+    else {
+      console.log("Passwords do not match, make sure you have the right one!")
+    }
+  })
 }
 
 const createAppointment = async (service, date, description, time) => {
@@ -132,6 +145,7 @@ const updateAppointment = async (_id, service, date, description, time) => {
 
 export {
   createUser,
+  checkUser,
   createAppointment,
   retrieveUsers,
   retrieveUsersId,

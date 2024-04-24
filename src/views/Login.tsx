@@ -12,24 +12,19 @@ export default function Login() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get("email"),
+      _id: data.get("email"),
       password: data.get("password"),
     });
 
     const newUser = {
-      email: data.get("email"),
+      _id: data.get("email"),
       password: data.get("password"),
     };
-    const results = await fetch("http://localhost:5000/checkUser", {
-      method: "get",
-      body: JSON.stringify(newUser),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const results = await fetch(`http://localhost:5000/checkUser/${newUser._id}/${newUser.password}`)
+    console.log(results);
 
     if (results.status === 201) {
-      alert(`Congratulations! You have create an account.`);
+      alert(`Success.`);
       navigate("/");
     } else {
       alert(
@@ -62,7 +57,7 @@ export default function Login() {
                   </Grid>
                   <Grid item xs={12}>
                     <input
-                      className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700"
+                      className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700 text-black"
                       name="password"
                       placeholder="Password *"
                       required

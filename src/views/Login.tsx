@@ -2,12 +2,11 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { SetStateAction } from "react";
 
-export default function Login() {
-  // const navigate = useNavigate();
-  const [token, setToken] = useState();
+export default function Login({setToken}:{setToken:React.Dispatch<SetStateAction<string>>}) {
+  const navigate = useNavigate();
   // const [user, setUser] = useState('');
   // const [pwd, setPwd] = useState('');
 
@@ -30,6 +29,7 @@ export default function Login() {
 
     if (results.status === 201 || results.status === 200) {     
       alert(`Success.`);
+      navigate('/');
 
     } else {
       alert(

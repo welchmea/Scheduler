@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import { create } from "domain";
 
 mongoose.connect(
   "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
@@ -20,12 +21,33 @@ scheduleDB.once("open", (err) => {
   }
 });
 
+const generateToken = async () => {
+  try {
+    // generate a random token string using the uuid library
+    const token = uuidv4();
+    return await token;
+  } catch (err) {
+      console.error(err);
+    return null;
+  }
+};
+
 const loginSchema = mongoose.Schema({
   _id: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   phone: { type: Number, required: true },
   password: { type: String, required: true },
+  token: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    expires: 3600, // token will expire in 1 hour
+  },
 });
 
 const apptSchema = mongoose.Schema({
@@ -38,36 +60,39 @@ const apptSchema = mongoose.Schema({
 const Login = mongoose.model("Login", loginSchema);
 const Appointment = mongoose.model("Appointment", apptSchema);
 
-const createUser = async (_id, firstName, lastName, phone, password) => {
+const createUser = async (_id, firstName, lastName, phone, password, createdAt) => {
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
+  const token = generateToken();
   const user = new Login({
     _id: _id,
     firstName: firstName,
     lastName: lastName,
     phone: phone,
-    password: hash
+    password: hash,
+    token: token,
+    createdAt: createdAt,
   });
   return user.save();
 };
 
-const checkUser = async (_id, password) => {
-
+const checkUser = async (_id, password, createdAt) => {
+  const token = generateToken();
+  updateUser(_id, token, createdAt)
   const storedHash = await Login.findById(_id).exec();
-  const storedPwd = storedHash.password
+  const storedPwd = storedHash.password;
   bcrypt.compare(password, storedPwd, (err, result) => {
     if (err) {
-      console.error("Something went horribly wrong! ", err)
+      console.error("Something went horribly wrong! ", err);
     }
     if (result == true) {
-      console.log("Success!")
+      console.log("Success!");
+    } else {
+      console.log("Passwords do not match, make sure you have the right one!");
     }
-    else {
-      console.log("Passwords do not match, make sure you have the right one!")
-    }
-  })
-}
+  });
+};
 
 const createAppointment = async (service, date, description, time) => {
   const appointment = new Appointment({
@@ -107,7 +132,7 @@ const deleteAppointment = async (_id) => {
   return result.deletedCount;
 };
 
-const updateUser = async (_id, firstName, lastName, phone, password) => {
+const updateUser = async (_id, firstName, lastName, phone, password, token, createdAt) => {
   const result = await User.replaceOne(
     { _id: _id },
     {
@@ -115,6 +140,8 @@ const updateUser = async (_id, firstName, lastName, phone, password) => {
       lastName: lastName,
       phone: phone,
       password: password,
+      token: token,
+      createAt: createdAt
     }
   );
   return {
@@ -122,6 +149,8 @@ const updateUser = async (_id, firstName, lastName, phone, password) => {
     lastName: lastName,
     phone: phone,
     password: password,
+    token: token,
+    createAt: createdAt
   };
 };
 

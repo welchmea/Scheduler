@@ -3,36 +3,13 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import useToken from "../useToken";
-
-function createTokenSession(token: string) {
-  sessionStorage.setItem('token', JSON.stringify(token))
-}
-
-function checkToken() {
-  const tokenString = sessionStorage.getItem('token' || null)
-  if (tokenString) {
-    const userToken = JSON.parse(tokenString)
-    return userToken?.token
-  }
-} 
+import { useState } from "react";
 
 export default function Login() {
-
-  useEffect(()=> {
-    checkToken(); 
-  },
-  []);
-
   // const navigate = useNavigate();
-  const {token, setToken} = useToken();
-  const [user, setUser] = useState('');
-  const [pwd, setPwd] = useState('');
-
-  if (token) {
-    createTokenSession(token)
-  }
+  const [token, setToken] = useState();
+  // const [user, setUser] = useState('');
+  // const [pwd, setPwd] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -75,7 +52,7 @@ export default function Login() {
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <input
-                      onChange={(e) => setUser(e.target.value)}
+                      // onChange={(e) => setUser(e.target.value)}
                       className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
                       name="email"
                       placeholder="Email Address *"
@@ -86,7 +63,7 @@ export default function Login() {
                   </Grid>
                   <Grid item xs={12}>
                     <input
-                     onChange={(e) => setPwd(e.target.value)}
+                    //  onChange={(e) => setPwd(e.target.value)}
                       className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700 text-black"
                       name="password"
                       placeholder="Password *"

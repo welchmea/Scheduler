@@ -54,14 +54,14 @@ export default function Login() {
     })
     setToken(await results.json());
 
-    // if (results.status === 201 || results.status === 200) {     
-    //   alert(`Success.`);
+    if (results.status === 201 || results.status === 200) {     
+      alert(`Success.`);
 
-    // } else {
-    //   alert(
-    //     `Defer to the status code: ${results.status}, to determine what went wrong.`
-    //   );
-    // }
+    } else {
+      alert(
+        `Defer to the status code: ${results.status}, to determine what went wrong.`
+      );
+    }
   };
 
   return (

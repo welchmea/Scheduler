@@ -2,16 +2,40 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useToken from "../useToken";
+
+function createTokenSession(token: string) {
+  sessionStorage.setItem('token', JSON.stringify(token))
+}
+
+function checkToken() {
+  const tokenString = sessionStorage.getItem('token' || null)
+  if (tokenString) {
+    const userToken = JSON.parse(tokenString)
+    return userToken?.token
+  }
+} 
 
 export default function Login() {
+
+  useEffect(()=> {
+    checkToken(); 
+  },
+  []);
+
+  
   // const navigate = useNavigate();
-  const [token, setToken] = useState();
+  const {token, setToken} = useToken();
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
+  console.log(user)
+  console.log(pwd)
 
+  if (token) {
+    createTokenSession(token)
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,17 +53,17 @@ export default function Login() {
       },
     })
     setToken(await results.json());
-    console.log(token)
-    if (results.status === 201 || results.status === 200) {      
-      alert(`Success.`);
-      // navigate("/");
-    } else {
-      alert(
-        `Defer to the status code: ${results.status}, to determine what went wrong.`
-      );
-    }
-    // navigate("/");
+
+    // if (results.status === 201 || results.status === 200) {     
+    //   alert(`Success.`);
+
+    // } else {
+    //   alert(
+    //     `Defer to the status code: ${results.status}, to determine what went wrong.`
+    //   );
+    // }
   };
+
   return (
     <>
       <div className="flex flex-row flex-wrap h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">

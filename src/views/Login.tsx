@@ -25,13 +25,10 @@ export default function Login() {
   },
   []);
 
-  
   // const navigate = useNavigate();
   const {token, setToken} = useToken();
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
-  console.log(user)
-  console.log(pwd)
 
   if (token) {
     createTokenSession(token)

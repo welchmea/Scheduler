@@ -36,7 +36,13 @@ export default function Signup() {
     if (results.status === 201) {
       alert(`Congratulations! You have create an account.`);
       navigate("/");
-    } else {
+    }
+    else if (results.status === 400) {
+      alert(
+        "There is already an account by that name."
+      );
+      }
+    else {
       alert(
         `Defer to the status code: ${results.status}, to determine what went wrong.`
       );

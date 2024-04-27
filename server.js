@@ -36,12 +36,19 @@ app.post("/createUser", (req, res) => {
     });
 });
 
-app.get("/checkUser/:_id/:password", (req, res) => {
+// token base authentication: better for REST due to stateless quality
+// more scalable. The 5 steps are :
+//      1. The user enters credentials
+//      2. Request processed here on the server
+//      3. Access token submitted to browser
+//      4. Proper token storage
+//      5. Set a timeout      
+app.post("/checkUser", (req, res) => {
   user
-    .checkUser(req.params._id, req.params.password)
+    .checkUser(req.body._id, req.body.password)
     .then((user) => {
-    
-      res.status(201).json(user);
+      res.send({token: 'test123'})
+      res.status(201).json(user)
     })
     .catch((error) => {
       console.log(error);

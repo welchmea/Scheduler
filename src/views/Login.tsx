@@ -4,34 +4,41 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const [token, setToken] = useState();
+  const [user, setUser] = useState('');
+  const [pwd, setPwd] = useState('');
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      _id: data.get("email"),
-      password: data.get("password"),
-    });
 
     const newUser = {
       _id: data.get("email"),
       password: data.get("password"),
     };
-    const results = await fetch(`http://localhost:5000/checkUser/${newUser._id}/${newUser.password}`)
-    console.log(results);
-
-    if (results.status === 201) {
+    const results = await fetch(`http://localhost:5000/checkUser`, {
+      method: "post",
+      body: JSON.stringify(newUser),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    setToken(await results.json());
+    console.log(token)
+    if (results.status === 201 || results.status === 200) {      
       alert(`Success.`);
-      navigate("/");
+      // navigate("/");
     } else {
       alert(
         `Defer to the status code: ${results.status}, to determine what went wrong.`
       );
     }
-    navigate("/");
+    // navigate("/");
   };
   return (
     <>
@@ -47,6 +54,7 @@ export default function Login() {
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <input
+                      onChange={(e) => setUser(e.target.value)}
                       className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
                       name="email"
                       placeholder="Email Address *"
@@ -57,6 +65,7 @@ export default function Login() {
                   </Grid>
                   <Grid item xs={12}>
                     <input
+                     onChange={(e) => setPwd(e.target.value)}
                       className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] mb-4 placeholder-gray-700 text-black"
                       name="password"
                       placeholder="Password *"

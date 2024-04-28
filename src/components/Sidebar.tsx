@@ -35,9 +35,12 @@ function Sidebar() {
               null
             )}
           </div>
+          {userContext.isAdmin && (
           <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
-            <Link to="/Admin">Admin</Link>
-          </div>
+          <Link to="/Admin">Admin</Link>
+        </div>
+          )}
+
         </div>
       </div>
     </>

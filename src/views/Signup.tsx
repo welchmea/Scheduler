@@ -31,7 +31,8 @@ export default function Signup() {
 
     if (results.status >= 200) {
       let token = await results.json()
-      userContext.setUsername(token)
+      userContext.setUsername(token.username)
+      userContext.setEmail(token.email)
       alert(`Congratulations! You have created an account.`);
       navigate("/");
     }

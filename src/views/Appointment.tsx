@@ -18,7 +18,7 @@ function Appointment() {
     const data = new FormData(event.currentTarget);
 
     const newAppt = {
-      _id: userContext.username,
+      _id: userContext.email,
       service: data.get("service"),
       date: date,
       time: data.get("time"),

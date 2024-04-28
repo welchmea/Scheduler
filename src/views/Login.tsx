@@ -29,7 +29,8 @@ export default function Login() {
 
     if (results.status >= 200) {  
       let token = await results.json()
-      userContext.setUsername(token)
+      userContext.setUsername(token[0] + ' ' + token[1])
+      userContext.setEmail(token[2])
       alert(`Success.`);
       navigate('/');
 

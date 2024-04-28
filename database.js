@@ -69,7 +69,8 @@ const checkUser = async (_id, password) => {
       console.log("Passwords do not match, make sure you have the right one!")
     }
   })
-  return storedHash.firstName
+  const details = [storedHash.firstName, storedHash.lastName, storedHash._id]
+  return details
 }
 
 const createAppointment = async (_id, service, date, description, time) => {
@@ -81,8 +82,8 @@ const createAppointment = async (_id, service, date, description, time) => {
     time: time,
   });
   appointment.save()
-  console.group(appointment)
-  return appointment;
+  const details = [service, date, description, time]
+  return details;
 };
 
 const retrieveUsers = async () => {

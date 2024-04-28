@@ -8,6 +8,8 @@ import Appointment from "./views/Appointment";
 import Login from "./views/Login";
 import Admin from "./views/Admin";
 import Signup from "./views/Signup";
+import Profile from "./views/Profile";
+
 import { UserContextProvider } from "./contexts/UserContext";
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
             <Route path="/Signup" element={<Signup/> } />
             <Route path="/Appointment" element={<Appointment/>} />
             <Route path="/Admin" element={<Admin />} />
+            <Route path="/Profile" element={<Profile />} />
           </Routes>
           </UserContextProvider>
       </BrowserRouter>

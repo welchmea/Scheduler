@@ -12,13 +12,13 @@ import { useState } from "react";
 
 function App() {
   const [token, setToken] = useState('');
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("Meagan");
   return (
     <>
       <BrowserRouter>
           <Sidebar token={token} username={username} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home username={username} />} />
             <Route path="/ContactPage" element={<ContactPage />} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Login" element={<Login setToken={setToken} setUsername={setUsername}/>} />

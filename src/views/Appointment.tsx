@@ -1,14 +1,15 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
-import { times, options } from '../assets/data/data';
+import { times, options } from "../assets/data/data";
+
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-function Appointment() {
+function Appointment({ token }: { token: string }) {
   const navigate = useNavigate();
-  const [date, setDate] = useState<Value>(new Date());
+  const [date, setDate] = useState<Value>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,83 +43,83 @@ function Appointment() {
 
   return (
     <>
-      <div className="flex flex-wrap gap-x-4 justify-center text-black">
-        <form onSubmit={handleSubmit}>
-          <div className="flex border border-black bg-white rounded-md p-4">
-            <div className="flex flex-col gap-y-2 w-full">
-              <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
-                <label className="flex flex-col text-left" id="time">
-                  Select a Service
-                  <select
-                    name="service"
-                    className="bg-white p-1 border rounded-md"
-                  >
-                    {options.map((i) => (
-                      <option key={i} value={i}>
-                        {i}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
-                <label className="flex flex-col text-left" id="time">
-                  Select one option
-                  <select
-                    name="time"
-                    className="bg-white p-1 border rounded-md w-[30vh]"
-                  >
-                    {times.map((i) => (
-                      <option key={i} value={i}>
-                        {i}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <div className="flex flex-col border border-black rounded-md bg-white p-4 gap-y-2">
-                <label
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-row flex-wrap gap-y-1">
+          <div className="flex flex-col text-black md:w-1/2 lg:w-1/2">
+            <div className="flex flex-col p-4 gap-y-2">
+              <label
+                id="date"
+                className="flex flex-col text-xl text-left border border-black bg-white p-4 rounded-md"
+              >
+                Appointment Scheduler: Pick a day
+                <div
                   id="date"
-                  className="flex flex-col text-xl border border-black bg-calendarBG p-4 rounded-md"
+                  className="flex flex-wrap border border-black rounded-md"
                 >
-                  Appointment Scheduler
-                  <div
-                    id="date"
-                    className="flex flex-wrap border border-black rounded-md"
-                  >
-                    <Calendar value={date} onChange={setDate} />
-                  </div>
-                </label>
-                <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
-                  Stylist: Melissa McGill
+                  <Calendar value={date} onChange={setDate} />
                 </div>
-              </div>
-
-              <div className="flex text-left border p-3 text-md border-black bg-calendarBG rounded-md">
-                <label
-                  id="description"
-                  className="flex flex-col text-xl border bg-white border-black p-3"
-                >
-                  Notes for stylist...
-                  <textarea
-                    name="description"
-                    id="description"
-                    className="flex bg-white border border-black p-3"
-                  ></textarea>
-                </label>
-              </div>
-              <div className="flex border border-black p-3 text-md bg-calendarBG shadow-lg rounded-md place-content-center">
-                <button
-                  type="submit"
-                  className="hover:bg-backgroundCard bg-white transition delay-100 duration-300 ease-in-out transform hover:scale-105 text-xl w-1/3 border border-black p-2 rounded-md"
-                >
-                  Submit
-                </button>
+              </label>
+              <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
+                Stylist: Melissa McGill
               </div>
             </div>
           </div>
-        </form>
-      </div>
+          <div className="flex flex-col flex-wrap text-black">
+            {date && (
+              <>
+                <div className="flex flex-wrap place-content-around text-xl bg-calendarBG p-4 gap-x-2 gap-y-2 h-5/6 rounded-md mt-4">
+                  <label
+                    className="flex flex-col text-left w-full"
+                    id="service"
+                  >
+                    Select a Service
+                    <select
+                      name="service"
+                      className="bg-white p-1 border rounded-md"
+                    >
+                      {options.map((i) => (
+                        <option key={i} value={i}>
+                          {i}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="flex flex-col text-left w-full" id="time">
+                    Select one option
+                    <select
+                      name="time"
+                      className="bg-white p-1 border rounded-md"
+                    >
+                      {times.map((i) => (
+                        <option key={i} value={i}>
+                          {i}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label
+                    id="description"
+                    className="flex flex-col text-xl text-left w-full"
+                  >
+                    Notes for stylist... (optional)
+                    <textarea
+                      name="description"
+                      id="description"
+                      className="flex bg-white rounded-md p-3"
+                    ></textarea>
+                  </label>
+                  <button
+                    type="submit"
+                    className="hover:bg-backgroundCard bg-white transition delay-100 duration-300 ease-in-out transform hover:scale-105 text-xl w-full p-2 rounded-md "
+                  >
+                    Submit
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </form>
     </>
   );
 }

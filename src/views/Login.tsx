@@ -3,9 +3,12 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SetStateAction } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-export default function Login({setUsername, setToken}:{setUsername:React.Dispatch<SetStateAction<string>> ,setToken:React.Dispatch<SetStateAction<string>>}) {
+export default function Login() {
+  const userContext = React.useContext(UserContext);
+  console.log(userContext)
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,8 +30,7 @@ export default function Login({setUsername, setToken}:{setUsername:React.Dispatc
 
     if (results.status >= 200) {  
       let token = await results.json()
-      setUsername(token.username)
-      setToken(token.token);
+      userContext.setUsername(token)
       alert(`Success.`);
       navigate('/');
 

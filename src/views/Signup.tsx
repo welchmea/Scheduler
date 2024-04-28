@@ -3,21 +3,17 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
-import { SetStateAction } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-export default function Signup({setUsername, setToken}:{setUsername:React.Dispatch<SetStateAction<string>> ,setToken:React.Dispatch<SetStateAction<string>>}) {
+export default function Signup() {
+  const userContext = React.useContext(UserContext);
+  console.log(userContext)
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   _id: data.get("email"),
-    //   firstName: data.get('firstName'),
-    //   lastName: data.get('lastName'),
-    //   phone: data.get('phone'),
-    //   password: data.get("password"),
-    // });
 
     const newUser = {
       _id: data.get("email"),
@@ -36,8 +32,7 @@ export default function Signup({setUsername, setToken}:{setUsername:React.Dispat
 
     if (results.status >= 200) {
       let token = await results.json()
-      setUsername(token.username)
-      setToken(token.token);
+      userContext.setUsername(token.username)
       alert(`Congratulations! You have create an account.`);
       navigate("/");
     }

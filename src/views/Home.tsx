@@ -6,12 +6,12 @@ import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
 import Contact from "../components/Contact";
 
-function Home({username}: {username: string}) {
+function Home() {
 
   return (
     <>
       <div className="h-screen">
-        <Header username={username}/>
+        <Header/>
         <div className="flex flex-col items-center place-content-center bg-black sm:h-[50vh] md:h-[50vh] lg:h-[50vh] gap-y-4">
           <p className="flex text-lg">
             We transform your salon experience into a tranquil and sophisticated

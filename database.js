@@ -62,12 +62,12 @@ const checkUser = async (_id, password) => {
     }
     if (result == true) {
       console.log("Success!")
-      return
     }
     else {
       console.log("Passwords do not match, make sure you have the right one!")
     }
   })
+  return storedHash.firstName
 }
 
 const createAppointment = async (service, date, description, time) => {

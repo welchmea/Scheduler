@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
 import { times, options } from "../assets/data/data";
+import { UserContext } from "../contexts/UserContext";
 
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-function Appointment({ token }: { token: string }) {
+function Appointment() {
+
+  const userContext = useContext(UserContext);
+  console.log(userContext)
+  
   const navigate = useNavigate();
   const [date, setDate] = useState<Value>(null);
 
@@ -32,6 +37,7 @@ function Appointment({ token }: { token: string }) {
 
     if (results.status === 201) {
       alert(`Your appointment is set!`);
+      userContext.setUsername(results)
       navigate("/");
     } else {
       alert(

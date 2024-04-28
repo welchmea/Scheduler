@@ -8,24 +8,24 @@ import Appointment from "./views/Appointment";
 import Login from "./views/Login";
 import Admin from "./views/Admin";
 import Signup from "./views/Signup";
-import { useState } from "react";
+import { UserContextProvider } from "./contexts/UserContext";
 
 function App() {
-  const [token, setToken] = useState('');
-  const [username, setUsername] = useState("Meagan");
   return (
     <>
       <BrowserRouter>
-          <Sidebar token={token} username={username} />
+      <UserContextProvider>
+          <Sidebar />
           <Routes>
-            <Route path="/" element={<Home username={username} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/ContactPage" element={<ContactPage />} />
             <Route path="/Services" element={<Services />} />
-            <Route path="/Login" element={<Login setToken={setToken} setUsername={setUsername}/>} />
-            <Route path="/Signup" element={<Signup  setToken={setToken} setUsername={setUsername}/>} />
-            <Route path="/Appointment" element={<Appointment token={token} />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Signup" element={<Signup/> } />
+            <Route path="/Appointment" element={<Appointment/>} />
             <Route path="/Admin" element={<Admin />} />
           </Routes>
+          </UserContextProvider>
       </BrowserRouter>
     </>
   );

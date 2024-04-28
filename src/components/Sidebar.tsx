@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar({token, username}:{token:string, username: string}) {
+
   return (
     <>
       <div className="flex flex-row flex-wrap items-center text-black justify-between p-2 border bg-calendarBG">
@@ -20,8 +21,8 @@ function Sidebar() {
             </Link>
           </div>
           <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
-            <Link to="/Login">Appointment
-            </Link>
+            {token ? <Link to="/Appointment">Appointment</Link> : <Link to="/Login">Appointment</Link>
+            }
           </div>
           <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
             <Link to="/Admin">Admin

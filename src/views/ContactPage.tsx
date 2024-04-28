@@ -74,13 +74,13 @@ function ContactPage() {
 
   return (
     <>
-      <div className="text-black flex flex-col items-center place-content-center gap-y-4 mt-4">
-        <div className="flex w-5/6 bg-white">
+      <div className="text-black flex flex-col items-center gap-y-4 mt-4">
+        <div className="flex w-5/6 bg-white justify-center">
           <Contact />
         </div>
 
         <div className="flex bg-white p-4 w-5/6 justify-center">
-          <form className="flex flex-wrap gap-4" onSubmit={handleSubmit}>
+          <form className="flex flex-wrap gap-4 justify-center" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-y-4">
               <input
                 className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"

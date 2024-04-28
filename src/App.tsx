@@ -12,18 +12,18 @@ import { useState } from "react";
 
 function App() {
   const [token, setToken] = useState('');
-  console.log(token);
+  const [username, setUsername] = useState('');
   return (
     <>
       <BrowserRouter>
-          <Sidebar />
+          <Sidebar token={token} username={username} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ContactPage" element={<ContactPage />} />
             <Route path="/Services" element={<Services />} />
-            <Route path="/Login" element={<Login setToken={setToken}/>} />
-            <Route path="/Signup" element={<Signup />} />
-            <Route path="/Appointment" element={<Appointment />} />
+            <Route path="/Login" element={<Login setToken={setToken} setUsername={setUsername}/>} />
+            <Route path="/Signup" element={<Signup  setToken={setToken} setUsername={setUsername}/>} />
+            <Route path="/Appointment" element={<Appointment token={token} />} />
             <Route path="/Admin" element={<Admin />} />
           </Routes>
       </BrowserRouter>

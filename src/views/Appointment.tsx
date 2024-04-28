@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
-
+import { times, options } from '../assets/data/data';
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -9,27 +9,10 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 function Appointment() {
   const navigate = useNavigate();
   const [date, setDate] = useState<Value>(new Date());
-  const options = [
-    "Cut",
-    "Color",
-    "Blowout",
-    "Cut and Color",
-    "Foil",
-    "Partial Foil",
-    "Balayage",
-  ];
-
-  const times = ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      service: data.get("service"),
-      date: date,
-      time: data.get("time"),
-      description: data.get("description"),
-    });
 
     const newAppt = {
       service: data.get("service"),
@@ -44,7 +27,7 @@ function Appointment() {
         "Content-Type": "application/json",
       },
     });
-    console.log(results)
+    console.log(results);
 
     if (results.status === 201) {
       alert(`Your appointment is set!`);
@@ -61,7 +44,7 @@ function Appointment() {
     <>
       <div className="flex flex-wrap gap-x-4 justify-center text-black">
         <form onSubmit={handleSubmit}>
-        <div className="flex border border-black bg-white rounded-md p-4">
+          <div className="flex border border-black bg-white rounded-md p-4">
             <div className="flex flex-col gap-y-2 w-full">
               <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
                 <label className="flex flex-col text-left" id="time">
@@ -93,25 +76,23 @@ function Appointment() {
                   </select>
                 </label>
               </div>
-          <div className="flex flex-col border border-black rounded-md bg-white p-4 gap-y-2">
-            <label
-              id="date"
-              className="flex flex-col text-xl border border-black bg-calendarBG p-4 rounded-md"
-            >
-              Appointment Scheduler
-              <div
-                id="date"
-                className="flex flex-wrap border border-black rounded-md"
-              >
-                <Calendar value={date} onChange={setDate} />
+              <div className="flex flex-col border border-black rounded-md bg-white p-4 gap-y-2">
+                <label
+                  id="date"
+                  className="flex flex-col text-xl border border-black bg-calendarBG p-4 rounded-md"
+                >
+                  Appointment Scheduler
+                  <div
+                    id="date"
+                    className="flex flex-wrap border border-black rounded-md"
+                  >
+                    <Calendar value={date} onChange={setDate} />
+                  </div>
+                </label>
+                <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
+                  Stylist: Melissa McGill
+                </div>
               </div>
-            </label>
-            <div className="flex text-xl border border-black bg-calendarBG p-4 rounded-md">
-              Stylist: Melissa McGill
-            </div>
-          </div>
-
-
 
               <div className="flex text-left border p-3 text-md border-black bg-calendarBG rounded-md">
                 <label

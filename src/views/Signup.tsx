@@ -3,8 +3,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
+import { SetStateAction } from "react";
 
-export default function Signup() {
+export default function Signup({setUsername, setToken}:{setUsername:React.Dispatch<SetStateAction<string>> ,setToken:React.Dispatch<SetStateAction<string>>}) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +34,10 @@ export default function Signup() {
       },
     });
 
-    if (results.status === 201) {
+    if (results.status >= 200) {
+      let token = await results.json()
+      setUsername(token.username)
+      setToken(token.token);
       alert(`Congratulations! You have create an account.`);
       navigate("/");
     }

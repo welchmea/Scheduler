@@ -5,10 +5,8 @@ import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SetStateAction } from "react";
 
-export default function Login({setToken}:{setToken:React.Dispatch<SetStateAction<string>>}) {
+export default function Login({setUsername, setToken}:{setUsername:React.Dispatch<SetStateAction<string>> ,setToken:React.Dispatch<SetStateAction<string>>}) {
   const navigate = useNavigate();
-  // const [user, setUser] = useState('');
-  // const [pwd, setPwd] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,9 +23,12 @@ export default function Login({setToken}:{setToken:React.Dispatch<SetStateAction
         "Content-Type": "application/json",
       },
     })
-    setToken(await results.json());
+   
 
-    if (results.status === 201 || results.status === 200) {     
+    if (results.status >= 200) {  
+      let token = await results.json()
+      setUsername(token.username)
+      setToken(token.token);
       alert(`Success.`);
       navigate('/');
 

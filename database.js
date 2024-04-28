@@ -29,6 +29,7 @@ const loginSchema = mongoose.Schema({
 });
 
 const apptSchema = mongoose.Schema({
+  _id: { type: String, required: true },
   service: { type: String, required: true },
   date: { type: Date, required: true },
   description: { type: String, required: false },
@@ -49,7 +50,8 @@ const createUser = async (_id, firstName, lastName, phone, password) => {
     phone: phone,
     password: hash
   });
-  return user.save();
+  user.save()
+  return firstName;
 };
 
 const checkUser = async (_id, password) => {
@@ -70,14 +72,17 @@ const checkUser = async (_id, password) => {
   return storedHash.firstName
 }
 
-const createAppointment = async (service, date, description, time) => {
+const createAppointment = async (_id, service, date, description, time) => {
   const appointment = new Appointment({
+    _id: _id,
     service: service,
     date: date,
     description: description,
     time: time,
   });
-  return appointment.save();
+  appointment.save()
+  console.group(appointment)
+  return appointment;
 };
 
 const retrieveUsers = async () => {

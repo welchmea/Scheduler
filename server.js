@@ -63,6 +63,7 @@ app.post("/checkUser", (req, res) => {
 app.post("/createAppointment", (req, res) => {
   user
     .createAppointment(
+      req.body._id,
       req.body.service,
       req.body.date,
       req.body.description,

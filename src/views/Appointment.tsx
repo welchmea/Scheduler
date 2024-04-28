@@ -4,23 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { times, options } from "../assets/data/data";
 import { UserContext } from "../contexts/UserContext";
 
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+type NewDate = Date | null;
 
 function Appointment() {
 
   const userContext = useContext(UserContext);
-  console.log(userContext)
   
   const navigate = useNavigate();
-  const [date, setDate] = useState<Value>(null);
+  const [date, setDate] = useState<NewDate>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     const newAppt = {
+      _id: userContext.username,
       service: data.get("service"),
       date: date,
       time: data.get("time"),
@@ -33,12 +31,11 @@ function Appointment() {
         "Content-Type": "application/json",
       },
     });
-    console.log(results);
 
     if (results.status === 201) {
-      alert(`Your appointment is set!`);
-      userContext.setUsername(results)
-      navigate("/");
+      userContext.setAppt(await results.json())
+      alert(`Your appointment is all set for ${date}!`);
+      navigate('/');
     } else {
       alert(
         `Defer to the status code: ${results.status}, to determine what went wrong.`

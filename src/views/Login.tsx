@@ -7,7 +7,6 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
   const userContext = React.useContext(UserContext);
-  console.log(userContext)
   
   const navigate = useNavigate();
 

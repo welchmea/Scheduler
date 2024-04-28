@@ -7,7 +7,6 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function Signup() {
   const userContext = React.useContext(UserContext);
-  console.log(userContext)
 
   const navigate = useNavigate();
 
@@ -32,8 +31,8 @@ export default function Signup() {
 
     if (results.status >= 200) {
       let token = await results.json()
-      userContext.setUsername(token.username)
-      alert(`Congratulations! You have create an account.`);
+      userContext.setUsername(token)
+      alert(`Congratulations! You have created an account.`);
       navigate("/");
     }
     else if (results.status === 400) {
@@ -62,7 +61,7 @@ export default function Signup() {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <input
-                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black"
                     name="firstName"
                     id="firstName"
                     placeholder="First Name"
@@ -72,7 +71,7 @@ export default function Signup() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <input
-                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black"
                     id="lastName"
                     placeholder="Last Name"
                     name="lastName"
@@ -81,7 +80,7 @@ export default function Signup() {
                 </Grid>
                 <Grid item xs={12}>
                   <input
-                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black"
                     id="phone"
                     placeholder="Phone Number"
                     name="phone"
@@ -89,7 +88,7 @@ export default function Signup() {
                 </Grid>
                 <Grid item xs={12}>
                   <input
-                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                    className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black"
                     name="email"
                     placeholder="Email Address *"
                     required

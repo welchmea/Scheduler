@@ -15,8 +15,8 @@ function Contact() {
 
   return (
     <>
-          <div className="flex flex-row flex-wrap gap-x-2 place-content-center">
-            <div className="flex flex-col flex-wrap items-start bg-white rounded-md p-2 w-1/4">
+          <div className="flex flex-row flex-wrap gap-x-2 gap-y-2 place-content-center">
+            <div className="flex flex-col flex-wrap items-start bg-white rounded-md p-2">
               PHONE:
               <p >360-790-8040</p>
               EMAIL:
@@ -28,17 +28,19 @@ function Contact() {
                 {twitter}
               </div>
             </div>
-            <div className="flex flex-col items-start bg-white rounded-md p-2 w-1/4">
+            <div className="flex flex-col items-start bg-white rounded-md p-2">
               HOURS:
               <ul>Monday: 9AM-2PM</ul>
               <ul>Tuesday: 9AM–2PM</ul>
               <ul>Wednesday: 9AM–2PM</ul>
               <ul>Thursday: 9AM–2PM</ul>
-              <ul>Friday, Saturday, & Sunday: Closed</ul>
+              <ul>Friday: Closed</ul>
+              <ul>Saturday: Closed</ul>
+              <ul>Sunday: Closed</ul>
             </div>
-            <div className="flex flex-col items-start bg-white rounded-md p-2 w-1/4 gap-y-4">
+            <div className="flex flex-col items-start bg-white rounded-md p-2 gap-y-4">
               ADDRESS:
-              <p className="flex text-sm text-left">
+              <p className="flex  text-left">
                 1804 Boulevard Rd SE, Olympia, Washington 98501
               </p>
             </div>

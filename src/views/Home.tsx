@@ -34,7 +34,7 @@ function Home() {
             to precision cuts, and textured styles, we can fulfill any hair
             vision.
           </p>
-          <div className="flex flex-row flex-wrap gap-x-2 gap-y-2 text-white place-content-center">
+          <div className="flex flex-row gap-x-2 gap-y-2 text-white place-content-center">
             <div className="bg-black rounded-md p-2 w-1/4">CUTS
             <img src={Cut}/>
             </div>
@@ -53,7 +53,7 @@ function Home() {
         </div>
 
         <div className="flex flex-col place-content-center bg-darkGreen sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black p-8">
-          <h2 className="text-white">Contact</h2>
+          <h2 className="text-white mb-4">CONTACT</h2>
           <Contact/>
         </div>
         <div className="flex items-center bg-black h-[50vh] gap-y-4">

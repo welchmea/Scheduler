@@ -43,9 +43,8 @@ function Appointment() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-row flex-wrap gap-y-1">
-          <div className="flex flex-col text-black md:w-1/2 lg:w-1/2">
-            <div className="flex flex-wrap bg-calendarBG p-4 gap-x-2 gap-y-2 rounded-md mt-4">
+          <div className="flex flex-col text-black gap-y-2 p-4 w-full">
+            <div className="flex flex-wrap bg-calendarBG p-4 gap-x-2 gap-y-4 rounded-md">
               <label className="flex flex-col text-left w-full" id="service">
                 Select a Service
                 <select
@@ -89,12 +88,11 @@ function Appointment() {
             </div>
 
             <div className="flex flex-col place-content-center flex-wrap text-black w-full mb-4">
-              <div className="flex border border-black bg-calendarBG p-4 rounded-md">
+              <div className="flex border border-black bg-calendarBG p-4 rounded-md w-full">
                 Stylist: Melissa McGill
               </div>
             </div>
           </div>
-        </div>
       </form>
     </>
   );

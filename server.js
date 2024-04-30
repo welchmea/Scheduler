@@ -23,7 +23,7 @@ app.post("/createUser", (req, res) => {
       req.body.password
     )
     .then((user) => {
-      res.status(201).json(user);
+      res.status().json(user);
     })
     .catch((error) => {
       console.log(error);
@@ -47,7 +47,7 @@ app.post("/checkUser", (req, res) => {
   user
     .checkUser(req.body._id, req.body.password)
     .then((user) => {
-      
+      console.log(res)
       res.status(201).json(user)
     })
     .catch((error) => {

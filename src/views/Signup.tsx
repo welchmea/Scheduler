@@ -29,9 +29,8 @@ export default function Signup() {
       },
     });
 
-    if (results.status >= 200) {
+    if (results.status == 201 || results.status == 200) {
       let token = await results.json()
-      console.log(token)
       userContext.setUsername(token[0] + ' ' + token[1])
       userContext.setEmail(token[2])
       navigate("/");

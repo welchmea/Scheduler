@@ -25,9 +25,9 @@ export default function Login() {
         "Content-Type": "application/json",
       },
     })
-   
+   console.log(results.status)
 
-    if (results.status >= 200) {  
+    if (results.status == 201 || results.status == 200) {  
       let token = await results.json()
       userContext.setUsername(token[0] + ' ' + token[1])
       userContext.setEmail(token[2])
@@ -35,7 +35,7 @@ export default function Login() {
 
     } else {
       alert(
-        `Defer to the status code: ${results.status}, to determine what went wrong.`
+        `No registered account.`
       );
     }
   };
@@ -55,7 +55,7 @@ export default function Login() {
                   <Grid item xs={12}>
                     <input
                       // onChange={(e) => setUser(e.target.value)}
-                      className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700"
+                      className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black"
                       name="email"
                       placeholder="Email Address *"
                       required

@@ -21,6 +21,7 @@ scheduleDB.once("open", (err) => {
   }
 });
 
+
 const loginSchema = mongoose.Schema({
   _id: { type: String, required: true },
   firstName: { type: String, required: true },
@@ -42,6 +43,9 @@ const Login = mongoose.model("Login", loginSchema);
 const Appointment = mongoose.model("Appointment", apptSchema);
 
 const createUser = async (_id, firstName, lastName, phone, password) => {
+
+  const checkDup = await Login.findById(_id).exec();
+  if (checkDup) return;
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
@@ -59,10 +63,12 @@ const createUser = async (_id, firstName, lastName, phone, password) => {
   return details
 };
 
+
 const checkUser = async (_id, password) => {
 
   const token = uuidv4();
   const storedHash = await Login.findById(_id).exec();
+  if (!storedHash) return storedHash
   const storedPwd = storedHash.password
   bcrypt.compare(password, storedPwd, (err, result) => {
     if (err) {

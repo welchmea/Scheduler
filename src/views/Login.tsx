@@ -31,7 +31,6 @@ export default function Login() {
       let token = await results.json()
       userContext.setUsername(token[0] + ' ' + token[1])
       userContext.setEmail(token[2])
-      alert(`Success.`);
       navigate('/');
 
     } else {

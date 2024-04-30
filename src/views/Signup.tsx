@@ -31,9 +31,9 @@ export default function Signup() {
 
     if (results.status >= 200) {
       let token = await results.json()
-      userContext.setUsername(token.username)
-      userContext.setEmail(token.email)
-      alert(`Congratulations! You have created an account.`);
+      console.log(token)
+      userContext.setUsername(token[0] + ' ' + token[1])
+      userContext.setEmail(token[2])
       navigate("/");
     }
     else if (results.status === 400) {
@@ -43,10 +43,9 @@ export default function Signup() {
       }
     else {
       alert(
-        `Defer to the status code: ${results.status}, to determine what went wrong.`
+        `You were not able to create an account. Status code: ${results.status}`
       );
     }
-    navigate("/");
   };
 
   return (

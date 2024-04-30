@@ -6,6 +6,7 @@ import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
 import Contact from "../components/Contact";
 
+
 function Home() {
 
   return (

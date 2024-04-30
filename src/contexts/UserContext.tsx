@@ -13,6 +13,8 @@ export type UserContextType = {
   setEmail: any;
   isAdmin: any;
   setIsAdmin: any;
+  token: any;
+  setToken: any;
 };
 type UserContextProviderType = {
   children: React.ReactNode;
@@ -24,6 +26,7 @@ export const UserContextProvider = ({ children }: UserContextProviderType) => {
   const [appt, setAppt] = useState<AuthUser | null>(null);
   const [email, setEmail] = useState<AuthUser | null>(null);
   const [isAdmin, setIsAdmin] = useState<AuthUser | null>(null);
+  const [token, setToken] = useState<AuthUser | null>(null);
   return (
     <UserContext.Provider
       value={{
@@ -35,6 +38,8 @@ export const UserContextProvider = ({ children }: UserContextProviderType) => {
         setEmail,
         isAdmin,
         setIsAdmin,
+        token,
+        setToken
       }}
     >
       {children}

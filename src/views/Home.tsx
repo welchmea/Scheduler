@@ -29,7 +29,7 @@ function Home() {
           </p>
         </div>
         <div className="flex flex-col place-content-center items-center bg-white sm:h-[70vh] md:h-[80vh] lg:h-[100vh] p-8 text-black gap-y-4">
-          <h2>SERVICES</h2>
+        <Link to="/Services"><h2>SERVICES</h2></Link>
           <p>
             From advanced colour techniques like balayage and colour correction
             to precision cuts, and textured styles, we can fulfill any hair
@@ -47,14 +47,10 @@ function Home() {
               <img src={Style}/>
             </div>
           </div>
-
-          <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110 mt-8">
-            <Link to="/Services">View Services</Link>
-          </div>
         </div>
 
         <div className="flex flex-col place-content-center bg-darkGreen sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black p-8">
-          <h2 className="text-white mb-4">CONTACT</h2>
+         <Link to='/ContactPage'><h2 className="text-white mb-4">CONTACT</h2></Link> 
           <Contact/>
         </div>
         <div className="flex items-center bg-black h-[50vh] gap-y-4">

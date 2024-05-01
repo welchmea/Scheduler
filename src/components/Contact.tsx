@@ -4,7 +4,7 @@ function Contact() {
   const instagram = (
     <SocialIcon
       bgColor="black"
-      url="https://www.instagram.com/realmbymel/?hl=en"
+      url="https://www.instagram.com"
     />
   );
   const linkedin = <SocialIcon bgColor="black" url="https://linkedin.com" />;

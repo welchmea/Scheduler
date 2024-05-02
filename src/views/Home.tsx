@@ -49,8 +49,8 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col place-content-center bg-darkGreen sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black p-8">
-         <Link to='/ContactPage'><h2 className="text-white mb-4">CONTACT</h2></Link> 
+        <div className="flex flex-col place-content-center bg-backgroundColor sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black p-8">
+         <Link to='/ContactPage'><h2 className="mb-4">CONTACT</h2></Link> 
           <Contact/>
         </div>
         <div className="flex items-center bg-black h-[50vh] gap-y-4">

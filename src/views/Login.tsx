@@ -42,7 +42,7 @@ export default function Login() {
 
   return (
     <>
-      <div className="flex flex-row flex-wrap h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
+      <div className="flex flex-row flex-wrap h-screen w-full">
         <Container component="main" maxWidth="sm">
         <div className="flex flex-col items-center bg-white p-2 rounded-md mt-16 mb-16 "
         >

@@ -29,15 +29,15 @@ export default function Signup() {
       },
     });
 
-    if (results.status == 201 || results.status == 200) {
+    if (results.status >= 200 && results.status <= 299) {
       let token = await results.json()
       userContext.setUsername(token[0] + ' ' + token[1])
       userContext.setEmail(token[2])
       navigate("/");
     }
-    else if (results.status === 400) {
+    else if (results.status >= 400 && results.status <= 499) {
       alert(
-        "There is already an account by that name."
+        `Verify username or password. Do you already have an account? ${results.status}`
       );
       }
     else {
@@ -49,7 +49,7 @@ export default function Signup() {
 
   return (
     <>
-      <div className="flex flex-row flex-wrap h-screen w-full bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')] bg-cover bg-right">
+      <div className="flex flex-row flex-wrap h-screen w-full">
         <Container component="main" maxWidth="sm">
           <div className="flex flex-col items-center bg-white p-3 rounded-md mt-16 mb-16 ">
             <div className="m-1 bg-black text-white p-2.5 rounded-3xl">

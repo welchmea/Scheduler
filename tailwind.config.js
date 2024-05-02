@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        backgroundColor: '#C2CFD7',
         calendarBG: '#f0f0f0',
         backgroundCard : '#A0A0A0',
         apptHeaders: '#f0f0f0',

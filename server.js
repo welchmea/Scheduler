@@ -22,8 +22,9 @@ app.post("/createUser", (req, res) => {
       req.body.phone,
       req.body.password
     )
+    console.log(res.body)
     .then((user) => {
-      res.status().json(user);
+      res.status(201).json(user);
     })
     .catch((error) => {
       console.log(error);

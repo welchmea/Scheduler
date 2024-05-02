@@ -42,10 +42,13 @@ const apptSchema = mongoose.Schema({
 const Login = mongoose.model("Login", loginSchema);
 const Appointment = mongoose.model("Appointment", apptSchema);
 
+// SIGN UP
 const createUser = async (_id, firstName, lastName, phone, password) => {
 
-  const checkDup = await Login.findById(_id).exec();
-  if (checkDup) return;
+  const checkDup = Login.findById(_id).exec();
+  if (checkDup) {
+    return 422;
+  }
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
@@ -63,7 +66,7 @@ const createUser = async (_id, firstName, lastName, phone, password) => {
   return details
 };
 
-
+// LOGIN
 const checkUser = async (_id, password) => {
 
   const token = uuidv4();
@@ -73,12 +76,14 @@ const checkUser = async (_id, password) => {
   bcrypt.compare(password, storedPwd, (err, result) => {
     if (err) {
       console.error("Something went horribly wrong! ", err)
+      return err
     }
     if (result == true) {
       console.log("Success!")
     }
     else {
       console.log("Passwords do not match, make sure you have the right one!")
+      return 401
     }
   })
   const details = [storedHash.firstName, storedHash.lastName, storedHash._id, token]

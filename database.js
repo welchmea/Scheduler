@@ -21,7 +21,6 @@ scheduleDB.once("open", (err) => {
   }
 });
 
-
 const loginSchema = mongoose.Schema({
   _id: { type: String, required: true },
   firstName: { type: String, required: true },
@@ -31,16 +30,7 @@ const loginSchema = mongoose.Schema({
   token: {type: String, required: true }
 });
 
-const apptSchema = mongoose.Schema({
-  _id: { type: String, required: true },
-  service: { type: String, required: true },
-  date: { type: Date, required: true },
-  description: { type: String, required: false },
-  time: { type: String, required: true },
-});
-
 const Login = mongoose.model("Login", loginSchema);
-const Appointment = mongoose.model("Appointment", apptSchema);
 
 // SIGN UP
 const createUser = async (_id, firstName, lastName, phone, password) => {
@@ -90,30 +80,10 @@ const checkUser = async (_id, password) => {
   return details
 }
 
-const createAppointment = async (_id, service, date, description, time) => {
-  const appointment = new Appointment({
-    _id: _id,
-    service: service,
-    date: date,
-    description: description,
-    time: time,
-  });
-  appointment.save()
-  const details = [service, date, description, time]
-  return details;
-};
+
 
 const retrieveUsers = async () => {
   const query = Login.find();
-  return query.exec();
-};
-const retrieveAppointments = async () => {
-  const query = Appointment.find();
-  return query.exec();
-};
-
-const retrieveAppointmentsId = async (_id) => {
-  const query = Appointment.findById({ _id: _id });
   return query.exec();
 };
 
@@ -126,10 +96,7 @@ const deleteUser = async (_id) => {
   const result = await Login.deleteOne({ _id: _id });
   return result.deletedCount;
 };
-const deleteAppointment = async (_id) => {
-  const result = await Appointment.deleteOne({ _id: _id });
-  return result.deletedCount;
-};
+
 
 const updateUser = async (_id, firstName, lastName, phone, password) => {
   const result = await User.replaceOne(
@@ -149,34 +116,11 @@ const updateUser = async (_id, firstName, lastName, phone, password) => {
   };
 };
 
-const updateAppointment = async (_id, service, date, description, time) => {
-  const result = await Appointment.replaceOne(
-    { _id: _id },
-    {
-      service: service,
-      date: date,
-      description: description,
-      time: time,
-    }
-  );
-  return {
-    service: service,
-    date: date,
-    description: description,
-    time: time,
-  };
-};
-
 export {
   createUser,
   checkUser,
-  createAppointment,
   retrieveUsers,
   retrieveUsersId,
-  retrieveAppointments,
-  retrieveAppointmentsId,
   updateUser,
-  updateAppointment,
   deleteUser,
-  deleteAppointment,
 };

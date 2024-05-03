@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// Model for creating an appointment and an 
+// available time slot schedule 
+
 mongoose.connect(
   "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
 );
@@ -24,7 +27,64 @@ const available = mongoose.Schema({
   timeSlots: { type: Object, required: true },
 });
 
+const apptSchema = mongoose.Schema({
+  _id: { type: String, required: true },
+  service: { type: String, required: true },
+  date: { type: Date, required: true },
+  description: { type: String, required: false },
+  time: { type: String, required: true },
+});
+
 const Available = mongoose.model("Available", available);
+const Appointment = mongoose.model("Appointment", apptSchema);
+
+
+
+const createAppointment = async (_id, service, date, description, time) => {
+  const appointment = new Appointment({
+    _id: _id,
+    service: service,
+    date: date,
+    description: description,
+    time: time,
+  });
+  appointment.save()
+  const details = [service, date, description, time]
+  return details;
+};
+
+const retrieveAppointments = async () => {
+  const query = Appointment.find();
+  return query.exec();
+};
+
+const retrieveAppointmentsId = async (_id) => {
+  const query = Appointment.findById({ _id: _id });
+  return query.exec();
+};
+
+const deleteAppointment = async (_id) => {
+  const result = await Appointment.deleteOne({ _id: _id });
+  return result.deletedCount;
+};
+
+const updateAppointment = async (_id, service, date, description, time) => {
+  const result = await Appointment.replaceOne(
+    { _id: _id },
+    {
+      service: service,
+      date: date,
+      description: description,
+      time: time,
+    }
+  );
+  return {
+    service: service,
+    date: date,
+    description: description,
+    time: time,
+  };
+};
 
 const createAvailability = async (_id, timeSlots ) => {
   const available = new Available({
@@ -69,4 +129,10 @@ export {
   retrieveAvailabilityId,
   retrieveAvailable,
   updateAvailability,
+  createAppointment,
+  retrieveAppointments,
+  retrieveAppointmentsId,
+  updateAppointment,
+  deleteAppointment,
+
 };

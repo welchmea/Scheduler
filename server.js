@@ -62,7 +62,7 @@ app.post("/checkUser", (req, res) => {
 });
 
 app.post("/createAppointment", (req, res) => {
-  user
+  available
     .createAppointment(
       req.body._id,
       req.body.service,
@@ -70,8 +70,8 @@ app.post("/createAppointment", (req, res) => {
       req.body.description,
       req.body.time
     )
-    .then((user) => {
-      res.status(201).json(user);
+    .then((available) => {
+      res.status(201).json(available);
     })
     .catch((error) => {
       console.log(error);
@@ -104,6 +104,31 @@ app.post("/createAvailability", (req, res) => {
 app.get("/retrieveAvailability", (req, res) => {
   available
     .retrieveAvailable()
+    .then((available) => {
+      if (available !== null) {
+        res.json(available);
+      } else {
+        res
+          .status(404)
+          .json({
+            Error: "The resource you are trying to locate does not exist.",
+          });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res
+        .status(400)
+        .json({
+          Error:
+            "The document was not able to be compiled, check parameters again.",
+        });
+    });
+});
+
+app.get("/retrieveAvailabilityId", (req, res) => {
+  available
+    .retrieveAvailabilityId()
     .then((available) => {
       if (available !== null) {
         res.json(available);

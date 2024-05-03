@@ -29,20 +29,20 @@ function Home() {
           </p>
         </div>
         <div className="flex flex-col place-content-center items-center bg-white sm:h-[70vh] md:h-[80vh] lg:h-[100vh] p-8 text-black gap-y-4">
-        <Link to="/Services"><h2>SERVICES</h2></Link>
+        <Link to="/Services"><h2 className="transition delay-50 duration-300 ease-in-out transform hover:scale-105">SERVICES</h2></Link>
           <p>
             From advanced colour techniques like balayage and colour correction
             to precision cuts, and textured styles, we can fulfill any hair
             vision.
           </p>
-          <div className="flex flex-row gap-x-2 gap-y-2 text-white place-content-center">
-            <div className="bg-black rounded-md p-2 w-1/4">CUTS
+          <div className="flex flex-row gap-x-2 gap-y-6 text-white place-content-center">
+            <div className="bg-black rounded-md p-2 w-1/4 transition duration-300 ease-in-out transform hover:scale-105">CUTS
             <img src={Cut}/>
             </div>
-            <div className="bg-black rounded-md p-2 w-1/4">COLOR
+            <div className="bg-black rounded-md p-2 w-1/4 transition duration-300 ease-in-out transform hover:scale-105">COLOR
             <img src={Color}/>
             </div>
-            <div className="bg-black rounded-md p-2 w-1/4">
+            <div className="bg-black rounded-md p-2 w-1/4 transition duration-300 ease-in-out transform hover:scale-105">
               STYLING AND TREATMENTS
               <img src={Style}/>
             </div>
@@ -50,7 +50,7 @@ function Home() {
         </div>
 
         <div className="flex flex-col place-content-center bg-backgroundColor sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black p-8">
-         <Link to='/ContactPage'><h2 className="mb-4">CONTACT</h2></Link> 
+         <Link to='/ContactPage'><h2 className="mb-4 transition delay-50 duration-300 ease-in-out transform hover:scale-105">CONTACT</h2></Link> 
           <Contact/>
         </div>
         <div className="flex items-center bg-black h-[50vh] gap-y-4">

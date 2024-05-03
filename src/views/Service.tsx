@@ -1,64 +1,74 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { cuts, color, styling } from "../assets/data/data";
+import { UserContext } from "../contexts/UserContext";
 
 function Services() {
+  const userContext = useContext(UserContext);
+
+
   return (
     <>
-      <header className="flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')]">
-        <div className="p-4 text-2xl text-white bg-calendarBG bg-opacity-60 rounded-md">
+      <header className="flex items-center justify-center h-screen bg-fixed bg-center bg-cover bg-[url('./assets/images/curology-gqOVZDJUddw-unsplash.jpg')]">
+        <div className="border flex place-content-center items-center text-black p-4 text-2xl bg-calendarBG bg-opacity-60 w-full h-1/3">
           Services
         </div>
       </header>
 
-      <section className="container border flex h-screen items-center place-content-center m-auto mb-12 bg-fixed bg-center bg-cover bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')]">
-        <div className="p-4 text-2xl text-white bg-calendarBG bg-opacity-50 h-full">
+      <section className="flex flex-col m-auto bg-fixed bg-center bg-cover bg-[url('./assets/images/curology-gqOVZDJUddw-unsplash.jpg')]">
+        <div className="p-4 text-2xl bg-calendarBG bg-opacity-50 w-2/3 rounded-t-md">
           Cuts
         </div>
-        <div className="flex flex-col gap-y-4 place-content-center text-black h-full w-2/3 p-3 bg-calendarBG">
+        <div className="flex flex-col gap-y-4 place-content-center text-black h-full w-2/3 p-3 bg-calendarBG rounded-b-md mb-4">
           {cuts.map((key) => (
-            <ul className="flex justify-between p-4">
-              <div className="flex">{key.service}</div>
-              <div className="flex">{"$ " + key.price + ".00"}</div>
-            </ul>
+            <a href={userContext.username ? '/Appointment' : '/Login' } className="p-4 hover:text-indigo-600 border border-gray-200 shadow-md rounded-md transition ease-in-out transform hover:scale-[1.02]">
+             <div className="w-full flex justify-between">
+                <div className="font-bold text-md">{key.service}</div>
+                <div className="font-bold text-md">{"$ " + key.price + ".00"}</div>
+             </div>
+          
+              <div className="flex text-left italic ">{key.description}</div>
+            </a>
           ))}
-        </div>
-        <div className="ml-12 p-4 bg-calendarBG bg-opacity-50 rounded-md">
-          <Link to="/Appointment">Make an Appointment</Link>
+           
         </div>
       </section>
-      <section className="container border flex justify-end items-center h-screen m-auto mb-12 bg-fixed bg-center bg-cover bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')]">
-      <div className="flex mr-12 p-4 bg-calendarBG bg-opacity-50 rounded-md">
-          <Link to="/Appointment">Make an Appointment</Link>
-        </div>
-        <div className="p-4 text-2xl text-white bg-calendarBG bg-opacity-50 h-full">
+      <section className="flex flex-col items-center m-auto bg-fixed bg-center bg-cover bg-[url('./assets/images/curology-gqOVZDJUddw-unsplash.jpg')]">
+        <div className="p-4 text-2xl bg-calendarBG bg-opacity-50 w-2/3 rounded-t-md">
           Styling
         </div>
-        <div className="flex flex-col gap-y-4 place-content-center text-black h-full w-2/3 p-3 bg-calendarBG">
+        <div className="flex flex-col gap-y-4 text-black h-full w-2/3 p-3 bg-calendarBG rounded-b-md mb-4">
           {styling.map((key) => (
-            <ul className="flex justify-between p-4">
-              <div className="flex">{key.service}</div>
-              <div className="flex">{"$ " + key.price + ".00"}</div>
-            </ul>
+            <a href={userContext.username ? '/Appointment' : '/Login' } className="p-4 hover:text-indigo-600 border border-gray-200 shadow-md rounded-md transition ease-in-out transform hover:scale-[1.02]">
+             <div className="w-full flex justify-between">
+                <div className="font-bold text-md">{key.service}</div>
+                <div className="font-bold text-md">{"$ " + key.price + ".00"}</div>
+             </div>
+          
+              <div className="flex text-left italic ">{key.description}</div>
+            </a>
           ))}
+           
         </div>
       </section>
 
-      <section className="container border flex h-screen items-center place-content-center m-auto bg-fixed bg-center bg-cover bg-[url('./assets/images/patrick-langwallner-3pR7d-tIRx8-unsplash.jpg')]">
-        <div className="p-4 text-2xl text-white bg-calendarBG bg-opacity-50 h-full">
+      <section className="flex flex-col items-end m-auto bg-fixed bg-center bg-cover bg-[url('./assets/images/curology-gqOVZDJUddw-unsplash.jpg')]">
+        <div className="p-4 text-2xl bg-calendarBG bg-opacity-50 w-2/3 rounded-t-md">
           Color
         </div>
-        <div className="flex flex-col gap-y-4 place-content-center text-black h-full w-2/3 p-3 bg-calendarBG">
+        <div className="flex flex-col gap-y-4 place-content-end text-black h-full w-2/3 p-3 bg-calendarBG rounded-b-md mb-4">
           {color.map((key) => (
-            <ul className="flex justify-between p-4">
-              <div className="flex">{key.service}</div>
-              <div className="flex">{"$ " + key.price + ".00"}</div>
-            </ul>
+            <a href={userContext.username ? '/Appointment' : '/Login' } className="p-4 hover:text-indigo-600 border border-gray-200 shadow-md rounded-md transition ease-in-out transform hover:scale-[1.02]">
+             <div className="w-full flex justify-between">
+                <div className="font-bold text-md">{key.service}</div>
+                <div className="font-bold text-md">{"$ " + key.price + ".00"}</div>
+             </div>
+          
+              <div className="flex text-left italic ">{key.description}</div>
+            </a>
           ))}
+           
         </div>
-        <div className="flex ml-12 p-4 bg-calendarBG bg-opacity-50 rounded-md">
-          <Link to="/Appointment">Make an Appointment</Link>
-        </div>
-        </section>
+      </section>
     </>
   );
 }

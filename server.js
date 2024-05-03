@@ -48,7 +48,6 @@ app.post("/checkUser", (req, res) => {
   user
     .checkUser(req.body._id, req.body.password)
     .then((user) => {
-      console.log(res)
       res.status(201).json(user)
     })
     .catch((error) => {

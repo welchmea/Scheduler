@@ -12,7 +12,7 @@ function Header() {
       alert("You already have an appointment!")
     }
     else {
-      navigate('/Appointment')
+      navigate('/Services')
     }
   }
   

@@ -2,13 +2,14 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import * as React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
   const userContext = React.useContext(UserContext);
-  
   const navigate = useNavigate();
+  let {state} = useLocation();
+  console.log(state);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,7 +32,12 @@ export default function Login() {
       let token = await results.json()
       userContext.setUsername(token[0] + ' ' + token[1])
       userContext.setEmail(token[2])
-      navigate('/');
+      
+      // direct to HomePage or Appointment page if navigating from 
+      // the Services view
+      if (state)
+        navigate('/Appointment', {state: state});
+      else navigate('/');
 
     } else {
       alert(

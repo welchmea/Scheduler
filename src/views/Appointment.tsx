@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import PickDate from "../components/PickDate";
-import { useNavigate } from "react-router-dom";
-import { times, options } from "../assets/data/data";
+import { useLocation, useNavigate } from "react-router-dom";
+import { times, options, cuts, color, styling } from "../assets/data/data";
 import { UserContext } from "../contexts/UserContext";
 
 function Appointment() {
-  const userContext = useContext(UserContext);
 
+  const userContext = useContext(UserContext);
   const navigate = useNavigate();
+  let { state } = useLocation();
+  console.log(state);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,19 +47,10 @@ function Appointment() {
       <form onSubmit={handleSubmit}>
           <div className="flex flex-col text-black gap-y-2 p-4 w-full">
             <div className="flex flex-wrap bg-calendarBG p-4 gap-x-2 gap-y-4 rounded-md">
-              <label className="flex flex-col text-left w-full" id="service">
-                Select a Service
-                <select
-                  name="service"
-                  className="bg-white p-1 border rounded-md"
-                >
-                  {options.map((i) => (
-                    <option key={i} value={i}>
-                      {i}
-                    </option>
-                  ))}
-                </select>
+              <label className="flex flex-col text-left w-full" id="chosenService">
+                Chosen Service: {state.service}
               </label>
+
               <label className="flex flex-col text-left w-full" id="time">
                 Select one option
                 <select name="time" className="bg-white p-1 border rounded-md">

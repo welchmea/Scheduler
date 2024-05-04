@@ -14,11 +14,11 @@ function Home() {
       <div className="h-screen">
         <Header/>
         <div className="flex flex-col items-center place-content-center bg-black sm:h-[50vh] md:h-[50vh] lg:h-[50vh] gap-y-4">
-          <p className="flex text-lg">
+          <p className="flex text-lg text-white">
             We transform your salon experience into a tranquil and sophisticated
             retreat.
           </p>
-          <p className="flex text-sm">
+          <p className="flex text-sm text-white">
             Our holistic approach revitalizes both body and mind for a
             rejuvenating transformation. We customize hairstyles to uniquely
             suit you, catering to all hair types and textures. We're dedicated

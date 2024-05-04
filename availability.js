@@ -23,14 +23,14 @@ availableDB.once("open", (err) => {
 });
 
 const available = mongoose.Schema({
-  _id: { type: Date, required: true },
+  _id: { type: String, required: true },
   timeSlots: { type: Object, required: true },
 });
 
 const apptSchema = mongoose.Schema({
   _id: { type: String, required: true },
   service: { type: String, required: true },
-  date: { type: Date, required: true },
+  date: { type: String, required: true },
   description: { type: String, required: false },
   time: { type: String, required: true },
 });
@@ -102,6 +102,7 @@ const retrieveAvailable = async () => {
 
 const retrieveAvailabilityId = async (_id) => {
   const query = Available.findById({ _id: _id });
+  console.log(query)
   return query.exec();
 };
 
@@ -110,6 +111,10 @@ const deleteAvailability = async ( _id ) => {
   return result.deletedCount;
 };
 
+const deleteAllAvailability = async () => {
+  const result = await Available.deleteMany({});
+  return result.deletedCount;
+};
 
 const updateAvailability = async (_id, timeSlots) => {
   const result = await Available.replaceOne(
@@ -129,6 +134,7 @@ export {
   retrieveAvailabilityId,
   retrieveAvailable,
   updateAvailability,
+  deleteAllAvailability,
   createAppointment,
   retrieveAppointments,
   retrieveAppointmentsId,

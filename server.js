@@ -126,9 +126,9 @@ app.get("/retrieveAvailability", (req, res) => {
     });
 });
 
-app.get("/retrieveAvailabilityId", (req, res) => {
+app.get("/retrieveAvailabilityId/:date", (req, res) => {
   available
-    .retrieveAvailabilityId()
+    .retrieveAvailabilityId(req.params.date)
     .then((available) => {
       if (available !== null) {
         res.json(available);
@@ -149,6 +149,21 @@ app.get("/retrieveAvailabilityId", (req, res) => {
             "The document was not able to be compiled, check parameters again.",
         });
     });
+});
+
+app.get("/deleteAllAvailability", (req, res) => {
+  available.deleteAllAvailability()
+      .then(deletedCount => {
+          if (deletedCount === 1) {
+              res.status(204).send();
+          } else {
+              res.status(404).json({ Error:'The resource you are trying to locate does not exist.' });
+          }
+      })
+      .catch(error => {
+          console.error(error);
+          res.status(400).json({ Error: 'Document was not able to be compiled, check parameters again.' });
+      });
 });
 
 app.listen(port, () => {

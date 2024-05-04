@@ -73,7 +73,6 @@ const checkUser = async (_id, password) => {
     }
     else {
       console.log("Passwords do not match, make sure you have the right one!")
-      return 401
     }
   })
   const details = [storedHash.firstName, storedHash.lastName, storedHash._id, token]

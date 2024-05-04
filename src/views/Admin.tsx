@@ -16,6 +16,7 @@ function Admin() {
   ]);
 
   const adding = async (data: { id: any; timeSlots: any }) => {
+    console.log(data.id)
     const newTimeSlot = {
       _id: data.id,
       timeSlots: data.timeSlots,
@@ -46,7 +47,7 @@ function Admin() {
 
     let id = new Date();
     for (let l = 0; l < 30; l++) {
-      let data = { id: id, timeSlots: timeSlots };
+      let data = { id: id.toDateString(), timeSlots: timeSlots };
       adding(data);
       id.setDate(id.getDate() + 1);
     }
@@ -58,9 +59,10 @@ function Admin() {
     console.log(available);
     setAvailable(available);
   };
-  //   useEffect(() => {
-  //     retrieveDatabase();
-  //     }, []);
+
+  const deleteDatabase = async () => {
+    await fetch("http://localhost:5000/deleteAllAvailability");
+  };
 
   return (
     <>
@@ -76,7 +78,7 @@ function Admin() {
           available.map((i) => (
             <li>
               {i._id.valueOf()}
-              <ul className=""> Monday: {i.timeSlots.Monday}</ul>
+              <ul> Monday: {i.timeSlots.Monday}</ul>
               <ul> Tuesday: {i.timeSlots.Tuesday}</ul>
               <ul> Wednesday: {i.timeSlots.Wednesday}</ul>
               <ul> Thursday: {i.timeSlots.Thursday}</ul>
@@ -89,6 +91,12 @@ function Admin() {
         onClick={retrieveDatabase}
       >
         Show Entire Database
+      </button>
+      <button
+        className="bg-white p-4 w-full text-black"
+        onClick={deleteDatabase}
+      >
+        Delete Database
       </button>
     </>
   );

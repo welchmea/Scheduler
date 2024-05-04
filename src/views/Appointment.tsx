@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import PickDate from "../components/PickDate";
+// import PickDate from "../components/PickDate";
 import { useLocation, useNavigate } from "react-router-dom";
-import { times, options, cuts, color, styling } from "../assets/data/data";
 import {
   PiNumberCircleOne,
   PiNumberCircleThree,
@@ -9,7 +8,12 @@ import {
 } from "react-icons/pi";
 import { UserContext } from "../contexts/UserContext";
 
+// type Date = String | null;
+
 function Appointment() {
+
+  // const [date, setDate] = useState<Date>(null);
+
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
   let { state } = useLocation();
@@ -21,8 +25,8 @@ function Appointment() {
 
     const newAppt = {
       _id: userContext.email,
-      service: data.get("service"),
-      date: PickDate,
+      service: state.service,
+      date: data.get('date'),
       time: data.get("time"),
       description: data.get("description"),
     };
@@ -46,16 +50,19 @@ function Appointment() {
     navigate("/");
   };
 
-  useEffect(()=> {
-    // check available Days by user specifed Date
-    async function getSlots() {
-      const availableSlots = await fetch("http://localhost:5000/retrieveAvailability", {
-        method: "get"
-      });
-      console.log(availableSlots.json());
-    }
-  getSlots();
-  }, []);
+  // useEffect(()=> {
+  //   // check available Days by user specifed Date
+  //   async function getSlots(date:any) {
+  //     setDate(date);
+  //     // const availableSlots = await fetch(`http://localhost:5000/retrieveAvailabilityId/${date}`, {
+  //     //   method: "get"
+  //     // });
+  //     // console.log(await availableSlots.json());
+  //   }
+  // getSlots(date);
+  // }, [date]);
+
+
 
   return (
     <>
@@ -80,13 +87,16 @@ function Appointment() {
 
             <div className="flex flex-col items-start border border-gray-300 p-2 rounded-md shadow-lg">
               <label className="flex gap-x-2 items-center">
-                <PiNumberCircleOne className="text-blue-500" /> Choose an
+                <PiNumberCircleOne className="text-blue-500"/> Choose an
                 available day for your appointment
               </label>
-              <input
-                className="bg-white p-1 ml-6 mt-2 mb-6 w-[40vw]"
-                placeholder="Select Date"
-              ></input>
+              <input  
+                id="date"
+                name="date"               
+                className="bg-white p-1 ml-6 mt-2 w-[40vw]"
+                placeholder="Weekday Month Day Year">
+              </input>
+              {/* <PickDate date={date} setDate={setDate}/> */}
             </div>
 
             <div className="flex flex-col items-start border border-gray-300 p-2 rounded-md shadow-lg">
@@ -95,11 +105,13 @@ function Appointment() {
                 appointment
               </label>
               <input
+                name="time"
+                id='time'
                 className="bg-white p-1 ml-6 mt-2 w-[40vw]"
                 placeholder="Select Time"
               ></input>
               <button
-                disabled={disable}
+                disabled={false}
                 className="bg-blue-500 p-1 ml-6 mt-4 mb-6 w-[20vw] rounded-sm text-white shadow-md"
               >
                 Submit

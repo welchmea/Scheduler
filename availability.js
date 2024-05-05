@@ -102,7 +102,6 @@ const retrieveAvailable = async () => {
 
 const retrieveAvailabilityId = async (_id) => {
   const query = Available.findById({ _id: _id });
-  console.log(query)
   return query.exec();
 };
 

@@ -7,18 +7,15 @@ function Admin() {
       _id: new Date().toDateString(),
 
       timeSlots: {
-        Monday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-        Tuesday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-        Wednesday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-        Thursday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
+        times: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
       },
     },
   ]);
 
   const adding = async (data: { id: any; timeSlots: any }) => {
-    console.log(data.id)
+
     const newTimeSlot = {
-      _id: data.id,
+      _id: data.id.toDateString(),
       timeSlots: data.timeSlots,
     };
     const results = await fetch("http://localhost:5000/createAvailability", {
@@ -39,15 +36,12 @@ function Admin() {
   };
   const addtoDatabase = () => {
     const timeSlots = {
-      Monday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-      Tuesday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-      Wednesday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-      Thursday: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
+      times: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
     };
 
     let id = new Date();
     for (let l = 0; l < 30; l++) {
-      let data = { id: id.toDateString(), timeSlots: timeSlots };
+      let data = { id: id, timeSlots: timeSlots };
       adding(data);
       id.setDate(id.getDate() + 1);
     }
@@ -77,11 +71,11 @@ function Admin() {
         {available.length > 0 &&
           available.map((i) => (
             <li>
-              {i._id.valueOf()}
-              <ul> Monday: {i.timeSlots.Monday}</ul>
-              <ul> Tuesday: {i.timeSlots.Tuesday}</ul>
-              <ul> Wednesday: {i.timeSlots.Wednesday}</ul>
-              <ul> Thursday: {i.timeSlots.Thursday}</ul>
+              {i._id}
+              <ul> {i.timeSlots.times[0]}</ul>
+             <ul> {i.timeSlots.times[1]}</ul>
+              <ul> {i.timeSlots.times[2]}</ul>
+              <ul> {i.timeSlots.times[3]}</ul>
             </li>
           ))}
       </div>

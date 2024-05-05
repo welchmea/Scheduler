@@ -166,6 +166,22 @@ app.get("/deleteAllAvailability", (req, res) => {
       });
 });
 
+app.delete("/deleteAvailable/:_id", (req, res) => {
+  console.log(req.params._id)
+  available.deleteAvailability(req.params._id)
+      .then(deletedCount => {
+          if (deletedCount === 1) {
+              res.status(204).send();
+          } else {
+              res.status(404).json({ Error:'The resource you are trying to locate does not exist.' });
+          }
+      })
+      .catch(error => {
+          console.error(error);
+          res.status(400).json({ Error: 'Document was not able to be compiled, check parameters again.' });
+      });
+});
+
 app.listen(port, () => {
   console.log("Connected to the Server.");
 });

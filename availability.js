@@ -105,9 +105,10 @@ const retrieveAvailabilityId = async (_id) => {
   return query.exec();
 };
 
-const deleteAvailability = async ( _id ) => {
-  const result = await Available.deleteOne({ _id: _id});
-  return result.deletedCount;
+const deleteAvailability = async ( {_id }) => {
+  console.log(_id)
+  // const result = await Available.deleteOne({ _id: _id});
+  // return result.deletedCount;
 };
 
 const deleteAllAvailability = async () => {

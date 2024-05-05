@@ -12,11 +12,11 @@ import { UserContext } from "../contexts/UserContext";
 
 function Appointment() {
   const [date, setDate] = useState<Date>(new Date(Date.now()));
-  // const [input, setInput] = useState("");
+
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
   let { state } = useLocation();
-  // const [disable, setDisable] = useState(true);
+
   const [times, setTimes] = useState([]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,7 @@ function Appointment() {
     const newAppt = {
       _id: userContext.email,
       service: state.service,
-      date: data.get("date"),
+      date: date.toDateString(),
       time: data.get("time"),
       description: data.get("description"),
     };
@@ -38,16 +38,23 @@ function Appointment() {
       },
     });
 
+    // delete Time Slot from Date
     if (results.status === 201) {
       userContext.setAppt(await results.json());
       alert(`Your appointment is all set!`);
+      const _id = {       
+        date: date.toDateString(),
+        time: data.get("time")
+      }
+      console.log(_id)
+      const updateAvailable = await fetch(`http://localhost:5000/deleteAvailable/${_id}`, {method: "DELETE",  body: JSON.stringify(_id),});
+      console.log((updateAvailable).json());
       navigate("/");
     } else {
       alert(
         `Defer to the status code: ${results.status}, to determine what went wrong.`
       );
-    }
-    navigate("/");
+    };
   };
 
   useEffect(() => {
@@ -65,7 +72,7 @@ function Appointment() {
     }
     getSlots(date);
   }, [date]);
-  console.log(date.toDateString())
+
   return (
     <>
       <div className="flex justify-center">
@@ -102,7 +109,7 @@ function Appointment() {
                   className="bg-white p-1 ml-6 mt-2 w-[40vw]"
                 >
                   {times && times.map((i) => 
-                  <option>{i}</option>)}
+                  <option key={i}>{i}</option>)}
                 </select>
                 <button
                   disabled={false}

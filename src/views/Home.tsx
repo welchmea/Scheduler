@@ -49,8 +49,8 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col place-content-center bg-backgroundColor sm:h-[70vh] md:h-[60vh] lg:h-[60vh] text-black p-8">
-         <Link to='/ContactPage'><h2 className="mb-4 transition delay-50 duration-300 ease-in-out transform hover:scale-105">CONTACT</h2></Link> 
+        <div className="flex flex-col place-content-center h-screen bg-fixed bg-cover bg-right-bottom bg-[url('./assets/images/george-bohunicky-qJKT2rMU0VU-unsplash.jpg')] h-[50vh] p-4 sm:h-[70vh] md:h-[60vh] lg:h-[60vh] p-8">
+         <Link to='/ContactPage'><h2 className="mb-4 transition delay-50 duration-300 ease-in-out transform hover:scale-105 text-white">CONTACT</h2></Link> 
           <Contact/>
         </div>
         <div className="flex items-center bg-black h-[50vh] gap-y-4">

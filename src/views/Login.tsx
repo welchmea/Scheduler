@@ -26,22 +26,23 @@ export default function Login() {
         "Content-Type": "application/json",
       },
     })
-   console.log(results.status)
 
     if (results.status == 201 || results.status == 200) {  
       let token = await results.json()
-      userContext.setUsername(token[0] + ' ' + token[1])
-      userContext.setEmail(token[2])
+      userContext.setUsername(token.firstName + ' ' + token.lastName)
+      userContext.setEmail(token._id)
       
       // direct to HomePage or Appointment page if navigating from 
       // the Services view
-      if (state)
+      if (state) {
         navigate('/Appointment', {state: state});
+      }
       else navigate('/');
 
-    } else {
+    } 
+    else if (results.status == 400 || results.status == 401) {
       alert(
-        `No registered account.`
+        `Wrong Password. Try again`
       );
     }
   };

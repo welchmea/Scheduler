@@ -28,7 +28,7 @@ export default function Signup() {
         "Content-Type": "application/json",
       },
     });
-
+    console.log(results)
     if (results.status >= 200 && results.status <= 299) {
       let token = await results.json()
       userContext.setUsername(token[0] + ' ' + token[1])

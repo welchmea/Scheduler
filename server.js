@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import * as user from "./database.js";
 import * as available from "./availability.js";
+import bcrypt from "bcrypt";
 
 const port = 5000;
 const app = express();
@@ -22,7 +23,6 @@ app.post("/createUser", (req, res) => {
       req.body.phone,
       req.body.password
     )
-    console.log(res.body)
     .then((user) => {
       res.status(201).json(user);
     })
@@ -46,10 +46,20 @@ app.post("/createUser", (req, res) => {
 //      5. Set a timeout      
 app.post("/checkUser", (req, res) => {
   user
-    .checkUser(req.body._id, req.body.password)
+    .checkUser(req.body._id)
     .then((user) => {
-      res.status(201).json(user)
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
+            if (err) {
+              console.error("Something went horribly wrong! ", err);
+              throw err;
+            }
+            if (result == true) {
+              res.status(201).json(user)
+            } else if (result == false) {
+              res.status(401).json(user)
+            }
     })
+  })
     .catch((error) => {
       console.log(error);
       res

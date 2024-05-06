@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 mongoose.connect(
   "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
@@ -27,17 +27,16 @@ const loginSchema = mongoose.Schema({
   lastName: { type: String, required: true },
   phone: { type: Number, required: true },
   password: { type: String, required: true },
-  token: {type: String, required: true }
+  token: { type: String, required: true },
 });
 
 const Login = mongoose.model("Login", loginSchema);
 
 // SIGN UP
 const createUser = async (_id, firstName, lastName, phone, password) => {
-
-  const checkDup = Login.findById(_id).exec();
-  if (checkDup) {
-    return 422;
+  const checkDup = await Login.findById(_id).exec();
+  if (checkDup != null) {
+    throw 422;
   }
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
@@ -49,36 +48,22 @@ const createUser = async (_id, firstName, lastName, phone, password) => {
     lastName: lastName,
     phone: phone,
     password: hash,
-    token, token
+    token,
+    token,
   });
-  user.save()
-  const details = [firstName, lastName, _id, token]
-  return details
+  user.save();
+  const details = [firstName, lastName, _id, token];
+  return details;
 };
 
 // LOGIN
-const checkUser = async (_id, password) => {
-
-  const token = uuidv4();
+const checkUser = async (_id) => {
   const storedHash = await Login.findById(_id).exec();
-  if (!storedHash) return storedHash
-  const storedPwd = storedHash.password
-  bcrypt.compare(password, storedPwd, (err, result) => {
-    if (err) {
-      console.error("Something went horribly wrong! ", err)
-      return err
-    }
-    if (result == true) {
-      console.log("Success!")
-    }
-    else {
-      console.log("Passwords do not match, make sure you have the right one!")
-    }
-  })
-  const details = [storedHash.firstName, storedHash.lastName, storedHash._id, token]
-  return details
-}
-
+  if (!storedHash) {
+    throw 422;
+  }
+  return storedHash
+};
 
 
 const retrieveUsers = async () => {
@@ -95,7 +80,6 @@ const deleteUser = async (_id) => {
   const result = await Login.deleteOne({ _id: _id });
   return result.deletedCount;
 };
-
 
 const updateUser = async (_id, firstName, lastName, phone, password) => {
   const result = await User.replaceOne(

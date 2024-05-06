@@ -3,6 +3,7 @@ import cors from "cors";
 import * as user from "./database.js";
 import * as available from "./availability.js";
 import bcrypt from "bcrypt";
+import jsonwebtoken from "jsonwebtoken";
 
 const port = 5000;
 const app = express();
@@ -54,6 +55,14 @@ app.post("/checkUser", (req, res) => {
               throw err;
             }
             if (result == true) {
+              let id = req.body._id
+              let password = user.password
+              const authToken = jsonwebtoken.sign({id, password }, "DUMMYKEY");
+              res.cookie("authToken", authToken, {
+                path: "/",
+                maxAge: 24 * 60 * 60 * 1000,
+                httpOnly: true,
+              });
               res.status(201).json(user)
             } else if (result == false) {
               res.status(401).json(user)
@@ -69,6 +78,24 @@ app.post("/checkUser", (req, res) => {
             "Wrong Password! Try again.",
         });
     });
+});
+
+app.get("/autoLogin", (req, res) => {
+  const cookie = req.headers.cookie;
+  console.log(cookie)
+
+  // if we received no cookies then user needs to login.
+  if (!cookie || cookie === null) {
+    return res.sendStatus(401);
+  }
+
+  return res.sendStatus(200);
+});
+
+// this path will be used to check if the cookie is valid to auto login inside the application;
+app.get("/logout", (req, res) => {
+  res.clear("authToken");
+  return res.sendStatus(200);
 });
 
 app.post("/createAppointment", (req, res) => {

@@ -9,7 +9,7 @@ export default function Login() {
   const userContext = React.useContext(UserContext);
   const navigate = useNavigate();
   let {state} = useLocation();
-  console.log(state);
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,6 +46,23 @@ export default function Login() {
       );
     }
   };
+
+    React.useEffect(() => {
+      async function autoLogin() {
+        const response = await fetch("http://localhost:5000/autoLogin", {
+          method: "GET",
+          credentials: "include",
+        });
+        if (response.status === 200) {
+          // navigate("/");
+          console.log("continued session")
+        } else {
+          console.log("not signed in or not valid")
+          // navigate("/");
+        }
+      }
+      autoLogin();
+    }, []);
 
   return (
     <>

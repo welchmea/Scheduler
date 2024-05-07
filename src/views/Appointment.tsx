@@ -42,13 +42,6 @@ function Appointment() {
     if (results.status === 201) {
       userContext.setAppt(await results.json());
       alert(`Your appointment is all set!`);
-      const _id = {       
-        date: date.toDateString(),
-        time: data.get("time")
-      }
-      console.log(_id)
-      const updateAvailable = await fetch(`http://localhost:5000/deleteAvailable/${_id}`, {method: "DELETE",  body: JSON.stringify(_id),});
-      console.log((updateAvailable).json());
       navigate("/");
     } else {
       alert(
@@ -68,7 +61,7 @@ function Appointment() {
         }
       );
       const results = await availableSlots.json();
-      setTimes(results.timeSlots.times)
+      setTimes(results.timeSlots)
     }
     getSlots(date);
   }, [date]);

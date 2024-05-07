@@ -204,7 +204,6 @@ app.get("/deleteAllAvailability", (req, res) => {
 });
 
 app.delete("/deleteAvailable/:_id", (req, res) => {
-  console.log(req.params._id)
   available.deleteAvailability(req.params._id)
       .then(deletedCount => {
           if (deletedCount === 1) {

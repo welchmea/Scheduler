@@ -49,6 +49,7 @@ const createAppointment = async (_id, service, date, description, time) => {
     time: time,
   });
   appointment.save()
+  await deleteAvailability(date, time)
   const details = [service, date, description, time]
   return details;
 };
@@ -105,10 +106,13 @@ const retrieveAvailabilityId = async (_id) => {
   return query.exec();
 };
 
-const deleteAvailability = async ( {_id }) => {
-  console.log(_id)
-  // const result = await Available.deleteOne({ _id: _id});
-  // return result.deletedCount;
+const deleteAvailability = async ( date, time ) => {
+  const query = await Available.findById({ _id: date });
+  let currentTimes = query.timeSlots
+  let index = currentTimes.indexOf(time)
+  currentTimes.splice(index, 1)
+  await updateAvailability(date, currentTimes)
+  return
 };
 
 const deleteAllAvailability = async () => {

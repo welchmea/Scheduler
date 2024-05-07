@@ -5,10 +5,7 @@ function Admin() {
     {
       //set Default
       _id: new Date().toDateString(),
-
-      timeSlots: {
-        times: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-      },
+      timeSlots: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"]
     },
   ]);
 
@@ -35,9 +32,7 @@ function Admin() {
     }
   };
   const addtoDatabase = () => {
-    const timeSlots = {
-      times: ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
-    };
+    const timeSlots = ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"];
 
     let id = new Date();
     for (let l = 0; l < 30; l++) {
@@ -70,12 +65,12 @@ function Admin() {
         Today's Appointments:
         {available.length > 0 &&
           available.map((i) => (
-            <li>
+            <li key={i._id}>
               {i._id}
-              <ul> {i.timeSlots.times[0]}</ul>
-             <ul> {i.timeSlots.times[1]}</ul>
-              <ul> {i.timeSlots.times[2]}</ul>
-              <ul> {i.timeSlots.times[3]}</ul>
+              {i.timeSlots.map((j) => (
+                <ul key={j} >{j}</ul>
+              ))}
+
             </li>
           ))}
       </div>

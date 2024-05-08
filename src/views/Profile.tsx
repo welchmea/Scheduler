@@ -1,8 +1,22 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const userContext = useContext(UserContext);
+
+  const logoutUser = async () => {
+    const response = await fetch("http://localhost:5000/logout", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (response.status === 200) {
+      
+      navigate("/");
+    }
+  }
 
   return (
     <>
@@ -23,7 +37,7 @@ export default function Profile() {
 
         <div className="flex place-content-end gap-x-4">
         <button className="bg-blue-600 text-white rounded-md p-1 px-1.5 shadow-md">Edit Profile</button>
-        <button className="bg-black text-white rounded-md p-1 px-1.5 shadow-md">Logout</button>
+        <button onClick={logoutUser} className="bg-black text-white rounded-md p-1 px-1.5 shadow-md">Logout</button>
         </div>
       </div>
     </>

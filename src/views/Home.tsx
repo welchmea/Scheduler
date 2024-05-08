@@ -1,13 +1,32 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import Map from "../components/Map";
+// import Map from "../components/Map";
 import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash.jpg';
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
 import Contact from "../components/Contact";
+import React from "react";
 
 
 function Home() {
+
+  React.useEffect(() => {
+    async function autoLogin() {
+      const response = await fetch("http://localhost:5000/autoLogin", {
+        method: "GET",
+        credentials: "include"
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        // navigate("/");
+        console.log("continued session")
+      } else {
+        console.log("not signed in or not valid")
+        // navigate("/");
+      }
+    }
+    autoLogin();
+  }, []);
 
   return (
     <>
@@ -53,9 +72,9 @@ function Home() {
          <Link to='/ContactPage'><h2 className="mb-4 transition delay-50 duration-300 ease-in-out transform hover:scale-105 text-white">CONTACT</h2></Link> 
           <Contact/>
         </div>
-        <div className="flex items-center bg-black h-[50vh] gap-y-4">
+        {/* <div className="flex items-center bg-black h-[50vh] gap-y-4">
           <Map />
-        </div>
+        </div> */}
       </div>
     </>
   );

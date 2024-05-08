@@ -97,7 +97,7 @@ const createAvailability = async (_id, timeSlots ) => {
 };
 
 const retrieveAvailable = async () => {
-  const query = Available.find();
+  const query = Available.find().sort({_id: 1});
   return query.exec();
 };
 

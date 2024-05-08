@@ -8,7 +8,18 @@ import jsonwebtoken from "jsonwebtoken";
 const port = 5000;
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    allowedHeaders: [
+      "set-cookie",
+      "Content-Type",
+      "Access-Control-Allow-Origin",
+      "Access-Control-Allow-Credentials",
+    ],
+  })
+);
 
 app.post("/sendEmail", (req, res) => {
   console.log(req.body);
@@ -57,13 +68,13 @@ app.post("/checkUser", (req, res) => {
             if (result == true) {
               let id = req.body._id
               let password = user.password
-              const authToken = jsonwebtoken.sign({id, password }, "DUMMYKEY");
+              const authToken = jsonwebtoken.sign({id, password }, "SECRET_KEY");
               res.cookie("authToken", authToken, {
                 path: "/",
                 maxAge: 24 * 60 * 60 * 1000,
                 httpOnly: true,
               });
-              res.status(201).json(user)
+              res.send({authToken, user})
             } else if (result == false) {
               res.status(401).json(user)
             }
@@ -88,13 +99,16 @@ app.get("/autoLogin", (req, res) => {
   if (!cookie || cookie === null) {
     return res.sendStatus(401);
   }
-
+  else {
+    let results = jsonwebtoken.verify(cookie)
+    console.log(results)
+  }
   return res.sendStatus(200);
 });
 
 // this path will be used to check if the cookie is valid to auto login inside the application;
 app.get("/logout", (req, res) => {
-  res.clear("authToken");
+  res.clearCookie('authToken');
   return res.sendStatus(200);
 });
 

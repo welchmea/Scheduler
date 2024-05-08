@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from "uuid";
 
 mongoose.connect(
   "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
@@ -27,7 +26,6 @@ const loginSchema = mongoose.Schema({
   lastName: { type: String, required: true },
   phone: { type: Number, required: true },
   password: { type: String, required: true },
-  token: { type: String, required: true },
 });
 
 const Login = mongoose.model("Login", loginSchema);
@@ -41,18 +39,15 @@ const createUser = async (_id, firstName, lastName, phone, password) => {
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
-  const token = uuidv4();
   const user = new Login({
     _id: _id,
     firstName: firstName,
     lastName: lastName,
     phone: phone,
     password: hash,
-    token,
-    token,
   });
   user.save();
-  const details = [firstName, lastName, _id, token];
+  const details = [firstName, lastName, _id];
   return details;
 };
 

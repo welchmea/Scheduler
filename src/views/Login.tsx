@@ -21,6 +21,7 @@ export default function Login() {
     };
     const results = await fetch(`http://localhost:5000/checkUser`, {
       method: "post",
+      credentials: 'include',
       body: JSON.stringify(newUser),
       headers: {
         "Content-Type": "application/json",
@@ -29,8 +30,8 @@ export default function Login() {
 
     if (results.status == 201 || results.status == 200) {  
       let token = await results.json()
-      userContext.setUsername(token.firstName + ' ' + token.lastName)
-      userContext.setEmail(token._id)
+      userContext.setUsername(token.user.firstName + ' ' + token.user.lastName)
+      userContext.setEmail(token.user._id)
       
       // direct to HomePage or Appointment page if navigating from 
       // the Services view
@@ -46,23 +47,6 @@ export default function Login() {
       );
     }
   };
-
-    React.useEffect(() => {
-      async function autoLogin() {
-        const response = await fetch("http://localhost:5000/autoLogin", {
-          method: "GET",
-          credentials: "include",
-        });
-        if (response.status === 200) {
-          // navigate("/");
-          console.log("continued session")
-        } else {
-          console.log("not signed in or not valid")
-          // navigate("/");
-        }
-      }
-      autoLogin();
-    }, []);
 
   return (
     <>
@@ -85,7 +69,9 @@ export default function Login() {
                       required
                       type="email"
                       id="email"
+                      autoComplete="email"
                     />
+
                   </Grid>
                   <Grid item xs={12}>
                     <input
@@ -96,6 +82,7 @@ export default function Login() {
                       required
                       type="password"
                       id="password"
+                      autoComplete="current-password"
                     />
                   </Grid>
                 </Grid>

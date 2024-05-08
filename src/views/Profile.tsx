@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 
@@ -13,10 +14,24 @@ export default function Profile() {
     });
 
     if (response.status === 200) {
-      
+      userContext.setEmail(null)
       navigate("/");
     }
   }
+  useEffect(() => {
+    async function getAppointmentData() {
+      let id = userContext.email
+      const response = await fetch(`http://localhost:5000/retrieveAppointmentsId/${id}`, {
+        method: "GET",
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        let appt = await response.json()
+        userContext.setAppt(appt)
+      } 
+    }
+    getAppointmentData();
+  }, [userContext.email]);
 
   return (
     <>
@@ -26,12 +41,11 @@ export default function Profile() {
         {userContext.appt && (
         <div className="border w-[40vw] p-3 rounded-md mt-4 mb-4">
         Appointment:
-        <div className="ml-3">{userContext.appt[0]}</div>
-        <div className="ml-3">{userContext.appt[1]}</div>
-        <div className="ml-3">{userContext.appt[2]}</div>
-        <div className="ml-3">{userContext.appt[3]}</div>
+        <div className="ml-3">{userContext.appt.service}</div>
+        <div className="ml-3">{userContext.appt.date}</div>
+        <div className="ml-3">{userContext.appt.description}</div>
+        <div className="ml-3">{userContext.appt.time}</div>
         <button className="bg-red-500 p-1 px-1.5 rounded-md shadow-md text-white ml-3 text-sm">Cancel</button>
-        <button className="bg-gray-600 p-1 px-1.5 rounded-md shadow-md text-white ml-3 text-sm">Edit</button>
       </div>
         )}
 

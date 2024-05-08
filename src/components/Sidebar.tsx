@@ -29,7 +29,7 @@ function Sidebar() {
             <Link to="/ContactPage">Contact</Link>
           </div>
           <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">
-            {userContext.username ? (
+            {userContext.email ? (
               <button onClick={handleClick}>Appointment</button>
             ) : (
               null

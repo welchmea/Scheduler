@@ -22,8 +22,6 @@ function Home() {
       if (response.status === 200 || response.status === 201) {
         console.log("continued session")
         let token = await response.json()
-        console.log(token)
-        // userContext.setUsername(token.user.firstName + ' ' + token.user.lastName)
         userContext.setEmail(token.id)
 
       } else {

@@ -235,6 +235,31 @@ app.delete("/deleteAvailable/:_id", (req, res) => {
       });
 });
 
+app.get("/retrieveAppointmentsId/:id", (req, res) => {
+  available
+    .retrieveAppointmentsId(req.params.id)
+    .then((available) => {
+      if (available !== null) {
+        res.json(available);
+      } else {
+        res
+          .status(404)
+          .json({
+            Error: "The resource you are trying to locate does not exist.",
+          });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res
+        .status(400)
+        .json({
+          Error:
+            "The document was not able to be compiled, check parameters again.",
+        });
+    });
+});
+
 app.listen(port, () => {
   console.log("Connected to the Server.");
 });

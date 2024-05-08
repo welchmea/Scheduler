@@ -4,9 +4,11 @@ import * as user from "./database.js";
 import * as available from "./availability.js";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
+import cookieParser from "cookie-parser";
 
 const port = 5000;
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
@@ -92,18 +94,19 @@ app.post("/checkUser", (req, res) => {
 });
 
 app.get("/autoLogin", (req, res) => {
-  const cookie = req.headers.cookie;
-  console.log(cookie)
+  const cookie = req.cookies.authToken;
 
   // if we received no cookies then user needs to login.
-  if (!cookie || cookie === null) {
+  if (!cookie) {
     return res.sendStatus(401);
   }
-  else {
-    let results = jsonwebtoken.verify(cookie)
-    console.log(results)
+  try {
+    let results = jsonwebtoken.verify(cookie, "SECRET_KEY")
+
+    return res.send({id: results.id});
+  } catch {
+    return res.sendStatus(401);
   }
-  return res.sendStatus(200);
 });
 
 // this path will be used to check if the cookie is valid to auto login inside the application;

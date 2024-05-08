@@ -5,11 +5,13 @@ import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash.jpg';
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
 import Contact from "../components/Contact";
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 
 function Home() {
 
+  const userContext = useContext(UserContext);
   React.useEffect(() => {
     async function autoLogin() {
       const response = await fetch("http://localhost:5000/autoLogin", {
@@ -18,11 +20,14 @@ function Home() {
       });
 
       if (response.status === 200 || response.status === 201) {
-        // navigate("/");
         console.log("continued session")
+        let token = await response.json()
+        console.log(token)
+        // userContext.setUsername(token.user.firstName + ' ' + token.user.lastName)
+        userContext.setEmail(token.id)
+
       } else {
         console.log("not signed in or not valid")
-        // navigate("/");
       }
     }
     autoLogin();

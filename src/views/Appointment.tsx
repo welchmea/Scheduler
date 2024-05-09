@@ -38,9 +38,21 @@ function Appointment() {
       },
     });
 
-    // delete Time Slot from Date
+    // delete Time Slot from Date and update user profile
     if (results.status === 201) {
-      userContext.setAppt(await results.json());
+      await fetch(`http://localhost:5000/updateUser/${userContext.email}`, {
+        method: "put",
+        body: JSON.stringify({id: newAppt._id, appointment: {
+          service: newAppt.service,
+          date: newAppt.date,
+          time: newAppt.time,
+          description: newAppt.description
+        }}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // userContext.setAppt(await results.json());
       alert(`Your appointment is all set!`);
       navigate("/");
     } else {
@@ -88,7 +100,7 @@ function Appointment() {
                   <PiNumberCircleOne className="text-blue-500" /> Choose an
                   available day for your appointment
                 </label>
-                <DatePicker  className="bg-white p-1 ml-6 mt-2 mb-6 w-[40vw]"selected={date} onChange={(date) => setDate(date)}/>
+                <DatePicker  className="bg-white p-1 ml-6 mt-2 mb-6 w-[40vw]"selected={date} onChange={(date) => date && setDate(date)}/>
               </div>
 
               <div className="flex flex-col items-start border border-gray-300 p-2 rounded-md shadow-lg">
@@ -105,7 +117,7 @@ function Appointment() {
                   <option key={i}>{i}</option>)}
                 </select>
                 <button
-                  disabled={false}
+                  disabled={times.length > 0 ?  false : true}
                   className="bg-blue-500 p-1 ml-6 mt-4 mb-6 w-[20vw] rounded-sm text-white shadow-md"
                 >
                   Submit

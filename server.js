@@ -92,7 +92,7 @@ app.post("/checkUser", (req, res) => {
 
 const authorize  = async (res, id, password, user) => {
   const authToken = jsonwebtoken.sign({id, password }, "SECRET_KEY");
-  console.log(authToken)
+
   await res.cookie("authToken", authToken, {
     path: "/",
     maxAge: 24 * 60 * 60 * 1000,
@@ -115,6 +115,55 @@ app.get("/autoLogin", (req, res) => {
   } catch {
     return res.sendStatus(401);
   }
+});
+
+app.put("/updateUser/:appointment", (req, res) => {
+  user
+    .updateUser(
+      req.body.id,
+      req.body?.firstName,
+      req.body?.lastName,
+      req.body?.phone,
+      req.body?.password,
+      req.body?.appointment,
+    )
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((error) => {
+      console.log(error);
+      res
+        .status(400)
+        .json({
+          error:
+            "Could not update user.",
+        });
+    });
+});
+
+app.get("/retrieveUsersId/:id", (req, res) => {
+  user
+    .retrieveUsersId(req.params.id)
+    .then((user) => {
+      if (user !== null) {
+        res.json(user);
+      } else {
+        res
+          .status(404)
+          .json({
+            Error: "The resource you are trying to locate does not exist.",
+          });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res
+        .status(400)
+        .json({
+          Error:
+            "The document was not able to be compiled, check parameters again.",
+        });
+    });
 });
 
 // this path will be used to check if the cookie is valid to auto login inside the application;

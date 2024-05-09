@@ -26,6 +26,7 @@ const loginSchema = mongoose.Schema({
   lastName: { type: String, required: true },
   phone: { type: Number, required: true },
   password: { type: String, required: true },
+  appointment: {type: Object, required: false},
 });
 
 const Login = mongoose.model("Login", loginSchema);
@@ -76,22 +77,16 @@ const deleteUser = async (_id) => {
   return result.deletedCount;
 };
 
-const updateUser = async (_id, firstName, lastName, phone, password) => {
-  const result = await User.replaceOne(
-    { _id: _id },
-    {
-      firstName: firstName,
-      lastName: lastName,
-      phone: phone,
-      password: password,
-    }
-  );
-  return {
+const updateUser = async (_id, firstName, lastName, phone, password, appointment) => {
+  const filter = { _id: _id};
+  const update = { 
     firstName: firstName,
     lastName: lastName,
     phone: phone,
     password: password,
+    appointment: appointment,
   };
+  let result = await Login.findOneAndUpdate(filter, update)
 };
 
 export {

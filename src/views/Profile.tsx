@@ -20,18 +20,18 @@ export default function Profile() {
     }
   }
   useEffect(() => {
-    async function getAppointmentData() {
+    async function getUserData() {
       let id = userContext.email
-      const response = await fetch(`http://localhost:5000/retrieveAppointmentsId/${id}`, {
+      const response = await fetch(`http://localhost:5000/retrieveUsersId/${id}`, {
         method: "GET",
       });
 
       if (response.status === 200 || response.status === 201) {
         let appt = await response.json()
-        userContext.setAppt(appt)
+        userContext.setAppt(appt.appointment)
       } 
     }
-    getAppointmentData();
+    getUserData();
   }, [userContext.email]);
 
   return (

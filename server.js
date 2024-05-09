@@ -38,7 +38,9 @@ app.post("/createUser", (req, res) => {
       req.body.password
     )
     .then((user) => {
-      res.status(201).json(user);
+      let id = req.body._id
+      let password = req.body.password
+      return authorize(res, id, password, user)
     })
     .catch((error) => {
       console.log(error);
@@ -70,13 +72,8 @@ app.post("/checkUser", (req, res) => {
             if (result == true) {
               let id = req.body._id
               let password = user.password
-              const authToken = jsonwebtoken.sign({id, password }, "SECRET_KEY");
-              res.cookie("authToken", authToken, {
-                path: "/",
-                maxAge: 24 * 60 * 60 * 1000,
-                httpOnly: true,
-              });
-              res.send({authToken, user})
+              return authorize(res, id, password, user)
+
             } else if (result == false) {
               res.status(401).json(user)
             }
@@ -92,6 +89,17 @@ app.post("/checkUser", (req, res) => {
         });
     });
 });
+
+const authorize  = async (res, id, password, user) => {
+  const authToken = jsonwebtoken.sign({id, password }, "SECRET_KEY");
+  console.log(authToken)
+  await res.cookie("authToken", authToken, {
+    path: "/",
+    maxAge: 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  });
+  return await res.send({authToken, user})
+}
 
 app.get("/autoLogin", (req, res) => {
   const cookie = req.cookies.authToken;

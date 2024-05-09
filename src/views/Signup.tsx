@@ -23,16 +23,16 @@ export default function Signup() {
     };
     const results = await fetch("http://localhost:5000/createUser", {
       method: "post",
+      credentials: "include",
       body: JSON.stringify(newUser),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    console.log(results)
     if (results.status >= 200 && results.status <= 299) {
       let token = await results.json()
-      userContext.setUsername(token[0] + ' ' + token[1])
-      userContext.setEmail(token[2])
+      userContext.setUsername(token.user[0] + ' ' + token.user[1])
+      userContext.setEmail(token.user[2])
       navigate("/");
     }
     else if (results.status >= 400 && results.status <= 499) {

@@ -30,6 +30,7 @@ export default function Login() {
 
     if (results.status == 201 || results.status == 200) {  
       let token = await results.json()
+      console.log(token)
       userContext.setUsername(token.user.firstName + ' ' + token.user.lastName)
       userContext.setEmail(token.user._id)
       

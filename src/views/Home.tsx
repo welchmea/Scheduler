@@ -5,32 +5,13 @@ import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash.jpg';
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
 import Contact from "../components/Contact";
-import React, { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
 
+import { AutoLogin } from "../components/AutoLogin";
 
 function Home() {
 
-  const userContext = useContext(UserContext);
-  React.useEffect(() => {
-    async function autoLogin() {
-      const response = await fetch("http://localhost:5000/autoLogin", {
-        method: "GET",
-        credentials: "include"
-      });
-
-      if (response.status === 200 || response.status === 201) {
-        console.log("continued session")
-        let token = await response.json()
-        userContext.setEmail(token.id)
-
-      } else {
-        console.log("not signed in or not valid")
-      }
-    }
-    autoLogin();
-  }, []);
-
+  AutoLogin();
+    
   return (
     <>
       <div className="h-screen">

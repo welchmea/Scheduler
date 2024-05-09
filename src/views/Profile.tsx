@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import { AutoLogin } from "../components/AutoLogin";
 
 export default function Profile() {
-
+  AutoLogin();
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 

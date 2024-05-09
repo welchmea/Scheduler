@@ -2,6 +2,7 @@ import Contact from "../components/Contact";
 import Map from "../components/Map";
 ("use client");
 import React, { useState } from "react";
+import { AutoLogin } from "../components/AutoLogin";
 
 interface FormState {
   name: string;
@@ -9,6 +10,9 @@ interface FormState {
   message: string;
 }
 function ContactPage() {
+
+  AutoLogin();
+
   const [formState, setFormState] = useState<FormState>({
     name: "",
     email: "",

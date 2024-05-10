@@ -38,8 +38,6 @@ const apptSchema = mongoose.Schema({
 const Available = mongoose.model("Available", available);
 const Appointment = mongoose.model("Appointment", apptSchema);
 
-
-
 const createAppointment = async (_id, service, date, description, time) => {
   const appointment = new Appointment({
     _id: _id,
@@ -60,7 +58,7 @@ const retrieveAppointments = async () => {
 };
 
 const retrieveAppointmentsId = async (_id) => {
-  const query = Appointment.findById({ _id: _id });
+  const query = await Appointment.findById({ _id: _id });
   return query.exec();
 };
 
@@ -86,6 +84,12 @@ const updateAppointment = async (_id, service, date, description, time) => {
     time: time,
   };
 };
+const createAvailableId = async (_id, time ) => {
+  const query = await Available.findById({ _id: _id });
+  let currentTimes = query.timeSlots
+  console.log(currentTimes)
+  await updateAvailability(_id, currentTimes)
+}
 
 const createAvailability = async (_id, timeSlots ) => {
   const available = new Available({
@@ -134,6 +138,7 @@ const updateAvailability = async (_id, timeSlots) => {
 
 export {
   createAvailability,
+  createAvailableId,
   deleteAvailability,
   retrieveAvailabilityId,
   retrieveAvailable,

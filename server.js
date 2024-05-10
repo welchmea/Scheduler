@@ -195,9 +195,66 @@ app.post("/createAppointment", (req, res) => {
     });
 });
 
+app.delete("/deleteAppointmentId/:id", (req, res) => {
+  available.deleteAppointment(req.params.id)
+      .then(deletedCount => {
+          if (deletedCount === 1) {
+              res.status(204).send();
+          } else {
+              res.status(404).json({ Error:'The resource you are trying to locate does not exist.' });
+          }
+      })
+      .catch(error => {
+          console.error(error);
+          res.status(400).json({ Error: 'Document was not able to be compiled, check parameters again.' });
+      });
+});
+
+app.put("/updateAvailability/:appointment", (req, res) => {
+  console.log(req.body)
+  // available
+    // .updateAppointment(
+      // req.body.id,
+      // req.body?.firstName,
+      // req.body?.lastName,
+      // req.body?.phone,
+      // req.body?.password,
+      // req.body?.appointment,
+    // )
+    // .then((available) => {
+    //   res.status(200).json(available);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   res
+    //     .status(400)
+    //     .json({
+    //       error:
+    //         "Could not update appointment.",
+    //     });
+    // });
+});
+
 app.post("/createAvailability", (req, res) => {
   available
     .createAvailability(req.body._id, req.body.timeSlots)
+    .then((available) => {
+      res.status(201).json(available);
+    })
+    .catch((error) => {
+      console.log(error);
+      res
+        .status(400)
+        .json({
+          error:
+            "The document was not able to be compiled, check parameters again.",
+        });
+    });
+});
+
+app.post("/createAvailableId/:id", (req, res) => {
+  available
+    .createAvailableId(req.body.id, req.body.time)
     .then((available) => {
       res.status(201).json(available);
     })

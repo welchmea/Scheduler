@@ -52,7 +52,6 @@ function Appointment() {
           "Content-Type": "application/json",
         },
       });
-      // userContext.setAppt(await results.json());
       alert(`Your appointment is all set!`);
       navigate("/");
     } else {

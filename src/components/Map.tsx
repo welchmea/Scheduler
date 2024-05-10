@@ -1,6 +1,7 @@
 import GoogleMapReact from "google-map-react";
 
 function Map() {
+  let key = import.meta.env.VITE_GOOGLE_TOKEN
   const defaultProps = {
     center: {
       lat: 47.03266525268555,
@@ -13,7 +14,7 @@ function Map() {
     <>
       <div className="z-10" style={{ height: "40vh", width: "100%" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyBr_VV37otiEiyd-mHBozq3Hs0SfYbUdiw " }}
+          bootstrapURLKeys={{ key: key}}
           defaultCenter={defaultProps.center}
           defaultZoom={defaultProps.zoom}
         ></GoogleMapReact>

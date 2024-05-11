@@ -36,4 +36,4 @@ export default {
 # Scheduler
 App for a salon service. User can make an appointment. 
 
-<img src="https://drive.google.com/file/d/14a78JsJ0DTffLyauiaQOw-m0jkOAJIUL/preview" title="Home Page Demo" width="640" height="480" alt="Home Page Demo"></img>
+[![Home Page Demo](https://drive.google.com/file/d/14a78JsJ0DTffLyauiaQOw-m0jkOAJIUL/preview)] 

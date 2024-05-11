@@ -16,7 +16,7 @@ function Contact() {
   return (
     <>
           <div className="flex flex-row flex-wrap gap-x-2 gap-y-2 place-content-center">
-            <div className="flex flex-col flex-wrap items-start bg-white rounded-md p-2">
+            <div className="flex flex-col items-start bg-white rounded-md p-2">
               PHONE:
               <p >360-790-8040</p>
               EMAIL:
@@ -38,7 +38,7 @@ function Contact() {
               <ul>Saturday: Closed</ul>
               <ul>Sunday: Closed</ul>
             </div>
-            <div className="flex flex-col items-start bg-white rounded-md p-2 gap-y-4">
+            <div className="flex flex-col items-start bg-white rounded-md p-2">
               ADDRESS:
               <p className="flex  text-left">
                 1804 Boulevard Rd SE, Olympia, Washington 98501

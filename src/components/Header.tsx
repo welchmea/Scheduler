@@ -1,21 +1,11 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import HeaderButtonStyle from "./HeaderButton";
 
 function Header() {
 
   const userContext = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    if (userContext.appt) {
-      alert("You already have an appointment!")
-    }
-    else {
-      navigate('/Services')
-    }
-  }
-  
   return (
     <>
       <div className="h-screen bg-fixed bg-cover bg-right-bottom bg-[url('./assets/images/george-bohunicky-qJKT2rMU0VU-unsplash.jpg')] h-[50vh] flex flex-col items-start place-content-center p-4 text-black">
@@ -24,14 +14,12 @@ function Header() {
           {userContext.email ? (
             <>
               Welcome Back!
-              <button className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110 border border-black rounded-md p-2 rounded-md hover:bg-transparent bg-white" onClick={handleClick}>Appointment</button>
+             <Link to='/Services'><HeaderButtonStyle title="Appointment" /></Link>
 
             </>
           ) : (
             <Link to="/Login">
-              <button className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-105 border border-black rounded-md p-2 rounded-md hover:bg-transparent bg-white">
-                Login to make an Appointment
-              </button>
+             <HeaderButtonStyle title="Login to Make Appointment" />
             </Link>
           )}
         </div>

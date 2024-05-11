@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@1,100&family=Libre+Baskerville&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Antic+Didone&display=swap');
 
 #root {
   margin: 0;
   text-align: center;
-  font-family: "Vollkorn", serif;
+  font-family: "Antic Didone", serif;
   font-optical-sizing: auto;
 }
 body {

@@ -5,7 +5,7 @@ import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash.jpg';
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
 import Contact from "../components/Contact";
-
+import ImageCard from "../components/ImageCard";
 import { AutoLogin } from "../components/AutoLogin";
 
 function Home() {
@@ -38,17 +38,10 @@ function Home() {
             to precision cuts, and textured styles, we can fulfill any hair
             vision.
           </p>
-          <div className="flex flex-row gap-x-2 gap-y-6 text-white place-content-center">
-            <div className="bg-black rounded-md p-2 w-1/4 transition duration-300 ease-in-out transform hover:scale-105">CUTS
-            <img src={Cut}/>
-            </div>
-            <div className="bg-black rounded-md p-2 w-1/4 transition duration-300 ease-in-out transform hover:scale-105">COLOR
-            <img src={Color}/>
-            </div>
-            <div className="bg-black rounded-md p-2 w-1/4 transition duration-300 ease-in-out transform hover:scale-105">
-              STYLING AND TREATMENTS
-              <img src={Style}/>
-            </div>
+          <div className="flex flex-row gap-x-4 gap-y-6 text-white place-content-center">
+          <ImageCard title="CUTS" img={Cut}/>
+          <ImageCard title="COLOR" img={Color}/>
+          <ImageCard title="STYLING AND TREATMENTS" img={Style}/>
           </div>
         </div>
 

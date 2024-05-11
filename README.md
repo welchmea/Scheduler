@@ -36,4 +36,5 @@ export default {
 # Scheduler
 App for a salon service. User can make an appointment. 
 
-[![Home Page Demo](https://drive.google.com/file/d/14a78JsJ0DTffLyauiaQOw-m0jkOAJIUL/preview)] 
+![]([/Users/meaganwelch/Desktop](https://app.screencastify.com/
+https://storage.googleapis.com/castify-exports/gifExports/D5rh493IO4aejvbUTYzB?GoogleAccessId=firebase-adminsdk-w1hbr%40castify-storage.iam.gserviceaccount.com&Expires=1715474443&Signature=L0oJcQaVJ15Qutw0xPxjBPWa2TvE1wqkFSDpw9EOErN7%2FvAllBMBuQRFl7ZRgkk7C1%2FX77%2FF836GeSLSj%2FZ7yyRDqE9bkhCOEj3bJGRoN3lIa5o7jYopqrTCn0rbb9MvTfzvQOq2UNXnblOmDbt8cTyw8Oy%2BaWQDQMLzIMDqn07pMGlrofWN7zEDrSwITQYi%2FMH8xgGnd7TkwB5FG8aVmgCHbKSkVXhzn0xRydzkOpvcR2ZnKSY6qFqAx%2FYoCHFRqGfDxbzziqrcfvFLccxZbTAi%2FFtbPWGh6PkzfCbCYi7MaXE77q3dD2BEqscc49NW0zqw3Hd6Y6HUScb5ZqqJdA%3D%3D&response-content-disposition=attachment%3B%20filename%3D%22scheduler.gif)

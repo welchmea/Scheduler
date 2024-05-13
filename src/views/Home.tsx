@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 // import Map from "../components/Map";
-import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash.jpg';
+import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash .jpg';
+import smCut from '../assets/images/imgSm-cut.jpg'
+import mdCut from '../assets/images/imgMd-cut.jpg'
+import lgCut from '../assets/images/imgLg-cut.jpg'
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
+import smColor from '../assets/images/imgSm-Color.jpg';
+import mdColor from '../assets/images/imgMd-Color.jpg';
+import lgColor from '../assets/images/imgLg-Color.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
+import smStyle from '../assets/images/imgSm-Style.jpg';
+import mdStyle from '../assets/images/imgMd-Style.jpg';
+import lgStyle from '../assets/images/imgLg-Style.jpg';
 import Contact from "../components/Contact";
 import ImageCard from "../components/ImageCard";
 import { AutoLogin } from "../components/AutoLogin";
@@ -39,9 +48,9 @@ function Home() {
             vision.
           </p>
           <div className="flex flex-row gap-x-4 gap-y-6 text-white place-content-center">
-          <ImageCard title="CUTS" img={Cut}/>
-          <ImageCard title="COLOR" img={Color}/>
-          <ImageCard title="STYLING AND TREATMENTS" img={Style}/>
+          <ImageCard title="CUTS" img={Cut} imageSmall={smCut} imageMedium={mdCut} imageLarge={lgCut}/>
+          <ImageCard title="COLOR" img={Color} imageSmall={smColor} imageMedium={mdColor} imageLarge={lgColor}/>
+          <ImageCard title="STYLING AND TREATMENTS" img={Style} imageSmall={smStyle} imageMedium={mdStyle} imageLarge={lgStyle}/>
           </div>
         </div>
 

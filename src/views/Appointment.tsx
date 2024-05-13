@@ -8,9 +8,11 @@ import {
   PiNumberCircleTwo,
 } from "react-icons/pi";
 import { UserContext } from "../contexts/UserContext";
-
+import ProfileImg from '../assets/images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg';
+import { AutoLogin } from "../components/AutoLogin";
 
 function Appointment() {
+  AutoLogin();
   const [date, setDate] = useState<Date>(new Date(Date.now()));
 
   const userContext = useContext(UserContext);
@@ -42,12 +44,15 @@ function Appointment() {
     if (results.status === 201) {
       await fetch(`http://localhost:5000/updateUser/${userContext.email}`, {
         method: "put",
-        body: JSON.stringify({id: newAppt._id, appointment: {
-          service: newAppt.service,
-          date: newAppt.date,
-          time: newAppt.time,
-          description: newAppt.description
-        }}),
+        body: JSON.stringify({
+          id: newAppt._id,
+          appointment: {
+            service: newAppt.service,
+            date: newAppt.date,
+            time: newAppt.time,
+            description: newAppt.description,
+          },
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,7 +63,7 @@ function Appointment() {
       alert(
         `Defer to the status code: ${results.status}, to determine what went wrong.`
       );
-    };
+    }
   };
 
   useEffect(() => {
@@ -72,7 +77,7 @@ function Appointment() {
         }
       );
       const results = await availableSlots.json();
-      setTimes(results.timeSlots)
+      setTimes(results.timeSlots);
     }
     getSlots(date);
   }, [date]);
@@ -82,13 +87,14 @@ function Appointment() {
       <div className="flex justify-center">
         <div className="flex flex-col text-black gap-y-2 p-4">
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col flex-wrap text-black  mb-2">
-              <div className="flex border bg-calendarBG p-4 rounded-md">
-                Stylist: Melissa McGill
+            <div className="flex justify-between border border-gray-300 bg-calendarBG p-4 rounded-md mb-4 shadow-lg">
+              Stylist: Melissa McGill
+              <div className="flex-shrink-0">
+              <img className="h-8 w-8 rounded-full" src={ProfileImg} alt='' />
               </div>
             </div>
 
-            <div className="flex flex-col flex-wrap bg-calendarBG p-4 gap-x-2 gap-y-6 rounded-md">
+            <div className="flex flex-col flex-wrap border border-gray-300 bg-calendarBG p-4 gap-x-2 gap-y-6 rounded-md shadow-lg">
               <label className="flex flex-col text-left" id="chosenService">
                 Chosen Service:{" "}
                 {state ? state.service : "No Service has been chosen..."}
@@ -99,7 +105,12 @@ function Appointment() {
                   <PiNumberCircleOne className="text-blue-500" /> Choose an
                   available day for your appointment
                 </label>
-                <DatePicker  className="bg-white p-1 ml-6 mt-2 mb-6 w-[40vw]"selected={date} onChange={(date) => date && setDate(date)}/>
+                <DatePicker
+                  className="bg-white p-1 ml-6 mt-2 mb-6 w-[40vw]"
+                  selected={date}
+                  minDate={new Date(Date.now())}
+                  onChange={(date) => date && setDate(date)}
+                />
               </div>
 
               <div className="flex flex-col items-start border border-gray-300 p-2 rounded-md shadow-lg">
@@ -112,11 +123,10 @@ function Appointment() {
                   id="time"
                   className="bg-white p-1 ml-6 mt-2 w-[40vw]"
                 >
-                  {times && times.map((i) => 
-                  <option key={i}>{i}</option>)}
+                  {times && times.map((i) => <option key={i}>{i}</option>)}
                 </select>
                 <button
-                  disabled={times.length > 0 ?  false : true}
+                  disabled={times.length > 0 ? false : true}
                   className="bg-blue-500 p-1 ml-6 mt-4 mb-6 w-[20vw] rounded-sm text-white shadow-md"
                 >
                   Submit

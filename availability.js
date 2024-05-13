@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-
+import 'dotenv/config';
 // Model for creating an appointment and an 
 // available time slot schedule 
 
 mongoose.connect(
-  "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
+  process.env.VITE_MONGO_CONNECT_STRING
 );
 const availableDB = mongoose.connection;
 

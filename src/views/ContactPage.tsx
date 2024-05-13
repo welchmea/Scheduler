@@ -4,32 +4,19 @@ import Map from "../components/Map";
 import React, { useState } from "react";
 import { AutoLogin } from "../components/AutoLogin";
 
-interface FormState {
+interface FormData {
   name: string;
   email: string;
   message: string;
 }
 function ContactPage() {
-
   AutoLogin();
 
-  const [formState, setFormState] = useState<FormState>({
+  const [formState, setFormState] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   });
-  const [errors, setErrors] = useState<FormState>({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,36 +28,18 @@ function ContactPage() {
     e.preventDefault();
 
     try {
-      setIsSubmitting(true);
-      const errors = { name: "", email: "", message: "" };
 
-      if (formState.name === "") {
-        errors.name = "Name is required";
-      }
+      await fetch("http://localhost:5000/sendEmail", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
 
-      if (formState.email === "" || !validateEmail(formState.email)) {
-        errors.email = "Valid email is required";
-      }
-
-      if (formState.message === "") {
-        errors.message = "Message is required";
-      }
-
-      setErrors(errors);
-
-      if (!errors.name && !errors.email && !errors.message) {
-        await fetch("http://localhost:5000/sendEmail", {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formState),
-        });
-        setFormState({ name: "", email: "", message: "" });
-        setIsSubmitting(false);
-        alert("Your message has been sent to the stylists!");
-      }
+      alert("Your message has been sent to the stylists!");
+      setFormState({name: "", email: "", message: ""})
     } catch (error) {
       console.log(error);
     }
@@ -79,62 +48,62 @@ function ContactPage() {
   return (
     <>
       <div className="text-black flex flex-col items-center gap-y-4 mt-4">
-        <div className="flex w-5/6 bg-white justify-center">
+        <div className="flex flex-col w-5/6 bg-white justify-center shadow-lg rounded-sm border">
+          <div className="flex rounded-sm pl-2 bg-black text-white">CONTACT</div>
           <Contact />
         </div>
 
-        <div className="flex bg-white p-4 w-5/6 justify-center">
-          <form className="flex flex-wrap gap-4 justify-center" onSubmit={handleSubmit}>
+        <div className="flex flex-col bg-white w-5/6 justify-center shadow-lg border">
+        <div className="flex rounded-sm bg-black text-white justify-end pr-2">EMAIL</div>
+          <form
+            className="flex flex-wrap gap-4 justify-center text-white mb-4 mt-4"
+            onSubmit={handleSubmit}
+          >
             <div className="flex flex-col gap-y-4">
               <input
-                className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"
+                className="rounded-md border border-slate-300 px-2 py-1 outline-white"
                 type="text"
                 name="name"
                 value={formState.name}
                 onChange={handleChange}
                 placeholder="Name"
+                required
               />
-              {errors.name && (
-                <p className="text-sm text-red-400">{errors.name}</p>
-              )}
 
               <div className="flex flex-col gap-y-4">
                 <input
-                  className="rounded-md border-2 border-slate-300 px-2 py-1 outline-white"
+                  className="rounded-md border border-slate-300 px-2 py-1 outline-white"
                   type="email"
                   name="email"
                   value={formState.email}
                   onChange={handleChange}
                   placeholder="Email"
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 />
-                {errors.email && (
-                  <p className="text-sm text-red-400">{errors.email}</p>
-                )}
               </div>
             </div>
 
-            <div className="flex flex-col gap-y-2">
+            <div className="flex flex-col gap-y-4">
               <textarea
-                className="rounded-md border-2 border-slate-300 outline-white text-white p-2"
+                className="rounded-md border border-slate-300 outline-white text-white p-2"
                 name="message"
                 value={formState.message}
                 onChange={handleChange}
                 placeholder="Message"
                 rows={6}
+                required
               />
-              {errors.message && (
-                <p className="text-sm text-red-400">{errors.message}</p>
-              )}
 
               <button
                 className="rounded-md bg-black text-white px-2 py-1 block"
                 type="submit"
               >
-                {isSubmitting ? "Submitting..." : "Submit"}
+                Submit
               </button>
             </div>
 
-            <div className="flex w-1/3 place-content-center">
+            <div className="flex w-1/3 place-content-center text-black">
               <p>
                 We'd love to hear from you. Send your comments, concerns, or
                 praises.
@@ -143,7 +112,7 @@ function ContactPage() {
           </form>
         </div>
 
-        <div className="w-5/6 mb-4">
+        <div className="w-5/6 mb-4 rounded-sm border shadow-lg">
           <Map />
         </div>
       </div>

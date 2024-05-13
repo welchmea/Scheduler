@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import 'dotenv/config';
 
 mongoose.connect(
-  "mongodb+srv://megrosewel:w28BRwjptIqEbl9L@scheduler.uijs5w5.mongodb.net/?retryWrites=true&w=majority&appName=Scheduler"
+  process.env.VITE_MONGO_CONNECT_STRING
 );
 const scheduleDB = mongoose.connection;
 

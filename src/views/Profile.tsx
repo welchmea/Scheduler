@@ -45,7 +45,7 @@ export default function Profile() {
     });
 
     if (res.status == 200 || res.status == 201 ){
-      const results = await fetch(`http://localhost:5000/deleteAppointmentId/${userContext.email}`, {
+      await fetch(`http://localhost:5000/deleteAppointmentId/${userContext.email}`, {
         method: "delete",
         body: JSON.stringify({id: userContext.email }),
         headers: {

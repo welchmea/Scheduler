@@ -82,6 +82,11 @@ function Appointment() {
     getSlots(date);
   }, [date]);
 
+  const isWeekday = (date: any) => {
+    const day = date.getDay();
+    return day !== 0 && day !== 6;
+  };
+
   return (
     <>
       <div className="flex justify-center">
@@ -109,6 +114,7 @@ function Appointment() {
                   className="bg-white p-1 ml-6 mt-2 mb-6 w-[40vw]"
                   selected={date}
                   minDate={new Date(Date.now())}
+                  filterDate={isWeekday}
                   onChange={(date) => date && setDate(date)}
                 />
               </div>

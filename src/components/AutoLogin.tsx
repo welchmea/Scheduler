@@ -12,7 +12,6 @@ export function AutoLogin () {
           });
     
           if (response.status === 200 || response.status === 201) {
-            console.log("continued session")
             let token = await response.json()
             userContext.setEmail(token.id)
     
@@ -22,7 +21,7 @@ export function AutoLogin () {
 
         }
         catch(error) {
-          console.log(error)
+          userContext.setEmail(null)
         }
       }
       autoLogin();

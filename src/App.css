@@ -11,3 +11,8 @@ body {
   background-color: #C2CFD7;
   color: black;
 }
+
+img {
+  height: auto;
+  width: 100%;
+}

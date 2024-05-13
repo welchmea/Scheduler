@@ -30,13 +30,15 @@ function Contact() {
             </div>
             <div className="flex flex-col items-start bg-calendarBG rounded-md p-2">
               HOURS:
-              <ul>Monday: 9AM&#8209;PM</ul>
-              <ul>Tuesday: 9AM&#8209;2PM</ul>
-              <ul>Wednesday: 9AM&#8209;2PM</ul>
-              <ul>Thursday: 9AM&#8209;2PM</ul>
-              <ul>Friday: 9AM&#8209;2PM</ul>
-              <ul>Saturday: Closed</ul>
-              <ul>Sunday: Closed</ul>
+              <ul>
+              <li>Monday: 9AM&#8209;PM</li>
+              <li>Tuesday: 9AM&#8209;2PM</li>
+              <li>Wednesday: 9AM&#8209;2PM</li>
+              <li>Thursday: 9AM&#8209;2PM</li>
+              <li>Friday: 9AM&#8209;2PM</li>
+              <li>Saturday: Closed</li>
+              <li>Sunday: Closed</li>
+              </ul>
             </div>
             <div className="flex flex-col items-start  bg-calendarBG rounded-md p-2">
               ADDRESS:

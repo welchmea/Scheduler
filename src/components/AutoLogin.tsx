@@ -22,7 +22,7 @@ export function AutoLogin () {
 
         }
         catch(error) {
-          alert(error)
+          console.log(error)
         }
       }
       autoLogin();

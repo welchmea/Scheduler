@@ -1,25 +1,22 @@
-import GoogleMapReact from "google-map-react";
+import Map from 'react-map-gl';
 
-function Map() {
-  let key = import.meta.env.VITE_GOOGLE_TOKEN
-  const defaultProps = {
-    center: {
-      lat: 47.03266525268555,
-      lng: -122.86538696289062,
-    },
-    zoom: 16,
-  };
+function MapView() {
 
   return (
     <>
-      <div className="z-10" style={{ height: "40vh", width: "100%" }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: key}}
-          defaultCenter={defaultProps.center}
-          defaultZoom={defaultProps.zoom}
-        ></GoogleMapReact>
+      <div>
+        <Map
+          mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
+          initialViewState={{
+            longitude: -122.86538696289062,
+            latitude: 47.03266525268555,
+            zoom: 16
+          }}
+          mapStyle="mapbox://styles/mapbox/dark-v11"
+
+        ></Map>
       </div>
     </>
   );
 }
-export default Map;
+export default MapView;

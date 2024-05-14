@@ -14,9 +14,7 @@ export function AutoLogin() {
         if (response.status === 200 || response.status === 201) {
           let token = await response.json();
           userContext.setEmail(token.id);
-        } else {
-          console.log("not signed in or not valid");
-        }
+        } 
       } catch (error) {
         throw error;
       }

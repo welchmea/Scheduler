@@ -61,7 +61,7 @@ function Appointment() {
       navigate("/");
     } else {
       alert(
-        `Defer to the status code: ${results.status}, to determine what went wrong.`
+        "You already have an appointment!"
       );
     }
   };

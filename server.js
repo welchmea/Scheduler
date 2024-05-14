@@ -190,7 +190,7 @@ app.post("/createAppointment", (req, res) => {
         .status(400)
         .json({
           error:
-            "The document was not able to be compiled, check parameters again.",
+            "Could not make an appointment.",
         });
     });
 });

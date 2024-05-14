@@ -39,6 +39,10 @@ const Available = mongoose.model("Available", available);
 const Appointment = mongoose.model("Appointment", apptSchema);
 
 const createAppointment = async (_id, service, date, description, time) => {
+  const checkDuplicate = await Appointment.findById(_id).exec();
+  if (checkDuplicate != null) {
+    throw 422;
+  }
   const appointment = new Appointment({
     _id: _id,
     service: service,
@@ -87,7 +91,6 @@ const updateAppointment = async (_id, service, date, description, time) => {
 const createAvailableId = async (_id, time ) => {
   const query = await Available.findById({ _id: _id });
   let currentTimes = query.timeSlots
-  console.log(currentTimes)
   await updateAvailability(_id, currentTimes)
 }
 

@@ -1,40 +1,44 @@
 import "./App.css";
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from './views/Home';
-import ContactPage from "./views/ContactPage";
-import Services from "./views/Service";
-import Appointment from "./views/Appointment";
-import Login from "./views/Login";
-import Admin from "./views/Admin";
-import Signup from "./views/Signup";
-import Profile from "./views/Profile";
-import Sidebar from "./components/Sidebar";
-
+const Home = lazy(() => import("./views/Home"));
+const ContactPage = lazy(() => import("./views/ContactPage"));
+const Services = lazy(() => import("./views/Service"));
+const Appointment = lazy(() => import("./views/Appointment"));
+const Login = lazy(() => import("./views/Login"));
+const Admin = lazy(() => import("./views/Admin"));
+const Signup = lazy(() => import("./views/Signup"));
+const Profile = lazy(() => import("./views/Profile"));
+const Sidebar = lazy(() => import("./components/Sidebar"));
 
 import { UserContextProvider } from "./contexts/UserContext";
 
 function App() {
-  
   return (
     <>
       <BrowserRouter>
-      <UserContextProvider>
-          <Sidebar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/ContactPage" element={<ContactPage />} />
-            <Route path="/Services" element={<Services />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Signup" element={<Signup/> } />
-            <Route path="/Appointment" element={<Appointment/>} />
-            <Route path="/Admin" element={<Admin />} />
-            <Route path="/Profile" element={<Profile />} />
-          </Routes>
-          </UserContextProvider>
+        <UserContextProvider>
+          <Suspense fallback={<Loading />}>
+            <Sidebar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/ContactPage" element={<ContactPage />} />
+              <Route path="/Services" element={<Services />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Signup" element={<Signup />} />
+              <Route path="/Appointment" element={<Appointment />} />
+              <Route path="/Admin" element={<Admin />} />
+              <Route path="/Profile" element={<Profile />} />
+            </Routes>
+          </Suspense>
+        </UserContextProvider>
       </BrowserRouter>
     </>
   );
+}
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
 }
 
 export default App;

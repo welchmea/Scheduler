@@ -21,7 +21,7 @@ export function AutoLogin () {
 
         }
         catch(error) {
-          userContext.setEmail(null)
+          console.log(error);
         }
       }
       autoLogin();

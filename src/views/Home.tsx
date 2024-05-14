@@ -48,9 +48,9 @@ function Home() {
             vision.
           </p>
           <div className="flex flex-row gap-x-4 gap-y-6 text-white place-content-center">
-          <ImageCard title="CUTS" img={Cut} imageSmall={smCut} imageMedium={mdCut} imageLarge={lgCut}/>
-          <ImageCard title="COLOR" img={Color} imageSmall={smColor} imageMedium={mdColor} imageLarge={lgColor}/>
-          <ImageCard title="STYLING AND TREATMENTS" img={Style} imageSmall={smStyle} imageMedium={mdStyle} imageLarge={lgStyle}/>
+          <ImageCard title="CUTS" img={Cut} imageSmall={smCut} imageMedium={mdCut}/>
+          <ImageCard title="COLOR" img={Color} imageSmall={smColor} imageMedium={mdColor}/>
+          <ImageCard title="STYLING AND TREATMENTS" img={Style} imageSmall={smStyle} imageMedium={mdStyle}/>
           </div>
         </div>
 

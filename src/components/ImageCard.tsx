@@ -6,8 +6,8 @@ export default function ImageCard({ title, img, imageSmall, imageLarge, imageMed
         <img
           srcSet={`${imageSmall} 320w, ${imageMedium} 680w, ${imageLarge} 960w, ${img} 1980w`}
           src={img}
-          width=""
-          height=""
+          width="400"
+          height="600"
           alt=""
         />
       </div>

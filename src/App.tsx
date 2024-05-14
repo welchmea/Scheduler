@@ -1,16 +1,15 @@
 import "./App.css";
-import { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const Home = lazy(() => import('./views/Home'));
-const ContactPage = lazy(() => import('./views/ContactPage'));
-const Services = lazy(() => import('./views/Service'));
-const Appointment = lazy(() => import('./views/Appointment'));
-const Login = lazy(() => import('./views/Login'));
-const Admin = lazy(() => import('./views/Admin'));
-const Signup = lazy(() => import('./views/Signup'));
-const Profile = lazy(() => import('./views/Profile'));
-const Sidebar = lazy(() => import('./components/Sidebar'));
+import Home from './views/Home';
+import ContactPage from "./views/ContactPage";
+import Services from "./views/Service";
+import Appointment from "./views/Appointment";
+import Login from "./views/Login";
+import Admin from "./views/Admin";
+import Signup from "./views/Signup";
+import Profile from "./views/Profile";
+import Sidebar from "./components/Sidebar";
 
 
 import { UserContextProvider } from "./contexts/UserContext";

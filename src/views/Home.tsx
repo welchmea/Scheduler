@@ -4,15 +4,12 @@ import Header from "../components/Header";
 import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash .jpg';
 import smCut from '../assets/images/imgSm-cut.jpg'
 import mdCut from '../assets/images/imgMd-cut.jpg'
-import lgCut from '../assets/images/imgLg-cut.jpg'
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import smColor from '../assets/images/imgSm-Color.jpg';
 import mdColor from '../assets/images/imgMd-Color.jpg';
-import lgColor from '../assets/images/imgLg-Color.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
 import smStyle from '../assets/images/imgSm-Style.jpg';
 import mdStyle from '../assets/images/imgMd-Style.jpg';
-import lgStyle from '../assets/images/imgLg-Style.jpg';
 import Contact from "../components/Contact";
 import ImageCard from "../components/ImageCard";
 import { AutoLogin } from "../components/AutoLogin";

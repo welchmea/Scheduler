@@ -28,6 +28,7 @@ export default function Profile() {
 
       if (response.status === 200 || response.status === 201) {
         let appt = await response.json()
+        console.log(appt)
         userContext.setUsername(appt.firstName + ' ' + appt.lastName)
         userContext.setAppt(appt.appointment)
       } 
@@ -38,7 +39,7 @@ export default function Profile() {
   const cancelAppt = async () => {
     const res = await fetch(`http://localhost:5000/updateUser/${userContext.email}`, {
       method: "put",
-      body: JSON.stringify({id: userContext.email, appointment: ' ' }),
+      body: JSON.stringify({id: userContext.email, appointment: null }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -52,7 +53,7 @@ export default function Profile() {
           "Content-Type": "application/json",
         },
       });
-      if (res.status <= 204 && res.status >= 200 ){
+      if (res.status <= 204 || res.status >= 200 ){
         // const createAppt = await fetch(`http://localhost:5000/createAvailableId/${userContext.appt.date}`, {
         //   method: "post",
         //   body: JSON.stringify({id: userContext.appt.date, time: userContext.appt.time}),

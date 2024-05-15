@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 export function AutoLogin() {
+
   const userContext = useContext(UserContext);
+
   React.useEffect(() => {
     async function autoLogin() {
       try {
@@ -12,11 +14,10 @@ export function AutoLogin() {
         });
 
         if (response.status === 200 || response.status === 201) {
-          let token = await response.json();
-          userContext.setEmail(token.id);
+          userContext.setEmail(response.json());
         } 
-      } catch (error) {
-        throw error;
+      } catch(e) {
+        throw e;
       }
     }
     autoLogin();

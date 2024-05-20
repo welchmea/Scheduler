@@ -22,7 +22,7 @@ export default function Profile() {
   useEffect(() => {
     async function getUserData() {
       let id = userContext.email
-      const response = await fetch(`http://localhost:5000/retrieveUsersId/${id}`, {
+      const response = await fetch(`http://localhost:5000/retrieveUsersId/${userContext.email}`, {
         method: "GET",
       });
 
@@ -34,7 +34,7 @@ export default function Profile() {
       } 
     }
     getUserData();
-  }, [userContext.email]);
+  }, []);
 
   const cancelAppt = async () => {
     const res = await fetch(`http://localhost:5000/updateUser/${userContext.email}`, {

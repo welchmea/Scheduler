@@ -14,7 +14,8 @@ export function AutoLogin() {
         });
 
         if (response.status === 200 || response.status === 201) {
-          userContext.setEmail(response.json());
+          let id = await response.json();
+          userContext.setEmail(id.id);
         } 
       } catch(e) {
         throw e;

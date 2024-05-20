@@ -1,5 +1,5 @@
 import Contact from "../components/Contact";
-import Map from "../components/Map";
+import MapView from "../components/Map";
 ("use client");
 import React, { useState } from "react";
 import { AutoLogin } from "../components/AutoLogin";
@@ -116,7 +116,7 @@ function ContactPage() {
         </div>
 
         <div className="w-5/6 mb-4 rounded-sm border shadow-lg">
-          <Map />
+          <MapView />
         </div>
       </div>
     </>

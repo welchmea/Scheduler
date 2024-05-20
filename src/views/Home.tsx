@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-// import Map from "../components/Map";
 import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash .jpg';
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
@@ -11,7 +10,6 @@ import { AutoLogin } from "../components/AutoLogin";
 function Home() {
 
   AutoLogin();
-    
   return (
     <>
       <div className="h-screen">
@@ -49,9 +47,6 @@ function Home() {
          <Link to='/ContactPage'><h2 className="mb-4 transition delay-50 duration-300 ease-in-out transform hover:scale-105 text-white">CONTACT</h2></Link> 
           <Contact/>
         </div>
-        {/* <div className="flex items-center bg-black h-[50vh] gap-y-4">
-          <Map />
-        </div> */}
       </div>
     </>
   );

@@ -148,7 +148,7 @@ function Appointment() {
                   name="description"
                   id="description"
                   rows={4}
-                  className="flex bg-white rounded-sm p-3 ml-6 mt-2 mb-6 w-[40vw]"
+                  className="flex bg-white rounded-sm p-3 ml-6 mt-2 mb-6 w-5/6"
                 ></textarea>
               </div>
             </div>

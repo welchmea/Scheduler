@@ -46,18 +46,25 @@ function ContactPage() {
 
   return (
     <>
-      <div className="text-black flex flex-col items-center gap-y-4 bg-[#3D3D3D]">
-        <div className="flex flex-col w-5/6 bg-calendarBG justify-center shadow-lg rounded-sm border mt-4">
-          <div className="flex rounded-sm pl-2 bg-[#292929] text-white">
-            CONTACT
-          </div>
+      <header className="flex items-center justify-center h-screen bg-fixed bg-center bg-cover bg-[url('./assets/images/averie-woodard-4nulm-JUYFo-unsplash.jpg')]">
+        <div className="border flex place-content-center items-center text-black p-4 text-2xl bg-calendarBG bg-opacity-60 w-full h-1/3">
+          Contact
+        </div>
+      </header>
+
+      <section className="flex flex-col m-auto bg-fixed bg-center bg-cover bg-[url('./assets/images/averie-woodard-4nulm-JUYFo-unsplash.jpg')]">
+        <div className="p-4 text-2xl bg-calendarBG bg-opacity-50 rounded-t-md">
+          CONTACT INFORMATION
+        </div>
+        <div className="flex flex-col gap-y-4 place-content-center text-black h-full p-3 bg-calendarBG rounded-b-md mb-4">
           <Contact />
         </div>
-
-        <div className="flex flex-col  bg-calendarBG w-5/6 justify-center shadow-lg border">
-          <div className="flex rounded-sm bg-[#292929] text-white justify-end pr-2">
-            EMAIL
-          </div>
+      </section>
+      <section className="flex flex-col items-center m-auto bg-fixed bg-center bg-cover bg-[url('./assets/images/averie-woodard-4nulm-JUYFo-unsplash.jpg')]">
+        <div className="p-4 text-2xl bg-calendarBG bg-opacity-50 w-full rounded-t-md">
+          EMAIL
+        </div>
+        <div className="flex flex-col gap-y-4 place-content-center text-black h-full p-3 bg-calendarBG rounded-b-md mb-4">
           <form
             className="flex flex-wrap gap-4 justify-center text-white mb-4 mt-4"
             onSubmit={handleSubmit}
@@ -114,11 +121,15 @@ function ContactPage() {
             </div>
           </form>
         </div>
-
-        <div className="w-5/6 mb-4 rounded-sm border shadow-lg">
+      </section>
+      <section className="flex flex-col items-end m-auto bg-fixed bg-center bg-cover bg-[url('./assets/images/averie-woodard-4nulm-JUYFo-unsplash.jpg')]">
+        <div className="p-4 text-2xl bg-calendarBG bg-opacity-50 w-full rounded-t-md">
+          MAP
+        </div>
+        <div className="flex flex-col gap-y-4 place-content-center text-black h-full w-full p-3 bg-calendarBG rounded-b-md mb-4">
           <MapView />
         </div>
-      </div>
+      </section>
     </>
   );
 }

@@ -11,6 +11,7 @@ const Admin = lazy(() => import("./views/Admin"));
 const Signup = lazy(() => import("./views/Signup"));
 const Profile = lazy(() => import("./views/Profile"));
 const Sidebar = lazy(() => import("./components/Sidebar"));
+const Products = lazy(() => import("./views/Products"));
 
 import { UserContextProvider } from "./contexts/UserContext";
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/Appointment" element={<Appointment />} />
               <Route path="/Admin" element={<Admin />} />
               <Route path="/Profile" element={<Profile />} />
+              <Route path="/Products" element={<Products />} />
             </Routes>
           </Suspense>
         </UserContextProvider>

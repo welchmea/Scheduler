@@ -39,6 +39,9 @@ function Sidebar() {
               <ButtonStyle title="Appointment" />{" "}
             </Link>
           ) : null}
+          <Link to="/Products">
+            <ButtonStyle title="Products" />
+          </Link>
           {userContext.isAdmin ? (
             <Link to="/Admin">
               {" "}

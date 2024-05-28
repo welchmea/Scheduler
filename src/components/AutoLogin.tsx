@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import { useMemo, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 export function AutoLogin() {
 
   const userContext = useContext(UserContext);
 
-  React.useEffect(() => {
+  useMemo(() => {
     async function autoLogin() {
       try {
         const response = await fetch("http://localhost:5000/autoLogin", {
@@ -22,5 +22,5 @@ export function AutoLogin() {
       }
     }
     autoLogin();
-  }, []);
+  }, [userContext.email]);
 }

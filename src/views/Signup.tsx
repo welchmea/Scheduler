@@ -6,8 +6,9 @@ import Container from "@mui/material/Container";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Signup() {
-  const userContext = React.useContext(UserContext);
 
+
+  const userContext = React.useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

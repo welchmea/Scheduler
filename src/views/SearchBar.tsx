@@ -2,7 +2,6 @@ import { KeyboardEvent, useState } from "react";
 import FetchProducts
  from "../components/FetchProducts";
 import { fetchData } from "../components/FetchData";
-import Filter from "../components/Filter";
 
 type products = {
     productType: String;
@@ -18,11 +17,13 @@ type products = {
 export default function SearchBar ( ) {
 
     const [product, setProducts] = useState<Products>([]);
-    const [filter, setFilters] = useState([]);
     const [input, setInput] = useState('')
-    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    const [display, setDisplay] = useState(false)
+
+    const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-          fetchData(setProducts, setFilters, input);
+          await fetchData(setProducts, input);
+          setDisplay(true);
           setInput('');
         }
       };
@@ -38,11 +39,8 @@ export default function SearchBar ( ) {
           onKeyDown={(e) => handleKeyDown(e)}
         ></input>
         </div>
-        {product && (
-          <>
-          <Filter filter={filter} product={product}/>
+        { display && (
           <FetchProducts product={product}/>
-          </>
         )}
         </>
     )

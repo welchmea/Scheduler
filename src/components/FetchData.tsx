@@ -1,4 +1,4 @@
-export async function fetchData( setProducts: any, setFilters: any, input: any) {
+export async function fetchData( setProducts: any, input: any) {
     const url =
       `https://sephora.p.rapidapi.com/us/products/v2/search?q=${input}&pageSize=60&currentPage=1`;
     const options = {
@@ -13,8 +13,8 @@ export async function fetchData( setProducts: any, setFilters: any, input: any) 
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      setProducts(result.products);
-      setFilters(result.categories);
+      setProducts(result);
+      // setFilters(result.categories);
       return;
 
     } catch (error) {

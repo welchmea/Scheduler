@@ -1,35 +1,60 @@
-import { KeyboardEvent, useState } from "react";
-import FetchProducts
- from "../components/FetchProducts";
+import { KeyboardEvent, useEffect, useState } from "react";
+import FetchProducts from "../components/FetchProducts";
 import { fetchData } from "../components/FetchData";
 
 type products = {
-    productType: String;
-    image: String;
-    brandName: String
-  }
-  
-  export interface Products {
-    map(arg0: (key: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
-    options?: Array<products>
-  }
+  productType: String;
+  image: String;
+  brandName: String;
+};
 
-export default function SearchBar ( ) {
+export interface Products {
+  map(
+    arg0: (key: any) => import("react/jsx-runtime").JSX.Element
+  ): import("react").ReactNode;
+  options?: Array<products>;
+}
 
-    const [product, setProducts] = useState<Products>([]);
-    const [input, setInput] = useState('')
-    const [display, setDisplay] = useState(false)
+export default function SearchBar() {
+  const [product, setProducts] = useState<Products>([]);
+  const [input, setInput] = useState("");
+  const [display, setDisplay] = useState(false);
+  const [page, setPage] = useState(1);
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(false);
 
-    const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-          await fetchData(setProducts, input);
-          setDisplay(true);
-          setInput('');
-        }
-      };
-    return (
-        <>
-        <div>
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      displayResults()
+      setDisplay(true);
+      setInput("");
+    }
+  };
+
+
+  const displayResults = async () => {
+      await fetchData(setProducts, input, page);
+    }
+
+  const setNextPage = () => {
+    setPage(page => page + 1);
+    setPrevDisabled(false);
+    displayResults();
+  };
+
+  const setPrevPage = async () => {
+    if (page === 1) {
+      setPrevDisabled(true)
+    }
+    else {
+      setPage(page => page - 1);
+    }
+
+  };
+  console.log(product)
+  return (
+    <>
+      <div>
         <input
           type="text"
           placeholder="Search for a Product"
@@ -38,10 +63,25 @@ export default function SearchBar ( ) {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => handleKeyDown(e)}
         ></input>
-        </div>
-        { display && (
-          <FetchProducts product={product}/>
-        )}
-        </>
-    )
+      </div>
+      
+      {/* {display && <FetchProducts product={product} />} */}
+      <div className="flex justify-center mt-4 gap-x-4">
+        <button
+          className="flex justify-center bg-white pl-3 pr-3 rounded-md"
+          disabled={prevDisabled}
+          onClick={setPrevPage}
+        >
+          Prev
+        </button>
+        <button
+          className="flex justify-center bg-white pl-3 pr-3 rounded-md"
+          disabled={nextDisabled}
+          onClick={setNextPage}
+        >
+          Next
+        </button>
+      </div>
+    </>
+  );
 }

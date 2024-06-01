@@ -3,13 +3,13 @@ import { useState } from "react";
 export default function FetchProducts(product: any) {
   const [filteredProducts, setFilteredProducts] = useState(product.product.products);
   const [filterParam, setFilterParam] = useState<any>([])
+
   const handleChange = (e:any) => {
     setFilterParam(e.target.value)
     const handleFilters = () => {
       filteredProducts
     }
   }
-  console.log(filteredProducts)
   return (
     <>
      <div className="flex flex-row gap-x-8 text-white justify-center p-4">

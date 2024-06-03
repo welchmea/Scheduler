@@ -3,8 +3,8 @@ import FetchProducts from "../components/FetchProducts";
 import { fetchData } from "../components/FetchData";
 
 type products = {
-  productType: String;
-  image: String;
+  productName: String;
+  altImage: String;
   brandName: String;
 };
 
@@ -23,35 +23,34 @@ export default function SearchBar() {
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(false);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      displayResults()
+      await displayResults();
       setDisplay(true);
-      setInput("");
     }
   };
 
-
   const displayResults = async () => {
-      await fetchData(setProducts, input, page);
-    }
+    console.log(input)
+    await fetchData(setProducts, input, page);
+    let total_pages = product.options?.length;
+    console.log(total_pages)
+  };
 
-  const setNextPage = () => {
-    setPage(page => page + 1);
+  const setNextPage = async () => {
+    setPage((page) => page + 1);
     setPrevDisabled(false);
     displayResults();
   };
 
   const setPrevPage = async () => {
     if (page === 1) {
-      setPrevDisabled(true)
+      setPrevDisabled(true);
+    } else {
+      setPage((page) => page - 1);
+      displayResults();
     }
-    else {
-      setPage(page => page - 1);
-    }
-
   };
-  console.log(product)
   return (
     <>
       <div>
@@ -64,8 +63,8 @@ export default function SearchBar() {
           onKeyDown={(e) => handleKeyDown(e)}
         ></input>
       </div>
-      
-      {/* {display && <FetchProducts product={product} />} */}
+
+      {display && <FetchProducts product={product} />}
       <div className="flex justify-center mt-4 gap-x-4">
         <button
           className="flex justify-center bg-white pl-3 pr-3 rounded-md"

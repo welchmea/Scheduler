@@ -1,23 +1,22 @@
 import { useState } from "react";
 
 export default function FetchProducts(product: any) {
-  const [filteredProducts, setFilteredProducts] = useState(product.product.products);
+  // console.log(product.product.products)
+  // console.log(product.product.products[0].displayName)
+  // const [filteredProducts, setFilteredProducts] = useState(product.product.products);
   const [filterParam, setFilterParam] = useState<any>([])
 
   const handleChange = (e:any) => {
     setFilterParam(e.target.value)
-    const handleFilters = () => {
-      filteredProducts
-    }
   }
   return (
     <>
      <div className="flex flex-row gap-x-8 text-white justify-center p-4">
-        <select onChange={handleChange}
+        <select onClick={handleChange}
         className="rounded-md p-2 border hover:border-[#BD625F]">
           <option>SELECT CATEGORY</option>
-          {product.product.categories.map((i: any) => (
-            <option value={i.displayName} key={i.displayName + i.nodeStr}>{i.displayName}</option>
+          {product.product.filters.map((i: any, key:any) => ( i &&
+            <option value={i.filterKey} key={key}>{i.filterKey}</option>
           ))}
         </select> 
         <select className="rounded-md p-2 border hover:border-[#BD625F]">
@@ -27,7 +26,7 @@ export default function FetchProducts(product: any) {
           ))}
         </select>
       </div>
-      <div className="flex flex-wrap gap-y-4 gap-x-4 p-4 justify-center">
+  <div className="flex flex-wrap gap-y-4 gap-x-4 p-4 justify-center">
         {product.product.products.map((i: any) => {
           return (
             <ul
@@ -45,7 +44,7 @@ export default function FetchProducts(product: any) {
             </ul>
           );
         })}
-      </div> 
+      </div>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import FetchProducts from "../components/FetchProducts";
 import { fetchData } from "../components/FetchData";
 
@@ -33,8 +33,6 @@ export default function SearchBar() {
   const displayResults = async () => {
     console.log(input)
     await fetchData(setProducts, input, page);
-    let total_pages = product.options?.length;
-    console.log(total_pages)
   };
 
   const setNextPage = async () => {
@@ -51,6 +49,11 @@ export default function SearchBar() {
       displayResults();
     }
   };
+
+  let total_pages = product.options?.length;
+  if (total_pages && total_pages < 60) {
+    setNextDisabled(true)
+  }
   return (
     <>
       <div>

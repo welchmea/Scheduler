@@ -65,6 +65,47 @@ app.post("/sendEmail", (req, res) => {
   return res.status(201).json();
 });
 
+app.post("/sendConfirmation", (req, res) => {
+
+  // send email with SMTP mailtrap app
+  // Create a transport object
+  var transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "986c14b67aa07c",
+      pass: "520cf936030044",
+    },
+  });
+
+  // verify connection to mailtrap
+  transport.verify(function (error, success) {
+    if (error) {
+      console.log("Connection error:", error);
+    } else {
+      console.log("Server is ready to take our messages");
+    }
+  });
+
+  // create email data from Contact Form on Contact Page
+  const mailOptions = {
+    from:"realm@email.com",
+    to: req.body.email,
+    subject: "Appointment Confirmation",
+    text: `Your appointment is set for ${req.body.date} at ${req.body.time}`,
+  };
+
+  // Send email. Will display results in Mailtrap inbox
+  transport.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log("Error:", error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+  return res.status(201).json();
+});
+
 app.post("/createUser", (req, res) => {
   user
     .createUser(
@@ -148,10 +189,32 @@ app.get("/autoLogin", (req, res) => {
   }
 });
 
-app.put("/updateUser/:appointment", (req, res) => {
+// app.put("/updateUser/:appointment", (req, res) => {
+//   user
+//     .updateUser(
+//       req.body.id,
+//       req.body?.firstName,
+//       req.body?.lastName,
+//       req.body?.phone,
+//       req.body?.password,
+//       req.body?.appointment
+//     )
+//     .then((user) => {
+//       res.status(200).json(user);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       res.status(400).json({
+//         error: "Could not update user.",
+//       });
+//     });
+// });
+
+app.put("/updateUser", (req, res) => {
+  console.log(req.body)
   user
     .updateUser(
-      req.body.id,
+      req.body._id,
       req.body?.firstName,
       req.body?.lastName,
       req.body?.phone,
@@ -159,6 +222,7 @@ app.put("/updateUser/:appointment", (req, res) => {
       req.body?.appointment
     )
     .then((user) => {
+      console.log(user)
       res.status(200).json(user);
     })
     .catch((error) => {

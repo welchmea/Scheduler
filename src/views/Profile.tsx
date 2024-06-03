@@ -2,8 +2,10 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { AutoLogin } from "../components/AutoLogin";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
+
   AutoLogin();
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
@@ -21,15 +23,12 @@ export default function Profile() {
   }
   useEffect(() => {
     async function getUserData() {
-      let id = userContext.email
       const response = await fetch(`http://localhost:5000/retrieveUsersId/${userContext.email}`, {
         method: "GET",
       });
 
       if (response.status === 200 || response.status === 201) {
         let appt = await response.json()
-        console.log(appt)
-        userContext.setUsername(appt.firstName + ' ' + appt.lastName)
         userContext.setAppt(appt.appointment)
       } 
     }
@@ -71,7 +70,7 @@ export default function Profile() {
   return (
     <>
       <div className="flex flex-col bg-white text-left p-4 mx-4 mt-4 rounded-sm border border-gray-500">
-        <div className="text-2xl">Name: {userContext.username}</div>
+        <div className="text-2xl">Name: {userContext.firstName + ' ' + userContext.lastName} </div>
         <div className="text-xl">Email: {userContext.email}</div>
         {userContext.appt && (
         <div className="border w-[40vw] p-3 rounded-md mt-4 mb-4">
@@ -85,7 +84,7 @@ export default function Profile() {
         )}
 
         <div className="flex place-content-end gap-x-4">
-        <button className="bg-blue-600 text-white rounded-md p-1 px-1.5 shadow-md">Edit Profile</button>
+          <Link to='/UpdateProfile'><button className="bg-blue-600 text-white rounded-md p-1 px-1.5 shadow-md">Edit Profile</button></Link>
         <button onClick={logoutUser} className="bg-black text-white rounded-md p-1 px-1.5 shadow-md">Logout</button>
         </div>
       </div>

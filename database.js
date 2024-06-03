@@ -49,7 +49,7 @@ const createUser = async (_id, firstName, lastName, phone, password) => {
     password: hash,
   });
   user.save();
-  const details = [firstName, lastName, _id];
+  const details = [firstName, lastName, _id, phone];
   return details;
 };
 
@@ -80,6 +80,7 @@ const deleteUser = async (_id) => {
 
 const updateUser = async (_id, firstName, lastName, phone, password, appointment) => {
   const filter = { _id: _id};
+  console.log(filter)
   const update = { 
     firstName: firstName,
     lastName: lastName,
@@ -88,6 +89,7 @@ const updateUser = async (_id, firstName, lastName, phone, password, appointment
     appointment: appointment,
   };
   let result = await Login.findOneAndUpdate(filter, update)
+  return result
 };
 
 export {

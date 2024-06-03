@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
+
   const userContext = React.useContext(UserContext);
   const navigate = useNavigate();
   let {state} = useLocation();
@@ -30,8 +31,10 @@ export default function Login() {
 
     if (results.status == 201 || results.status == 200) {  
       let token = await results.json()
-      userContext.setUsername(token.user.firstName + ' ' + token.user.lastName)
+      userContext.setFirstName(token.user.firstName)
+      userContext.setLastName(token.user.lastName)
       userContext.setEmail(token.user._id)
+      userContext.setPhone(token.user.phone)
       
       // direct to HomePage or Appointment page if navigating from 
       // the Services view

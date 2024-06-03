@@ -8,7 +8,7 @@ import {
   PiNumberCircleTwo,
 } from "react-icons/pi";
 import { UserContext } from "../contexts/UserContext";
-import ProfileImg from '../assets/images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg';
+import ProfileImg from "../assets/images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg";
 import { AutoLogin } from "../components/AutoLogin";
 
 function Appointment() {
@@ -57,12 +57,20 @@ function Appointment() {
           "Content-Type": "application/json",
         },
       });
-      alert(`Your appointment is all set!`);
-      navigate("/");
+      await fetch("http://localhost:5000/sendConfirmation", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: userContext.email,
+          date: newAppt.date,
+          time: newAppt.time,
+        }),
+      });
     } else {
-      alert(
-        "You already have an appointment!"
-      );
+      alert("You already have an appointment!");
     }
   };
 
@@ -95,7 +103,7 @@ function Appointment() {
             <div className="flex justify-between border border-gray-300 bg-calendarBG p-4 rounded-md mb-4 shadow-lg">
               Stylist: Melissa McGill
               <div className="flex-shrink-0">
-              <img className="h-8 w-8 rounded-full" src={ProfileImg} alt='' />
+                <img className="h-8 w-8 rounded-full" src={ProfileImg} alt="" />
               </div>
             </div>
 

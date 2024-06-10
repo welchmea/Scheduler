@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash .jpg';
-import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.jpg';
-import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.jpg';
+import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash .webp';
+import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.webp';
+import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.webp';
 import Contact from "../components/Contact";
 import ImageCard from "../components/ImageCard";
 import { AutoLogin } from "../components/AutoLogin";
@@ -43,7 +43,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col place-content-center h-screen bg-fixed bg-cover bg-right-bottom bg-[url('./assets/images/george-bohunicky-qJKT2rMU0VU-unsplash.jpg')] h-[50vh] p-4 sm:h-[70vh] md:h-[60vh] lg:h-[60vh] p-8">
+        <div className="header-img flex flex-col place-content-center h-screen h-[50vh] p-4 sm:h-[70vh] md:h-[60vh] lg:h-[60vh] p-8">
          <Link to='/ContactPage'><h2 className="mb-4 transition delay-50 duration-300 ease-in-out transform hover:scale-105 text-white">CONTACT</h2></Link> 
           <Contact/>
         </div>

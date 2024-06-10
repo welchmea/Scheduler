@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   PiNumberCircleOne,
   PiNumberCircleThree,
   PiNumberCircleTwo,
 } from "react-icons/pi";
 import { UserContext } from "../contexts/UserContext";
-import ProfileImg from "../assets/images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg";
+import ProfileImg from "../assets/images/jake-nackos-IF9TK5Uy-KI-unsplash.webp";
 import { AutoLogin } from "../components/AutoLogin";
 
 function Appointment() {
@@ -16,7 +16,6 @@ function Appointment() {
   const [date, setDate] = useState<Date>(new Date(Date.now()));
 
   const userContext = useContext(UserContext);
-  const navigate = useNavigate();
   let { state } = useLocation();
 
   const [times, setTimes] = useState([]);

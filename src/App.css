@@ -11,3 +11,10 @@ body {
   background-color: #292929;
   color: black;
 }
+
+.header-img {
+  background-image: url('./assets/images/george-bohunicky-qJKT2rMU0VU-unsplash.webp');
+  background-attachment: fixed;
+  background-position: right-bottom;
+  background-size: cover;
+}

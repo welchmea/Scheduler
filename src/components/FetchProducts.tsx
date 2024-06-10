@@ -1,13 +1,13 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function FetchProducts(product: any) {
   // console.log(product.product.products)
   // console.log(product.product.products[0].displayName)
-  // const [filteredProducts, setFilteredProducts] = useState(product.product.products);
-  const [filterParam, setFilterParam] = useState<any>([])
+  // // const [filteredProducts, setFilteredProducts] = useState(product.product.products);
+  // const [filterParam, setFilterParam] = useState<any>([])
 
   const handleChange = (e:any) => {
-    setFilterParam(e.target.value)
+    console.log(e.target.value)
   }
   return (
     <>

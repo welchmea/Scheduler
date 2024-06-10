@@ -32,8 +32,10 @@ export default function Signup() {
     });
     if (results.status >= 200 && results.status <= 299) {
       let token = await results.json()
-      userContext.setUsername(token.user[0] + ' ' + token.user[1])
-      userContext.setEmail(token.user[2])
+      userContext.setFirstName(token.user.firstName)
+      userContext.setLastName(token.user.lastName)
+      userContext.setEmail(token.user._id)
+      userContext.setPhone(token.user.phone)
       navigate("/");
     }
     else if (results.status >= 400 && results.status <= 499) {

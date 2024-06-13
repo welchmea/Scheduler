@@ -97,7 +97,7 @@ export default function Signup() {
                     type="email"
                     id="email"
                     /* ?= look ahead, .* any character specific in the brackets {8,30} contains 8+  */
-                    pattern="^(?=.*[a-zA-Z0-9])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_]).{8,}[a-zA-Z]+\.com$"
+                    // pattern="^(?=.*[a-zA-Z0-9])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_]).{8,}[a-zA-Z]+\.com$"
                   />
                 </Grid>
                 <Grid item xs={12}>

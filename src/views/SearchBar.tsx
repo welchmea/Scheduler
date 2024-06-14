@@ -38,7 +38,7 @@ export default function SearchBar() {
   const setNextPage = async () => {
     setPage((page) => page + 1);
     setPrevDisabled(false);
-    displayResults();
+    await displayResults();
   };
 
   const setPrevPage = async () => {
@@ -46,7 +46,7 @@ export default function SearchBar() {
       setPrevDisabled(true);
     } else {
       setPage((page) => page - 1);
-      displayResults();
+      await displayResults();
     }
   };
 

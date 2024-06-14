@@ -146,11 +146,11 @@ app.post("/checkUser", (req, res) => {
           throw err;
         }
         console.log(result)
-        if (result == 'true') {
+        if (result === true) {
           let id = req.body._id;
           let password = user.password;
           return authorize(res, id, password, user);
-        } else if (result == 'false') {
+        } else if (result === false) {
           res.status(401).json(user);
         }
       });

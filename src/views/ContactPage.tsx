@@ -1,6 +1,5 @@
 import Contact from "../components/Contact";
 import MapView from "../components/Map";
-("use client");
 import { AutoLogin } from "../components/AutoLogin";
 import EmailForm from "../components/Email";
 

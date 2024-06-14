@@ -38,7 +38,7 @@ app.post("/sendEmail", (req, res) => {
   });
 
   // verify connection to mailtrap
-  transport.verify(function (error, success) {
+  transport.verify(function (error) {
     if (error) {
       console.log("Connection error:", error);
     } else {
@@ -79,7 +79,7 @@ app.post("/sendConfirmation", (req, res) => {
   });
 
   // verify connection to mailtrap
-  transport.verify(function (error, success) {
+  transport.verify(function (error) {
     if (error) {
       console.log("Connection error:", error);
     } else {
@@ -145,11 +145,12 @@ app.post("/checkUser", (req, res) => {
           console.error("Something went horribly wrong! ", err);
           throw err;
         }
-        if (result == true) {
+        console.log(result)
+        if (result == 'true') {
           let id = req.body._id;
           let password = user.password;
           return authorize(res, id, password, user);
-        } else if (result == false) {
+        } else if (result == 'false') {
           res.status(401).json(user);
         }
       });
@@ -305,7 +306,7 @@ app.delete("/deleteAppointmentId/:id", (req, res) => {
     });
 });
 
-app.put("/updateAvailability/:appointment", (req, res) => {
+app.put("/updateAvailability/:appointment", (req) => {
   console.log(req.body);
   // available
   // .updateAppointment(

@@ -65,7 +65,7 @@ export default function Profile() {
           userContext.setAppt(null);
         // }
       }
-    };
+    }
   }
   return (
     <>

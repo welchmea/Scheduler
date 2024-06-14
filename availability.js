@@ -72,7 +72,7 @@ const deleteAppointment = async (_id) => {
 };
 
 const updateAppointment = async (_id, service, date, description, time) => {
-  const result = await Appointment.replaceOne(
+  await Appointment.replaceOne(
     { _id: _id },
     {
       service: service,
@@ -88,7 +88,7 @@ const updateAppointment = async (_id, service, date, description, time) => {
     time: time,
   };
 };
-const createAvailableId = async (_id, time ) => {
+const createAvailableId = async (_id) => {
   const query = await Available.findById({ _id: _id });
   let currentTimes = query.timeSlots
   await updateAvailability(_id, currentTimes)
@@ -119,7 +119,6 @@ const deleteAvailability = async ( date, time ) => {
   let index = currentTimes.indexOf(time)
   currentTimes.splice(index, 1)
   await updateAvailability(date, currentTimes)
-  return
 };
 
 const deleteAllAvailability = async () => {
@@ -128,7 +127,7 @@ const deleteAllAvailability = async () => {
 };
 
 const updateAvailability = async (_id, timeSlots) => {
-  const result = await Available.replaceOne(
+  await Available.replaceOne(
     { _id: _id },
     {
       timeSlots: timeSlots

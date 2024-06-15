@@ -1,20 +1,20 @@
-import { createContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useState } from "react";
 
 export type UserContextType = {
   firstName: string | null,
-  setFirstName: any,
+  setFirstName: Dispatch<SetStateAction<string | null>>,
   lastName: string | null,
-  setLastName: any,
+  setLastName: Dispatch<SetStateAction<string | null>>,
   appt: any;
   setAppt: any;
   phone: string | null;
-  setPhone: any;
+  setPhone: Dispatch<SetStateAction<string | null>>,
   email: string | null;
-  setEmail: any;
+  setEmail: Dispatch<SetStateAction<string | null>>,
   isAdmin: boolean | null;
-  setIsAdmin: any;
+  setIsAdmin: Dispatch<SetStateAction<boolean | null>>,
   token: string | null;
-  setToken: any;
+  setToken: Dispatch<SetStateAction<string | null>>,
 };
 type UserContextProviderType = {
   children: React.ReactNode;

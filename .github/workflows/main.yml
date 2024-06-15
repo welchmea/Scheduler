@@ -9,13 +9,13 @@ on:
       - 'releases/*' # The release branches
 
 jobs:
-  build:
+  linter:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
   # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: '21'
       - name: install

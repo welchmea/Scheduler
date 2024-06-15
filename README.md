@@ -36,3 +36,8 @@ export default {
 # Scheduler
 App for a salon service. User can make an appointment. 
 
+# ESLint
+
+npx eslint . 
+
+Runs a stricter linter

@@ -1,5 +1,5 @@
 import { KeyboardEvent, useState } from "react";
-import FetchProducts from "../components/FetchProducts";
+// import FetchProducts from "../components/FetchProducts";
 import { fetchData } from "../components/FetchData";
 
 type products = {
@@ -67,7 +67,7 @@ export default function SearchBar() {
         ></input>
       </div>
 
-      {display && <FetchProducts product={product} />}
+      {/* {display && <FetchProducts product={product} />} */}
       <div className="flex justify-center mt-4 gap-x-4">
         <button
           className="flex justify-center bg-white pl-3 pr-3 rounded-md"

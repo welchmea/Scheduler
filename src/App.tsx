@@ -1,5 +1,4 @@
 import "./App.css";
-import { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./views/Home";
@@ -21,7 +20,6 @@ function App() {
     <>
       <BrowserRouter>
         <UserContextProvider>
-          <Suspense fallback={<Loading />}>
             <Sidebar />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -35,14 +33,10 @@ function App() {
               <Route path="/Products" element={<Products />} />
               <Route path="/UpdateProfile" element={<UpdateProfile />} />
             </Routes>
-          </Suspense>
         </UserContextProvider>
       </BrowserRouter>
     </>
   );
-}
-function Loading() {
-  return <h2>🌀 Loading...</h2>;
 }
 
 export default App;

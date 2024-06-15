@@ -6,6 +6,12 @@ import { fixupConfigRules } from "@eslint/compat";
 
 
 export default [
+  {
+    rules: {
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off"
+    }
+  },
   {files: ["**/*.js"], languageOptions: {sourceType: "script"}},
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,

@@ -16,7 +16,7 @@ function Appointment() {
   const [date, setDate] = useState<Date>(new Date(Date.now()));
 
   const userContext = useContext(UserContext);
-  let { state } = useLocation();
+  const { state } = useLocation();
 
   const [times, setTimes] = useState([]);
 
@@ -76,7 +76,7 @@ function Appointment() {
   useEffect(() => {
     // check available Days by user specifed Date
     async function getSlots(date: Date) {
-      let dateDB = date.toDateString();
+      const dateDB = date.toDateString();
       const availableSlots = await fetch(
         `http://localhost:5000/retrieveAvailabilityId/${dateDB}`,
         {
@@ -89,7 +89,7 @@ function Appointment() {
     getSlots(date);
   }, [date]);
 
-  const isWeekday = (date: any) => {
+  const isWeekday = (date: Date) => {
     const day = date.getDay();
     return day !== 0 && day !== 6;
   };

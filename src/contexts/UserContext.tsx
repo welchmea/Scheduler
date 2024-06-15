@@ -1,23 +1,19 @@
 import { createContext, useState } from "react";
 
-type AuthUser = {
-  email: string;
-};
-
 export type UserContextType = {
-  firstName: any,
+  firstName: string | null,
   setFirstName: any,
-  lastName: any,
+  lastName: string | null,
   setLastName: any,
   appt: any;
   setAppt: any;
-  phone: any;
+  phone: string | null;
   setPhone: any;
-  email: any;
+  email: string | null;
   setEmail: any;
-  isAdmin: any;
+  isAdmin: boolean | null;
   setIsAdmin: any;
-  token: any;
+  token: string | null;
   setToken: any;
 };
 type UserContextProviderType = {
@@ -26,13 +22,13 @@ type UserContextProviderType = {
 export const UserContext = createContext({} as UserContextType);
 
 export const UserContextProvider = ({ children }: UserContextProviderType) => {
-  const [firstName, setFirstName] = useState<AuthUser | null>(null);
-  const [lastName, setLastName] = useState<AuthUser | null>(null);
-  const [appt, setAppt] = useState<AuthUser | null>(null);
-  const [phone, setPhone] = useState<AuthUser | null>(null);
-  const [email, setEmail] = useState<AuthUser | null>(null);
-  const [isAdmin, setIsAdmin] = useState<AuthUser | null>(null);
-  const [token, setToken] = useState<AuthUser | null>(null);
+  const [firstName, setFirstName] = useState<string | null>(null);
+  const [lastName, setLastName] = useState<string | null>(null);
+  const [appt, setAppt] = useState<string | null>(null);
+  const [phone, setPhone] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   return (
     <UserContext.Provider
       value={{

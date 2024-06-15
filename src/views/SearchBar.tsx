@@ -3,14 +3,14 @@ import FetchProducts from "../components/FetchProducts";
 import { fetchData } from "../components/FetchData";
 
 type products = {
-  productName: String;
-  altImage: String;
-  brandName: String;
+  productName: string;
+  altImage: string;
+  brandName: string;
 };
 
 export interface Products {
   map(
-    arg0: (key: any) => import("react/jsx-runtime").JSX.Element
+    arg0: (key: number) => import("react/jsx-runtime").JSX.Element
   ): import("react").ReactNode;
   options?: Array<products>;
 }
@@ -50,7 +50,7 @@ export default function SearchBar() {
     }
   };
 
-  let total_pages = product.options?.length;
+  const total_pages = product.options?.length;
   if (total_pages && total_pages < 60) {
     setNextDisabled(true)
   }

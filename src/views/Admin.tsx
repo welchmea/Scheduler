@@ -11,7 +11,7 @@ function Admin() {
     },
   ]);
 
-  const adding = async (data: { id: any; timeSlots: any }) => {
+  const adding = async (data: { id: Date; timeSlots: Array<string> }) => {
 
     const newTimeSlot = {
       _id: data.id.toDateString(),
@@ -36,9 +36,9 @@ function Admin() {
   const addtoDatabase = () => {
     const timeSlots = ["9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"];
 
-    let id = new Date();
+    const id = new Date();
     for (let l = 0; l < 30; l++) {
-      let data = { id: id, timeSlots: timeSlots };
+      const data = { id: id, timeSlots: timeSlots };
       adding(data);
       id.setDate(id.getDate() + 1);
     }

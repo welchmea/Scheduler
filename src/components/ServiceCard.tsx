@@ -3,10 +3,10 @@ import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 
 type service  = {
-    id: Number;
-    service: String;
-    price: Number;
-    description: String
+    id: number;
+    service: string;
+    price: number;
+    description: string
 }
 export interface ServiceContent {
     map(arg0: (key: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;

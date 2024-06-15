@@ -9,7 +9,7 @@ export default function Login() {
 
   const userContext = React.useContext(UserContext);
   const navigate = useNavigate();
-  let {state} = useLocation();
+  const {state} = useLocation();
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,7 +30,7 @@ export default function Login() {
     })
 
     if (results.status == 201 || results.status == 200) {  
-      let token = await results.json()
+      const token = await results.json()
       userContext.setFirstName(token.user.firstName)
       userContext.setLastName(token.user.lastName)
       userContext.setEmail(token.user._id)
@@ -99,8 +99,7 @@ export default function Login() {
                   Reset Password
                 </div>
                 <div className="text-black">
-                  {" "}
-                  Don't have an account yet?{" "}
+                  Don't have an account yet?
                   <Link
                     to="/Signup"
                     className="underline italic text-blue-600"

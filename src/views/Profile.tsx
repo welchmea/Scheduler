@@ -28,7 +28,7 @@ export default function Profile() {
       });
 
       if (response.status === 200 || response.status === 201) {
-        let appt = await response.json()
+        const appt = await response.json()
         userContext.setAppt(appt.appointment)
       } 
     }

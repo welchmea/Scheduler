@@ -31,7 +31,7 @@ export default function Signup() {
       },
     });
     if (results.status >= 200 && results.status <= 299) {
-      let token = await results.json()
+      const token = await results.json()
       userContext.setFirstName(token.user.firstName)
       userContext.setLastName(token.user.lastName)
       userContext.setEmail(token.user._id)

@@ -9,19 +9,6 @@ on:
       - 'releases/*' # The release branches
 
 jobs:
-  linter:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-  # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '21'
-      - name: install
-        run: npm install
-      - name: ESLint
-        run: npm run lint
   
   qodana:
     runs-on: ubuntu-latest
@@ -34,9 +21,14 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
           fetch-depth: 0  # a full history is required for pull request analysis
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+      - name: install node
+        run: npm install
+      - name: ESLint
+        run: npm run lint
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2024.1
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-      - name: ESLint
-        run: npm run lint

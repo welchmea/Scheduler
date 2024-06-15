@@ -54,6 +54,7 @@ export default function SearchBar() {
   if (total_pages && total_pages < 60) {
     setNextDisabled(true)
   }
+  console.log(display)
   return (
     <>
       <div>

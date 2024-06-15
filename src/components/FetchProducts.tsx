@@ -1,6 +1,7 @@
 // import { useState } from "react";
 
-export default function FetchProducts(product: any) {
+export default function FetchProducts(product: string) {
+  console.log(product)
   // console.log(product.product.products)
   // console.log(product.product.products[0].displayName)
   // // const [filteredProducts, setFilteredProducts] = useState(product.product.products);

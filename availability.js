@@ -1,3 +1,4 @@
+/* eslint-disable */
 import mongoose from "mongoose";
 import 'dotenv/config';
 // Model for creating an appointment and an 

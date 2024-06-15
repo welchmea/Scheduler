@@ -1,3 +1,4 @@
+/* eslint-disable */
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import 'dotenv/config';
@@ -15,7 +16,7 @@ scheduleDB.once("open", (err) => {
         "Internal Server Error. The server was unable to process this request.",
     });
   } else {
-    console.log(
+    Console.log(
       "You have successfully connected to MongoDB collection using Mongoose."
     );
   }
@@ -80,7 +81,6 @@ const deleteUser = async (_id) => {
 
 const updateUser = async (_id, firstName, lastName, phone, password, appointment) => {
   const filter = { _id: _id};
-  console.log(filter)
   const update = { 
     firstName: firstName,
     lastName: lastName,

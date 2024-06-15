@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import express from "express";
 import cors from "cors";
 import * as user from "./database.js";

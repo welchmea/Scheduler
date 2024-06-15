@@ -1,6 +1,7 @@
 // @ts-check
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
+import globals from "globals";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -17,10 +18,16 @@ export default tseslint.config(
       ]
     },
     languageOptions : {
-      parserOptions: {
-        project: ['./tsconfig.json']
-      }
+      globals: {
+        ...globals.browser
+      },
     },
-    ignores: ["dist/*", "vite.config.ts", "tailwind.config.js", "postcss.config.js"]
+    linterOptions: {
+      reportUnusedDisableDirectives: "error"
+  }
+    // ignores: ["availability.js", "server.js", "database.js", "vite.config.ts", "tailwind.config.js", "postcss.config.js", "**/*.css"]
+  },
+  {
+    ignores: ["dist/assets/**.js"]
   }
 );

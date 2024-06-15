@@ -1,4 +1,7 @@
-export async function fetchData(setProducts: any, input: string, page: number) {
+import { Dispatch, SetStateAction } from "react";
+import { Products } from "../views/SearchBar";
+
+export async function fetchData(setProducts: Dispatch<SetStateAction<Products>>, input: string, page: number) {
   const url =
     `https://sephora14.p.rapidapi.com/searchByKeyword?search=${input}page=${page}&sortBy=NEW`;
   const options = {

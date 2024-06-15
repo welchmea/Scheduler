@@ -10,7 +10,7 @@ type products = {
 
 export interface Products {
   map(
-    arg0: (key: any) => import("react/jsx-runtime").JSX.Element
+    arg0: (key: products) => import("react/jsx-runtime").JSX.Element
   ): import("react").ReactNode;
   options?: Array<products>;
 }

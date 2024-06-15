@@ -5,8 +5,8 @@ export type UserContextType = {
   setFirstName: Dispatch<SetStateAction<string | null>>,
   lastName: string | null,
   setLastName: Dispatch<SetStateAction<string | null>>,
-  appt: any;
-  setAppt: any;
+  appt: string | null,
+  setAppt: Dispatch<SetStateAction<string | null>>,
   phone: string | null;
   setPhone: Dispatch<SetStateAction<string | null>>,
   email: string | null;

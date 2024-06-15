@@ -1,12 +1,18 @@
 import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
 
+export type appointment = {
+  service: string,
+  date: string,
+  description: string,
+  time: string
+}
 export type UserContextType = {
   firstName: string | null,
   setFirstName: Dispatch<SetStateAction<string | null>>,
   lastName: string | null,
   setLastName: Dispatch<SetStateAction<string | null>>,
-  appt: string | null,
-  setAppt: Dispatch<SetStateAction<string | null>>,
+  appt: appointment | null,
+  setAppt: Dispatch<SetStateAction<appointment | null>>,
   phone: string | null;
   setPhone: Dispatch<SetStateAction<string | null>>,
   email: string | null;
@@ -24,7 +30,7 @@ export const UserContext = createContext({} as UserContextType);
 export const UserContextProvider = ({ children }: UserContextProviderType) => {
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
-  const [appt, setAppt] = useState<string | null>(null);
+  const [appt, setAppt] = useState<appointment | null>(null);
   const [phone, setPhone] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);

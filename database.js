@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import 'dotenv/config';
 
-mongoose.connect(
+void mongoose.connect(
   process.env.VITE_MONGO_CONNECT_STRING
 );
 const scheduleDB = mongoose.connection;

@@ -32,7 +32,7 @@ export default function Profile() {
         userContext.setAppt(appt.appointment)
       } 
     }
-    getUserData();
+    void getUserData();
   }, []);
 
   const cancelAppt = async () => {

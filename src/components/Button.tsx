@@ -1,4 +1,4 @@
-export default function ButtonStyle({ title }: { title: String }) {
+export default function ButtonStyle({ title }: { title: string }) {
   return (
     <>
       <div className="flex transition delay-50 duration-300 ease-in-out transform hover:scale-110">

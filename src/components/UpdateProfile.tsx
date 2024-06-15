@@ -28,7 +28,7 @@ export default function UpdateProfile() {
     });
 
     if (results.status >= 200 && results.status <= 299) {
-      let token = await results.json();
+      const token = await results.json();
       console.log(token)
       userContext.setFirstName(token.firstName);
       userContext.setLastName(token.lastName);
@@ -53,21 +53,21 @@ export default function UpdateProfile() {
             className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black mb-4"
             name="firstName"
             id="firstName"
-            placeholder={userContext.firstName}
+            placeholder={userContext.firstName ? userContext.firstName : "First Name"}
             type="text"
             autoFocus
           />
           <input
             className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black mb-4"
             id="lastName"
-            placeholder={userContext.lastName}
+            placeholder={userContext.lastName ? userContext.lastName : "Last Name"}
             name="lastName"
             type="text"
           />
           <input
             className="w-full p-3.5 bg-white border border-gray-400 rounded-[4px] placeholder-gray-700 text-black mb-4"
             id="phone"
-            placeholder={userContext.phone}
+            placeholder={userContext.phone ? userContext.phone : "Phone Number"}
             name="phone"
           />
           {/* <input

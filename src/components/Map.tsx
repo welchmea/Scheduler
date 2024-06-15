@@ -18,8 +18,8 @@ function MapView() {
   const markerRef = useRef<mapboxgl.Marker>(null);
 
   const [viewport, setViewport] = React.useState<Viewport>({
-    longitude: -122.86538696289062,
-    latitude: 47.03266525268555,
+    longitude: -122.9,
+    latitude: 47.0,
     zoom: 16,
     pitch: 60,
     bearing: -60,
@@ -52,16 +52,16 @@ function MapView() {
             }
             mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
             initialViewState={{
-              longitude: -122.86538696289062,
-              latitude: 47.03266525268555,
+              longitude: -122.9,
+              latitude: 47.0,
               zoom: 16,
               pitch: 60,
               bearing: -60,
             }}
             mapStyle="mapbox://styles/mapbox/dark-v11"
           >
-            <Marker longitude={-122.86538696289062} 
-            latitude={47.03266525268555} 
+            <Marker longitude={-122.9} 
+            latitude={47.0} 
             color="red" ref={markerRef}
             popup={getDirections} 
             anchor="bottom"/>

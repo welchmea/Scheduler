@@ -1,4 +1,4 @@
-export async function fetchData(setProducts: any, input: any, page: any) {
+export async function fetchData(setProducts: any, input: string, page: string) {
   const url =
     `https://sephora14.p.rapidapi.com/searchByKeyword?search=${input}page=${page}&sortBy=NEW`;
   const options = {

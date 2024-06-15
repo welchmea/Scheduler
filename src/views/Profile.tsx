@@ -28,11 +28,11 @@ export default function Profile() {
       });
 
       if (response.status === 200 || response.status === 201) {
-        const appt = await response.json()
-        userContext.setAppt(appt.appointment)
+        const user = await response.json()
+        console.log(user)
       } 
     }
-    void getUserData();
+    getUserData();
   }, []);
 
   const cancelAppt = async () => {

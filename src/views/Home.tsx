@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash .webp';
+import Cut from '../assets/images/michael-dagonakis-IbdgiTODqbQ-unsplash .webp'
 import Color from '../assets/images/ayo-ogunseinde-UqT55tGBqzI-unsplash.webp';
 import Style from '../assets/images/todd-trapani-7pCUY-UoIQ0-unsplash.webp';
 import Contact from "../components/Contact";
 import ImageCard from "../components/ImageCard";
-import { AutoLogin } from "../components/AutoLogin";
+// import { AutoLogin } from "../components/AutoLogin";
 
 function Home() {
 
-  AutoLogin();
+  // AutoLogin();
   return (
     <>
       <div className="h-screen">

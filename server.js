@@ -212,7 +212,7 @@ app.get("/autoLogin", (req, res) => {
 //     });
 // });
 
-app.put("/updateUser", (req, res) => {
+app.put("/updateUser/:id", (req, res) => {
   console.log(req.body)
   user
     .updateUser(
@@ -224,7 +224,6 @@ app.put("/updateUser", (req, res) => {
       req.body?.appointment
     )
     .then((user) => {
-      console.log(user)
       res.status(200).json(user);
     })
     .catch((error) => {

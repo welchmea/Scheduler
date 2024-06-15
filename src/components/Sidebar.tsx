@@ -6,7 +6,7 @@ import HeaderButtonStyle from "./HeaderButton";
 
 function Sidebar() {
   const userContext = useContext(UserContext);
-
+  console.log(userContext.email)
   return (
     <>
       <div className="flex flex-row flex-wrap items-center text-black justify-between p-2 border bg-calendarBG">

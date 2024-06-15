@@ -1,10 +1,10 @@
 import Contact from "../components/Contact";
 import MapView from "../components/Map";
-import { AutoLogin } from "../components/AutoLogin";
+// import { AutoLogin } from "../components/AutoLogin";
 import EmailForm from "../components/Email";
 
 function ContactPage() {
-  AutoLogin();
+  // AutoLogin();
 
   return (
     <>

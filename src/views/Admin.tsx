@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { AutoLogin } from "../components/AutoLogin";
+// import { AutoLogin } from "../components/AutoLogin";
 
 function Admin() {
-  AutoLogin();
+  // AutoLogin();
   const [available, setAvailable] = useState([
     {
       //set Default

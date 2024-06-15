@@ -12,12 +12,12 @@ import ProfileImg from "../assets/images/jake-nackos-IF9TK5Uy-KI-unsplash.webp";
 import { AutoLogin } from "../components/AutoLogin";
 
 function Appointment() {
+  // to ensure user is still logged in upon page refresh 
   AutoLogin();
-  const [date, setDate] = useState<Date>(new Date(Date.now()));
 
+  const [date, setDate] = useState<Date>(new Date(Date.now()));
   const userContext = useContext(UserContext);
   const { state } = useLocation();
-
   const [times, setTimes] = useState([]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -41,10 +41,11 @@ function Appointment() {
 
     // delete Time Slot from Date and update user profile
     if (results.status === 201) {
+      userContext.setAppt(newAppt)
       await fetch(`http://localhost:5000/updateUser/${userContext.email}`, {
         method: "put",
         body: JSON.stringify({
-          id: newAppt._id,
+          _id: newAppt._id,
           appointment: {
             service: newAppt.service,
             date: newAppt.date,

@@ -1,10 +1,11 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useMemo, useState } from "react";
 
 export type appointment = {
-  service: string,
-  date: string,
-  description: string,
-  time: string
+  _id: string | null;
+  service: string | null;
+  date: string | null;
+  time: FormDataEntryValue | null;
+  description: FormDataEntryValue | null;
 }
 export type UserContextType = {
   firstName: string | null,
@@ -28,6 +29,22 @@ type UserContextProviderType = {
 export const UserContext = createContext({} as UserContextType);
 
 export const UserContextProvider = ({ children }: UserContextProviderType) => {
+
+  useMemo(() => {
+    async function autoLogin() {
+        const response = await fetch("http://localhost:5000/autoLogin", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (response.status === 200 || response.status === 201) {
+          const id = await response.json();
+          setEmail(id.id);
+        } 
+    }
+    autoLogin();
+  }, []);
+  
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
   const [appt, setAppt] = useState<appointment | null>(null);

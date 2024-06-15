@@ -1,9 +1,9 @@
 import { cuts, color, styling } from "../assets/data/data";
-import { AutoLogin } from "../components/AutoLogin";
+// import { AutoLogin } from "../components/AutoLogin";
 import ServiceCard from "../components/ServiceCard";
 
 function Services() {
-  AutoLogin();
+  // AutoLogin();
 
   return (
     <>

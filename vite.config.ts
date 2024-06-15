@@ -6,3 +6,4 @@ export default defineConfig({
   assetsInclude: ['**/*.JPG'],
   plugins: [react()],
 })
+

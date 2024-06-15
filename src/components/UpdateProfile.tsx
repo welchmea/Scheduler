@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { FormEvent, useContext } from "react";
 import { AutoLogin } from "./AutoLogin";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ export default function UpdateProfile() {
   AutoLogin();
   const userContext = useContext(UserContext);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 

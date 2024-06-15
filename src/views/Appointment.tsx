@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocation } from "react-router-dom";
@@ -20,7 +20,7 @@ function Appointment() {
 
   const [times, setTimes] = useState([]);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 

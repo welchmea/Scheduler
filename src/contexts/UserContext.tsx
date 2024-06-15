@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
 
 export type UserContextType = {
   firstName: string | null,
@@ -17,7 +17,7 @@ export type UserContextType = {
   setToken: Dispatch<SetStateAction<string | null>>,
 };
 type UserContextProviderType = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 export const UserContext = createContext({} as UserContextType);
 

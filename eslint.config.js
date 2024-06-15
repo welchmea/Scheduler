@@ -21,6 +21,6 @@ export default tseslint.config(
         project: ['./tsconfig.json']
       }
     },
-    ignores: ["vite.config.ts", "tailwind.config.js", "postcss.config.js", "**/*.js"]
+    ignores: ["dist/*", "vite.config.ts", "tailwind.config.js", "postcss.config.js"]
   }
 );
